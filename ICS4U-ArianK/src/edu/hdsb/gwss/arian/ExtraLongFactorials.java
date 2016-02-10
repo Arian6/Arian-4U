@@ -120,25 +120,24 @@ public class ExtraLongFactorials extends javax.swing.JFrame {
     private void confirmationNumberChoiceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmationNumberChoiceButtonActionPerformed
         // TODO add your handling code here:
         BigInteger chosenNumber = new BigInteger(userNumberChoiceTextField.getText());
-        
+
         BigInteger chosenNumber2 = new BigInteger("0");
-        BigInteger chosenNumber3 = new BigInteger("1");
         BigInteger chosenNumber4 = new BigInteger("1");
         BigInteger kinda = new BigInteger("1");
-        
+
         BigInteger promise[] = new BigInteger[Integer.parseInt(userNumberChoiceTextField.getText())];
-        
+
         for (int i = 0; i < Integer.parseInt(userNumberChoiceTextField.getText()); i++) {
-            
+
             promise[i] = chosenNumber.subtract(chosenNumber2);
             chosenNumber4 = chosenNumber4.multiply(promise[i]);
-            
+
             chosenNumber2 = chosenNumber2.add(kinda);
-            
+
         }
-        
+
         calculatedFactorialAnswerLabel.setText(chosenNumber4.toString());
-        
+
 
     }//GEN-LAST:event_confirmationNumberChoiceButtonActionPerformed
 

@@ -56,7 +56,7 @@ public class JavaBigDecimal {
 
                 for (int i = 0; i < numbers.length; i++) {
                     //initializing default storage number
-                    BigDecimal tempStorage = new BigDecimal("2.0");
+                    BigDecimal tempStorage = new BigDecimal("1");
 
                     //compare one number in array with another
                     int smallerOrBigger = numbers[j].compareTo(numbers[i]);

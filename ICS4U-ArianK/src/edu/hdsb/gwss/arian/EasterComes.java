@@ -1,21 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.hdsb.gwss.arian;
 
-/**
- *
- * @author ARIAN
+/* Name: EasterComes
+ * Version: v1
+ * Date: February 10 2016
+ * Author: Arian Krasniqi
  */
 public class EasterComes {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
 
         int year = 2014;
 
@@ -46,11 +38,11 @@ public class EasterComes {
         int day = p + 1;
 
         if (month == 4) {
-        System.out.println("April, "+ day);
+            System.out.println("April, " + day);
         }
 
         if (month == 3) {
-        System.out.println("April, "+ day);
+            System.out.println("April, " + day);
         }
     }
 

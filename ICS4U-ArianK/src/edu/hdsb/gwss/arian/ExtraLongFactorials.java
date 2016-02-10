@@ -24,21 +24,35 @@ public class ExtraLongFactorials extends javax.swing.JFrame {
         confirmationNumberChoiceButton = new javax.swing.JButton();
         finalFactorialLabel = new javax.swing.JLabel();
         calculatedFactorialAnswerLabel = new javax.swing.JLabel();
+        backgroundImageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(635, 308));
+        setMinimumSize(new java.awt.Dimension(635, 308));
+        setPreferredSize(new java.awt.Dimension(635, 308));
+        getContentPane().setLayout(null);
 
         extraLongFactorialsTitleLabel.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         extraLongFactorialsTitleLabel.setForeground(new java.awt.Color(204, 0, 204));
         extraLongFactorialsTitleLabel.setText("Extra Long Factorials");
+        getContentPane().add(extraLongFactorialsTitleLabel);
+        extraLongFactorialsTitleLabel.setBounds(211, 18, 209, 28);
 
         programInfoForUserLabel.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         programInfoForUserLabel.setForeground(new java.awt.Color(204, 0, 204));
         programInfoForUserLabel.setText("This program will calculate the factorials of any number no matter the size!");
+        getContentPane().add(programInfoForUserLabel);
+        programInfoForUserLabel.setBounds(56, 57, 541, 22);
 
-        userEntersFactorialLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        userEntersFactorialLabel.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        userEntersFactorialLabel.setForeground(new java.awt.Color(51, 255, 255));
         userEntersFactorialLabel.setText("Enter your number: ");
+        getContentPane().add(userEntersFactorialLabel);
+        userEntersFactorialLabel.setBounds(93, 138, 160, 22);
 
         userNumberChoiceTextField.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        getContentPane().add(userNumberChoiceTextField);
+        userNumberChoiceTextField.setBounds(342, 135, 119, 23);
 
         confirmationNumberChoiceButton.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         confirmationNumberChoiceButton.setText("Enter");
@@ -47,60 +61,24 @@ public class ExtraLongFactorials extends javax.swing.JFrame {
                 confirmationNumberChoiceButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(confirmationNumberChoiceButton);
+        confirmationNumberChoiceButton.setBounds(495, 134, 63, 25);
 
-        finalFactorialLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        finalFactorialLabel.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        finalFactorialLabel.setForeground(new java.awt.Color(0, 255, 255));
         finalFactorialLabel.setText("Factorial: ");
+        getContentPane().add(finalFactorialLabel);
+        finalFactorialLabel.setBounds(106, 220, 80, 22);
 
-        calculatedFactorialAnswerLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        calculatedFactorialAnswerLabel.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        calculatedFactorialAnswerLabel.setForeground(new java.awt.Color(0, 255, 255));
         calculatedFactorialAnswerLabel.setText("???");
+        getContentPane().add(calculatedFactorialAnswerLabel);
+        calculatedFactorialAnswerLabel.setBounds(220, 220, 390, 17);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(programInfoForUserLabel)
-                .addGap(48, 48, 48))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(211, 211, 211)
-                        .addComponent(extraLongFactorialsTitleLabel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(139, 139, 139)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(finalFactorialLabel)
-                            .addComponent(userEntersFactorialLabel))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(89, 89, 89)
-                                .addComponent(userNumberChoiceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34)
-                                .addComponent(confirmationNumberChoiceButton))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(66, 66, 66)
-                                .addComponent(calculatedFactorialAnswerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(37, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(extraLongFactorialsTitleLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(programInfoForUserLabel)
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(userEntersFactorialLabel)
-                    .addComponent(userNumberChoiceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(confirmationNumberChoiceButton))
-                .addGap(59, 59, 59)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(finalFactorialLabel)
-                    .addComponent(calculatedFactorialAnswerLabel))
-                .addContainerGap(73, Short.MAX_VALUE))
-        );
+        backgroundImageLabel.setIcon(new javax.swing.ImageIcon("G:\\MyPortfolio\\ICS4U\\calculator for factorials.jpg")); // NOI18N
+        getContentPane().add(backgroundImageLabel);
+        backgroundImageLabel.setBounds(0, 0, 640, 310);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -165,6 +143,7 @@ public class ExtraLongFactorials extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel backgroundImageLabel;
     private javax.swing.JLabel calculatedFactorialAnswerLabel;
     private javax.swing.JButton confirmationNumberChoiceButton;
     private javax.swing.JLabel extraLongFactorialsTitleLabel;

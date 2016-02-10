@@ -82,8 +82,8 @@ public class EasterComes extends javax.swing.JFrame {
         int year = Integer.parseInt(userYearChoiceTextField.getText());
 
         if (year < 0) {
-
-            System.err.println("Invalid Year");
+            easterIsOnLabel.setText("Invalid Year");
+            easterFinalDateCalculatedLabel.setText("!!!");
         }
 
         if (year >= 0) {

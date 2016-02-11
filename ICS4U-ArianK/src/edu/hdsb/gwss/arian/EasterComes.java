@@ -63,14 +63,12 @@ public class EasterComes extends javax.swing.JFrame {
         easterIsOnLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         easterIsOnLabel.setText("Easter will be on...");
         getContentPane().add(easterIsOnLabel);
-        easterIsOnLabel.setBounds(160, 170, 106, 17);
+        easterIsOnLabel.setBounds(100, 170, 160, 17);
 
         easterFinalDateCalculatedLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         easterFinalDateCalculatedLabel.setText("???");
         getContentPane().add(easterFinalDateCalculatedLabel);
-        easterFinalDateCalculatedLabel.setBounds(300, 170, 18, 17);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("G:\\MyPortfolio\\ICS4U\\easter_background_04.jpg")); // NOI18N
+        easterFinalDateCalculatedLabel.setBounds(300, 170, 190, 17);
         getContentPane().add(jLabel1);
         jLabel1.setBounds(-6, 0, 580, 380);
 

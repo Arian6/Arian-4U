@@ -19,7 +19,7 @@ public class Palindrome {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        String lol = "racecar";
+        String lol = "kayak";
 
         String conversion = lol.toLowerCase();
         boolean check = false;

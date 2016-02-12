@@ -19,7 +19,7 @@ public class Palindrome {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        String lol = "niggers";
+        String lol = "racecar";
 
         String conversion = lol.toLowerCase();
         boolean check = false;
@@ -29,7 +29,7 @@ public class Palindrome {
 
             if (conversion.substring(lol2, lol2 + 1).equals(conversion.substring(conversion.length() - count, conversion.length() - count + 1))) {
                 System.out.println("yes");
-                
+
             } else {
                 System.out.println("no");
             }
@@ -37,7 +37,7 @@ public class Palindrome {
             count++;
 
         }
-       
+
     }
 
 }

@@ -3,7 +3,7 @@
  * Date: February 09 2016
  * Author: Arian Krasniqi
  */
-package edu.hdsb.gwss.arian;
+package edu.hdsb.gwss.arian.u1.numericDataTypes;
 
 import java.math.BigDecimal;
 import java.util.Scanner;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.hdsb.gwss.arian;
+package edu.hdsb.gwss.arian.u1.numericDataTypes;
 
 import java.math.BigDecimal;
 

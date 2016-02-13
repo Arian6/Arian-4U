@@ -1,4 +1,4 @@
-package edu.hdsb.gwss.arian;
+package edu.hdsb.gwss.arian.u1.numericDataTypes;
 
 import java.math.BigInteger;
 
@@ -27,9 +27,7 @@ public class ExtraLongFactorials extends javax.swing.JFrame {
         backgroundImageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(635, 308));
         setMinimumSize(new java.awt.Dimension(635, 308));
-        setPreferredSize(new java.awt.Dimension(635, 308));
         getContentPane().setLayout(null);
 
         extraLongFactorialsTitleLabel.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
@@ -75,8 +73,6 @@ public class ExtraLongFactorials extends javax.swing.JFrame {
         calculatedFactorialAnswerLabel.setText("???");
         getContentPane().add(calculatedFactorialAnswerLabel);
         calculatedFactorialAnswerLabel.setBounds(220, 220, 390, 17);
-
-        backgroundImageLabel.setIcon(new javax.swing.ImageIcon("G:\\MyPortfolio\\ICS4U\\calculator for factorials.jpg")); // NOI18N
         getContentPane().add(backgroundImageLabel);
         backgroundImageLabel.setBounds(0, 0, 640, 310);
 

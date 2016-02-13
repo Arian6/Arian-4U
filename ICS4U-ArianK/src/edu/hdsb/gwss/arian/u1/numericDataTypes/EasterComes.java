@@ -1,4 +1,4 @@
-package edu.hdsb.gwss.arian;
+package edu.hdsb.gwss.arian.u1.numericDataTypes;
 
 /* Name: EasterComes
  * Version: v1
@@ -25,9 +25,7 @@ public class EasterComes extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(570, 399));
         setMinimumSize(new java.awt.Dimension(570, 399));
-        setPreferredSize(new java.awt.Dimension(570, 399));
         getContentPane().setLayout(null);
 
         easterComesTitleLabel.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N

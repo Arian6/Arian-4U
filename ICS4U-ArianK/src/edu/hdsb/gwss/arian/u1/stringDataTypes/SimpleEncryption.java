@@ -13,38 +13,12 @@ public class SimpleEncryption {
 
     static String userChosenPhrase = "";
     static String encryption = "";
+    static String decryption = "";
     static int userChosenRotation;
 
     public static void main(String[] args) {
-        // TODO code application logic here
-
-        ArrayList<String> alphabet = new ArrayList<String>();
-        alphabet.add("a");
-        alphabet.add("b");
-        alphabet.add("c");
-        alphabet.add("d");
-        alphabet.add("e");
-        alphabet.add("f");
-        alphabet.add("g");
-        alphabet.add("h");
-        alphabet.add("i");
-        alphabet.add("j");
-        alphabet.add("k");
-        alphabet.add("l");
-        alphabet.add("m");
-        alphabet.add("n");
-        alphabet.add("o");
-        alphabet.add("p");
-        alphabet.add("q");
-        alphabet.add("r");
-        alphabet.add("s");
-        alphabet.add("t");
-        alphabet.add("u");
-        alphabet.add("v");
-        alphabet.add("w");
-        alphabet.add("y");
-        alphabet.add("x");
-        alphabet.add("z");
+        int decryptOrEncrypt;
+        Scanner input = new Scanner(System.in);
 
         System.out.println("Encrypt / Decrypt a message!");
         System.out.println("");
@@ -52,16 +26,99 @@ public class SimpleEncryption {
         System.out.println("This program will allow the user to encrypt a message by rotation letters through the alphabet");
         System.out.println("a certain nnumber of times chosen by the user");
         System.out.println("E.g = If the user chooses 2, every A in the sentance becomes a C etc...");
+        System.out.println("This program will also allow you to ecrypt a message, by knowing the rotation an decyphering it");
         System.out.println("");
+        System.out.println("Press 1 tp ENCRYPT a message, Press 2 to DECRYPT a message");
+        decryptOrEncrypt = input.nextInt();
 
-        userRotationNumber();
-        userMessageToEncrypt();
+        if (decryptOrEncrypt == 1) {
+            userRotationNumberForEncryption();
+            userMessageToEncrypt();
+            encryptingAMessage();
+
+        } else if (decryptOrEncrypt == 2) {
+            userRotationNumberForDecryption();
+            userMessageToDecypher();
+            decryptingAMessage();
+
+        } else {
+            System.err.println("Not an Option!");
+        }
+    }
+
+    public static int userRotationNumberForEncryption() {
+
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Enter your rotation choice:");
+        userChosenRotation = input.nextInt();
+
+        return userChosenRotation;
+    }
+
+    public static int userRotationNumberForDecryption() {
+
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Enter the number used to encrypt the message: ");
+        userChosenRotation = input.nextInt();
+
+        return userChosenRotation;
+    }
+
+    public static String userMessageToDecypher() {
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Enter the message you want to decrypt:");
+        userChosenPhrase = input.nextLine();
+
+        return userChosenPhrase;
+
+    }
+
+    public static String userMessageToEncrypt() {
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Enter the message you want to encrypt:");
+        userChosenPhrase = input.nextLine();
+
+        return userChosenPhrase;
+    }
+
+    public static void encryptingAMessage() {
+        ArrayList<String> alphabet = new ArrayList<String>();
+        alphabet.add("A");
+        alphabet.add("B");
+        alphabet.add("C");
+        alphabet.add("D");
+        alphabet.add("E");
+        alphabet.add("F");
+        alphabet.add("G");
+        alphabet.add("H");
+        alphabet.add("I");
+        alphabet.add("J");
+        alphabet.add("K");
+        alphabet.add("L");
+        alphabet.add("M");
+        alphabet.add("N");
+        alphabet.add("O");
+        alphabet.add("P");
+        alphabet.add("Q");
+        alphabet.add("R");
+        alphabet.add("S");
+        alphabet.add("T");
+        alphabet.add("U");
+        alphabet.add("V");
+        alphabet.add("W");
+        alphabet.add("X");
+        alphabet.add("Y");
+        alphabet.add("Z");
 
         String conversion = userChosenPhrase;
 
-        String allToLowerCase = conversion.toLowerCase();
+        String allToUpperCase = conversion.toUpperCase();
 
-        StringTokenizer ayye = new StringTokenizer(allToLowerCase, " ");
+        StringTokenizer ayye = new StringTokenizer(allToUpperCase, " ");
 
         while (ayye.hasMoreTokens()) {
 
@@ -73,7 +130,7 @@ public class SimpleEncryption {
                 int newIndexForEncryption = previousIndex + userChosenRotation;
 
                 if (newIndexForEncryption >= 26) {
-                    newIndexForEncryption = (newIndexForEncryption - previousIndex) - (25 - previousIndex);
+                    newIndexForEncryption = (newIndexForEncryption - previousIndex) - (26 - previousIndex);
                 }
 
                 encryption = encryption + alphabet.get(newIndexForEncryption);
@@ -81,26 +138,66 @@ public class SimpleEncryption {
             encryption = encryption + " ";
         }
 
+        System.out.println("The original message was: " + userChosenPhrase);
         System.out.println("Your Encrypted message is: " + encryption);
 
     }
 
-    public static int userRotationNumber() {
+    public static void decryptingAMessage() {
+        ArrayList<String> alphabet = new ArrayList<String>();
+        alphabet.add("A");
+        alphabet.add("B");
+        alphabet.add("C");
+        alphabet.add("D");
+        alphabet.add("E");
+        alphabet.add("F");
+        alphabet.add("G");
+        alphabet.add("H");
+        alphabet.add("I");
+        alphabet.add("J");
+        alphabet.add("K");
+        alphabet.add("L");
+        alphabet.add("M");
+        alphabet.add("N");
+        alphabet.add("O");
+        alphabet.add("P");
+        alphabet.add("Q");
+        alphabet.add("R");
+        alphabet.add("S");
+        alphabet.add("T");
+        alphabet.add("U");
+        alphabet.add("V");
+        alphabet.add("W");
+        alphabet.add("X");
+        alphabet.add("Y");
+        alphabet.add("Z");
 
-        Scanner input = new Scanner(System.in);
+        String conversion = userChosenPhrase;
 
-        System.out.println("Enter your rotation choice:");
-        userChosenRotation = input.nextInt();
+        String allToUpperCase = conversion.toUpperCase();
 
-        return userChosenRotation;
-    }
+        StringTokenizer ayye = new StringTokenizer(allToUpperCase, " ");
 
-    public static String userMessageToEncrypt() {
-        Scanner input = new Scanner(System.in);
+        while (ayye.hasMoreTokens()) {
 
-        System.out.println("Enter the message you want to encrypt:");
-        userChosenPhrase = input.nextLine();
+            String word = ayye.nextToken();
 
-        return userChosenPhrase;
+            for (int i = 0; i < word.length(); i++) {
+
+                int previousIndex = alphabet.indexOf(word.substring(i, i + 1));
+                int newIndexForEncryption = previousIndex - userChosenRotation;
+
+                if (newIndexForEncryption >= 26) {
+                    newIndexForEncryption = (newIndexForEncryption - previousIndex) - (26 - previousIndex);
+                }
+
+                decryption = decryption + alphabet.get(newIndexForEncryption);
+            }
+            decryption = decryption + " ";
+        }
+
+        System.out.println("The encrypted message was: " + userChosenPhrase);
+        System.out.println("The True message is: " + decryption);
+
     }
 }

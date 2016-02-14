@@ -23,9 +23,9 @@ public class Palinrome2 {
 
         Scanner input = new Scanner(System.in);
 
-        System.out.println("This program will determine if a word chosen by a user is a palindrome");
+        System.out.println("This program will determine how many wors within a sentence are palinromes");
 
-        System.out.println("Enter a word:");
+        System.out.println("Enter a sentence:");
         userWordChoice = input.nextLine();
 
         String conversion = userWordChoice;
@@ -39,31 +39,34 @@ public class Palinrome2 {
             String word = ayye.nextToken();
 
             int length = word.length();
-            int math = word.length() / 2;
 
-            int check = 0;
+            if (length > 1) {
 
-            for (int i = 0; i <= math; i++) {
+                int math = word.length() / 2;
 
-                if (word.substring(i, i + 1).equals(word.substring(length - 1 - i, length - i))) {
+                int check = 0;
 
-                    check = 1;
-                } else {
+                for (int i = 0; i <= math; i++) {
 
-                    check = 0;
-                    break;
+                    if (word.substring(i, i + 1).equals(word.substring(length - 1 - i, length - i))) {
+
+                        check = 1;
+                    } else {
+
+                        check = 0;
+                        break;
+
+                    }
 
                 }
 
+                if (check == 1) {
+                    palindromeCounter = palindromeCounter + 1;
+                }
             }
-
-            if (check == 1) {
-                palindromeCounter = palindromeCounter + 1;
-            }
-
         }
 
-        System.out.println("There are " + palindromeCounter + " palindromes in the sentance " + userWordChoice);
+        System.out.println("There are " + palindromeCounter + " palindromes in the sentence: " + userWordChoice.toUpperCase());
 
     }
 

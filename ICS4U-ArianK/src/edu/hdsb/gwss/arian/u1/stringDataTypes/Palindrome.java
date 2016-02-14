@@ -13,11 +13,6 @@ public class Palindrome {
 
         //initializing Variables
         String userWordChoice = "";
-        String conversion = userWordChoice;
-        String allToLowerCase = conversion.toLowerCase();
-        int length = allToLowerCase.length();
-        int math = allToLowerCase.length() / 2;
-        int check = 0;
 
         //Scanner
         Scanner input = new Scanner(System.in);
@@ -29,6 +24,12 @@ public class Palindrome {
         System.out.println("Enter a word:");
         userWordChoice = input.nextLine();
 
+        //varaibles
+        String conversion = userWordChoice;
+        String allToLowerCase = conversion.toLowerCase();
+        int length = allToLowerCase.length();
+        int math = allToLowerCase.length() / 2;
+        int check = 0;
         //for loop determinging matching letters
         for (int i = 0; i <= math; i++) {
 

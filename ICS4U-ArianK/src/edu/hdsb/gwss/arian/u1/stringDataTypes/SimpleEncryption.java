@@ -24,7 +24,7 @@ public class SimpleEncryption {
         System.out.println("");
 
         System.out.println("This program will allow the user to encrypt a message by rotation letters through the alphabet");
-        System.out.println("a certain nnumber of times chosen by the user");
+        System.out.println("a certain nnumber of times (BETWEEN 1 - 25) chosen by the user");
         System.out.println("E.g = If the user chooses 2, every A in the sentance becomes a C etc...");
         System.out.println("This program will also allow you to ecrypt a message, by knowing the rotation an decyphering it");
         System.out.println("");
@@ -33,13 +33,29 @@ public class SimpleEncryption {
 
         if (decryptOrEncrypt == 1) {
             userRotationNumberForEncryption();
-            userMessageToEncrypt();
-            encryptingAMessage();
+            if (userChosenRotation < 1 || userChosenRotation > 25) {
+
+                System.err.println("Invalid Rotation amount!");
+            } else if (userChosenRotation == 0) {
+                System.err.println("The letters wont change if rotated 0 times!");
+            } else {
+                userMessageToEncrypt();
+                encryptingAMessage();
+            }
 
         } else if (decryptOrEncrypt == 2) {
             userRotationNumberForDecryption();
-            userMessageToDecypher();
-            decryptingAMessage();
+
+            if (userChosenRotation < 1 || userChosenRotation > 25) {
+
+                System.err.println("Invalid Rotation amount!");
+            } else if (userChosenRotation == 0) {
+                System.err.println("The letters wont change if rotated 0 times!");
+            } else {
+
+                userMessageToDecypher();
+                decryptingAMessage();
+            }
 
         } else {
             System.err.println("Not an Option!");
@@ -187,8 +203,8 @@ public class SimpleEncryption {
                 int previousIndex = alphabet.indexOf(word.substring(i, i + 1));
                 int newIndexForEncryption = previousIndex - userChosenRotation;
 
-                if (newIndexForEncryption >= 26) {
-                    newIndexForEncryption = (newIndexForEncryption - previousIndex) - (26 - previousIndex);
+                if (newIndexForEncryption < 0) {
+                    newIndexForEncryption = 26 + newIndexForEncryption;
                 }
 
                 decryption = decryption + alphabet.get(newIndexForEncryption);

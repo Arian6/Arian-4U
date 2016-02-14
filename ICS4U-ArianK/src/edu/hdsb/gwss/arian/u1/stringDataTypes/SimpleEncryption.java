@@ -1,7 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/* Name: SimpleEncryption
+ * Version: v3
+ * Date: Feb 14 2015
+ * Author: Arian Krasniqi
  */
 package edu.hdsb.gwss.arian.u1.stringDataTypes;
 

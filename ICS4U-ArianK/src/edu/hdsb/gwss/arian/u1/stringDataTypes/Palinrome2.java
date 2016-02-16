@@ -66,7 +66,8 @@ public class Palinrome2 {
             }
         }
 
-        System.out.println("There are " + palindromeCounter + " palindromes in the sentence: " + userWordChoice.toUpperCase());
+        System.out.println(
+                "There are " + palindromeCounter + " palindromes in the sentence: " + userWordChoice.toUpperCase());
 
     }
 

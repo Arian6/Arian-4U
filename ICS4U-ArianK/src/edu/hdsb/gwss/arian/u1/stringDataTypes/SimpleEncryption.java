@@ -15,10 +15,10 @@ public class SimpleEncryption {
     static String encryption = "";
     static String decryption = "";
     static int userChosenRotation;
-    static ArrayList<String> alphabet;
+
+    static ArrayList<String> alphabet = new ArrayList<String>();
 
     public static void main(String[] args) {
-
         alphabet.add("A");
         alphabet.add("B");
         alphabet.add("C");

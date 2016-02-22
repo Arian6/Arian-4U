@@ -20,7 +20,7 @@ public class Eratosthenes {
         boolean numbers[] = new boolean[1000];
         int count = 0;
 
-        for (int k = 0; k < numbers.length - 1; k++) {
+        for (int k = 2; k < numbers.length - 1; k++) {
             numbers[k] = true;
         }
 
@@ -47,7 +47,7 @@ public class Eratosthenes {
         for (int i = 0; i < numbers.length - 1; i++) {
             if (numbers[i] == true) {
 
-                if (count < 6) {
+                if (count < 10) {
                     System.out.print(i + " ,");
                     count++;
                 } else {

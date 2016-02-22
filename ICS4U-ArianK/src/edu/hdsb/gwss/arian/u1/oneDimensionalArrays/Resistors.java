@@ -26,10 +26,11 @@ public class Resistors {
         System.out.println("This program will calculate the resistance value within a resistor");
         System.out.println("by having the user enter the three colour bands seperated by a hyphen");
         System.out.println("");
-        System.out.println("E.g XXX-XXX-XXX");
+        System.out.println("E.g Red-Brown-Orange");
         System.out.println("Enter the colours on your resisitor:");
 
         String colours = input.nextLine();
+        System.out.println("");
 
         StringTokenizer numbers = new StringTokenizer(colours.toUpperCase(), "-");
 
@@ -86,7 +87,7 @@ public class Resistors {
 
         ohm = Integer.parseInt(initial.substring(0, 2)) * (int) (Math.pow(10, x));
 
-        System.out.println("The resistance value is:  " + ohm + "ohms.");
+        System.out.println("The resistance value is:  " + ohm + " ohms.");
     }
 
 }

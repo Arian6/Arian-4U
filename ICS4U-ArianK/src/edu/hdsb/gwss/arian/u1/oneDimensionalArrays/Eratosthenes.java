@@ -18,11 +18,9 @@ public class Eratosthenes {
         // TODO code application logic here
 
         boolean numbers[] = new boolean[1000];
-        String outcome = "";
         int count = 0;
-        int x = 0;
 
-        for (int k = 0; k < numbers.length - 1; k++) {
+        for (int k = 2; k < numbers.length - 1; k++) {
             numbers[k] = true;
         }
 
@@ -43,9 +41,20 @@ public class Eratosthenes {
 
         }
 
-        for (int l = 0; l < numbers.length - 1; l++) {
-            if (numbers[l] == true) {
-                System.out.println(l);
+        System.out.print("The prime numbers from 1 - 1000 are:");
+        System.out.println("");
+
+        for (int i = 0; i < numbers.length - 1; i++) {
+            if (numbers[i] == true) {
+
+                if (count < 10) {
+                    System.out.print(i + " ,");
+                    count++;
+                } else {
+                    System.out.println(i);
+                    count = 0;
+                }
+
             }
 
         }

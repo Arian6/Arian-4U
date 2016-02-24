@@ -336,51 +336,25 @@ public class Twenty48 extends javax.swing.JFrame {
         int count = 3;
 
         for (int r = 0; r < values.length; r++) {
-            for (int c = 0; c < values[r].length; c++) {
-
-                if (values[r][c] > 0) {
-
-                    int temp = values[r][c];
-
-                    for (int x = 3; x < c; x--) {
-
-                        if (values[r][x] == temp) {
-                            values[r][x] = values[r][c] * 2;
-                            values[r][c] = 0;
-                            break;
-                        } else {
-
-                        }
-
-                    }
-
-                }
-
-            }
-        }
-
-        for (int r = 0; r < values.length; r++) {
 
             for (int c = 0; c < values[r].length; c++) {
 
-                if (values[r][c] == 0) {
-                    boxes[r][c].setText("");
-                } else {
+                if (values[r][c] != 0) {
 
                     for (int x = 3; x < values[r].length; x--) {
                         if (x <= c) {
                             break;
                         } else {
                             if (values[r][x] == 0) {
-                                boxes[r][c].setText("");
-                                boxes[r][x].setText(values[r][c] + "");
+//                                boxes[r][c].setText("");
+//                                boxes[r][x].setText(values[r][c] + "");
                                 values[r][x] = values[r][c];
                                 values[r][c] = 0;
 
                             }
 
+                        
                         }
-
                     }
 
                 }
@@ -389,23 +363,48 @@ public class Twenty48 extends javax.swing.JFrame {
 
         }
 
-        int random;
-        int random2;
-        boolean placed = false;
+//        for (int r = 0; r < values.length; r++) {
+//            for (int c = 0; c < values[r].length; c++) {
+//
+//                if (values[r][c] == 2) {
+//
+//                    int temp = values[r][c];
+//
+//                    for (int x = 3; x < values[r].length; x--) {
+//
+//                        if (values[r][x] != temp) {
+//                            values[r][x] = (values[r][c] * 2);
+//                            values[r][c] = 0;
+//                            break;
+//                        } else {
+//
+//                        }
+//
+//                    }
+//
+//                }
+//
+//            }
+//        }
+        placeRandomTwo();
+        updateDisplay();
 
-        do {
-            random = (int) (Math.random() * 4);
-            random2 = (int) (Math.random() * 4);
-
-            if (values[random][random2] == 0) {
-                values[random][random2] = 2;
-                boxes[random][random2].setText(values[random][random2] + "");
-
-                placed = true;
-            }
-
-        } while (!placed);
-
+//        int random;
+//        int random2;
+//        boolean placed = false;
+//
+//        do {
+//            random = (int) (Math.random() * 4);
+//            random2 = (int) (Math.random() * 4);
+//
+//            if (values[random][random2] == 0) {
+//                values[random][random2] = 2;
+//                boxes[random][random2].setText(values[random][random2] + "");
+//
+//                placed = true;
+//            }
+//
+//        } while (!placed);
 
     }//GEN-LAST:event_Right
 

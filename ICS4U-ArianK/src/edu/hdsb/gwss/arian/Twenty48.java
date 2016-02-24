@@ -335,29 +335,30 @@ public class Twenty48 extends javax.swing.JFrame {
         boolean position = false;
         int count = 3;
 
-//        for (int r = 0; r < values.length; r++) {
-//            for (int c = 0; c < values[r].length; c++) {
-//
-//                if (values[r][c] > 0) {
-//
-//                    int temp = values[r][c];
-//
-//                    for (int x = 3; x < c; x--) {
-//
-//                        if (values[r][x] == temp) {
-//                            values[r][x] = values[r][c] * 2;
-//                            values[r][c] = 0;
-//                            break;
-//                        } else {
-//
-//                        }
-//
-//                    }
-//
-//                }
-//
-//            }
-//        }
+        for (int r = 0; r < values.length; r++) {
+            for (int c = 0; c < values[r].length; c++) {
+
+                if (values[r][c] > 0) {
+
+                    int temp = values[r][c];
+
+                    for (int x = 3; x < c; x--) {
+
+                        if (values[r][x] == temp) {
+                            values[r][x] = values[r][c] * 2;
+                            values[r][c] = 0;
+                            break;
+                        } else {
+
+                        }
+
+                    }
+
+                }
+
+            }
+        }
+
         for (int r = 0; r < values.length; r++) {
 
             for (int c = 0; c < values[r].length; c++) {

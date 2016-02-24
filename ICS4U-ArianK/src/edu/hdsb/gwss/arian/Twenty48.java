@@ -105,7 +105,7 @@ public class Twenty48 extends javax.swing.JFrame {
         boxRow3Column2 = new javax.swing.JLabel();
         boxRow3Column1 = new javax.swing.JLabel();
         boxRow3Column3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        moveToTheRightButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1000, 500));
@@ -228,8 +228,8 @@ public class Twenty48 extends javax.swing.JFrame {
         boxRow3Column3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         boxRow3Column3.setOpaque(true);
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        moveToTheRightButton.setText("Right");
+        moveToTheRightButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Right(evt);
             }
@@ -241,7 +241,7 @@ public class Twenty48 extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(moveToTheRightButton)
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -293,7 +293,7 @@ public class Twenty48 extends javax.swing.JFrame {
                     .addComponent(boxRow1Column1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boxRow1Column2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boxRow1Column3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(moveToTheRightButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boxRow2Column0, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -314,7 +314,7 @@ public class Twenty48 extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(45, Short.MAX_VALUE)
+                .addContainerGap(61, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );
@@ -331,6 +331,79 @@ public class Twenty48 extends javax.swing.JFrame {
 
     private void Right(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Right
         // TODO add your handling code here:
+        int holder = 2;
+        boolean position = false;
+        int count = 3;
+
+//        for (int r = 0; r < values.length; r++) {
+//            for (int c = 0; c < values[r].length; c++) {
+//
+//                if (values[r][c] > 0) {
+//
+//                    int temp = values[r][c];
+//
+//                    for (int x = 3; x < c; x--) {
+//
+//                        if (values[r][x] == temp) {
+//                            values[r][x] = values[r][c] * 2;
+//                            values[r][c] = 0;
+//                            break;
+//                        } else {
+//
+//                        }
+//
+//                    }
+//
+//                }
+//
+//            }
+//        }
+        for (int r = 0; r < values.length; r++) {
+
+            for (int c = 0; c < values[r].length; c++) {
+
+                if (values[r][c] == 0) {
+                    boxes[r][c].setText("");
+                } else {
+
+                    for (int x = 3; x < values[r].length; x--) {
+                        if (x <= c) {
+                            break;
+                        } else {
+                            if (values[r][x] == 0) {
+                                boxes[r][c].setText("");
+                                boxes[r][x].setText(values[r][c] + "");
+                                values[r][x] = values[r][c];
+                                values[r][c] = 0;
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        int random;
+        int random2;
+        boolean placed = false;
+
+        do {
+            random = (int) (Math.random() * 4);
+            random2 = (int) (Math.random() * 4);
+
+            if (values[random][random2] == 0) {
+                values[random][random2] = 2;
+                boxes[random][random2].setText(values[random][random2] + "");
+
+                placed = true;
+            }
+
+        } while (!placed);
 
 
     }//GEN-LAST:event_Right
@@ -392,7 +465,7 @@ public class Twenty48 extends javax.swing.JFrame {
     private javax.swing.JLabel boxRow3Column1;
     private javax.swing.JLabel boxRow3Column2;
     private javax.swing.JLabel boxRow3Column3;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton moveToTheRightButton;
     // End of variables declaration//GEN-END:variables
 }

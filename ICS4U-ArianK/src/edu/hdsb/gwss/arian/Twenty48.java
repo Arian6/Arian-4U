@@ -6,6 +6,7 @@
 package edu.hdsb.gwss.arian;
 
 import com.sun.glass.events.KeyEvent;
+import java.awt.Color;
 import javax.swing.JLabel;
 
 /**
@@ -71,14 +72,61 @@ public class Twenty48 extends javax.swing.JFrame {
 
                 if (values[r][c] == 0) {
                     boxes[r][c].setText("");
-                } else {
+                    boxes[r][c].setBackground(Color.WHITE);
+                } else if (values[r][c] == 2) {
 
                     boxes[r][c].setText(values[r][c] + "");
+                    boxes[r][c].setBackground(Color.LIGHT_GRAY);
+                } else if (values[r][c] == 4) {
+
+                    boxes[r][c].setText(values[r][c] + "");
+                    boxes[r][c].setBackground(Color.GRAY);
+                } else if (values[r][c] == 8) {
+
+                    boxes[r][c].setText(values[r][c] + "");
+                    boxes[r][c].setBackground(Color.DARK_GRAY);
+                } else if (values[r][c] == 16) {
+
+                    boxes[r][c].setText(values[r][c] + "");
+                    boxes[r][c].setBackground(Color.YELLOW);
+                } else if (values[r][c] == 32) {
+
+                    boxes[r][c].setText(values[r][c] + "");
+                    boxes[r][c].setBackground(Color.pink);
+                } else if (values[r][c] == 64) {
+
+                    boxes[r][c].setText(values[r][c] + "");
+                    boxes[r][c].setBackground(Color.RED);
+                } else if (values[r][c] == 128) {
+
+                    boxes[r][c].setText(values[r][c] + "");
+                    boxes[r][c].setBackground(Color.BLUE);
+                } else if (values[r][c] == 256) {
+
+                    boxes[r][c].setText(values[r][c] + "");
+                    boxes[r][c].setBackground(Color.cyan);
+                } else if (values[r][c] == 512) {
+
+                    boxes[r][c].setText(values[r][c] + "");
+                    boxes[r][c].setBackground(Color.orange);
+                } else if (values[r][c] == 1024) {
+
+                    boxes[r][c].setText(values[r][c] + "");
+                    boxes[r][c].setBackground(Color.MAGENTA);
+                } else if (values[r][c] == 2048) {
+
+                    boxes[r][c].setText(values[r][c] + "");
+                    boxes[r][c].setBackground(Color.MAGENTA);
+                    GameWon();
                 }
             }
         }
         scoreText.setText("" + score);
 
+    }
+
+    private void GameWon() {
+        scoreText.setText("" + score + " WINNER");
     }
 
     private void shiftRight() {
@@ -137,7 +185,6 @@ public class Twenty48 extends javax.swing.JFrame {
 
     private void compressLeft() {
 
-        
         // FOR EACH ROW
         for (int row = 0; row < values.length; row++) {
             // LOOK LEFT

@@ -54,6 +54,7 @@ public class Twenty48 extends javax.swing.JFrame {
         boolean placed = false;
 
         do {
+
             r = (int) (Math.random() * 4);
             c = (int) (Math.random() * 4);
 

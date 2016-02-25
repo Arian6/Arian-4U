@@ -153,16 +153,16 @@ public class Twenty48 extends javax.swing.JFrame {
 
     private void shiftUp() {
 
-        // FOR EACH ROW
+        // FOR EACH column
         for (int row = 0; row < values.length; row++) {
 
             for (int pass = 0; pass < values[row].length - 1; pass++) {
 
-                // LOOK LEFT
+                // LOOK up
                 for (int col = 3; col >= values[row].length - 1 - pass; col--) {
-                    if (values[row][row] == 0) {
-                        values[row][col - 1] = values[row][col];
-                        values[row][col] = 0;
+                    if (values[col - 1][row] == 0) {
+                        values[col - 1][row] = values[col][row];
+                        values[col][row] = 0;
                     }
                 }
             }
@@ -176,10 +176,46 @@ public class Twenty48 extends javax.swing.JFrame {
         for (int row = 0; row < values.length; row++) {
             // LOOK LEFT
             for (int col = values[row].length - 1; col > 0; col--) {
-                if (values[row][col] == values[row][col - 1]) {
-                    values[row][col] = values[row][col] * 2;
-                    score = score + values[row][col];
-                    values[row][col - 1] = 0;
+                if (values[col][row] == values[col - 1][row]) {
+                    values[col][row] = values[col][row] * 2;
+                    score = score + values[col][row];
+                    values[col - 1][row] = 0;
+                }
+            }
+        }
+
+    }
+
+    private void shiftDown() {
+
+        // FOR EACH column
+        for (int row = 0; row < values.length; row++) {
+
+            for (int pass = 0; pass < values[row].length - 1; pass++) {
+
+                // LOOK up
+                for (int col = 0; col < values[row].length - 1 - pass; col++) {
+                    if (values[col + 1][row] == 0) {
+                        values[col + 1][row] = values[col][row];
+                        values[col][row] = 0;
+                    }
+
+                }
+            }
+        }
+
+    }
+
+    private void compressDown() {
+
+        // FOR EACH ROW
+        for (int row = 0; row < values.length; row++) {
+            // LOOK LEFT
+            for (int col = values[row].length - 1; col > 0; col--) {
+                if (values[col][row] == values[col - 1][row]) {
+                    values[col][row] = values[col][row] * 2;
+                    score = score + values[col][row];
+                    values[col - 1][row] = 0;
                 }
             }
         }
@@ -446,8 +482,15 @@ public class Twenty48 extends javax.swing.JFrame {
 
         switch (evt.getKeyCode()) {
             case KeyEvent.VK_UP:
+                shiftUp();
+                compressUp();
+                shiftUp();
                 break;
             case KeyEvent.VK_DOWN:
+                shiftDown();
+                compressDown();
+                shiftDown();
+
                 break;
             case KeyEvent.VK_LEFT:
                 shiftLeft();
@@ -462,8 +505,12 @@ public class Twenty48 extends javax.swing.JFrame {
         }
         switch (evt.getKeyCode()) {
             case KeyEvent.VK_UP:
+
+                updateDisplay();
             case KeyEvent.VK_DOWN:
+                updateDisplay();
             case KeyEvent.VK_LEFT:
+
                 updateDisplay();
 
             case KeyEvent.VK_RIGHT:

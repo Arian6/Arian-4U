@@ -5,6 +5,7 @@
  */
 package edu.hdsb.gwss.arian;
 
+import com.sun.glass.events.KeyEvent;
 import javax.swing.JLabel;
 
 /**
@@ -13,6 +14,7 @@ import javax.swing.JLabel;
  */
 public class Twenty48 extends javax.swing.JFrame {
 
+    int score = 0;
     JLabel[][] boxes = new JLabel[4][4];
     int[][] values = new int[4][4];
 
@@ -47,19 +49,18 @@ public class Twenty48 extends javax.swing.JFrame {
 
     private void placeRandomTwo() {
 
-        int random;
-        int random2;
+        int r, c;
         boolean placed = false;
 
         do {
-            random = (int) (Math.random() * 4);
-            random2 = (int) (Math.random() * 4);
+            r = (int) (Math.random() * 4);
+            c = (int) (Math.random() * 4);
 
-            if (values[random][random2] == 0) {
-                values[random][random2] = 2;
+            // EMPTY!
+            if (values[r][c] == 0) {
+                values[r][c] = 2;
                 placed = true;
             }
-
         } while (!placed);
 
     }
@@ -73,6 +74,112 @@ public class Twenty48 extends javax.swing.JFrame {
                 } else {
 
                     boxes[r][c].setText(values[r][c] + "");
+                }
+            }
+        }
+        scoreText.setText("" + score);
+
+    }
+
+    private void shiftRight() {
+
+        // FOR EACH ROW
+        for (int row = 0; row < values.length; row++) {
+
+            for (int pass = 0; pass < values[row].length - 1; pass++) {
+
+                // LOOK LEFT
+                for (int col = 0; col < values[row].length - 1 - pass; col++) {
+                    if (values[row][col + 1] == 0) {
+                        values[row][col + 1] = values[row][col];
+                        values[row][col] = 0;
+                    }
+                }
+            }
+        }
+
+    }
+
+    private void compressRight() {
+
+        // FOR EACH ROW
+        for (int row = 0; row < values.length; row++) {
+            // LOOK LEFT
+            for (int col = values[row].length - 1; col > 0; col--) {
+                if (values[row][col] == values[row][col - 1]) {
+                    values[row][col] = values[row][col] * 2;
+                    score = score + values[row][col];
+                    values[row][col - 1] = 0;
+                }
+            }
+        }
+
+    }
+
+    private void shiftLeft() {
+
+        // FOR EACH ROW
+        for (int row = 0; row < values.length; row++) {
+
+            for (int pass = 0; pass < values[row].length - 1; pass++) {
+
+                // LOOK LEFT
+                for (int col = 3; col >= values[row].length - 1 - pass; col--) {
+                    if (values[row][col - 1] == 0) {
+                        values[row][col - 1] = values[row][col];
+                        values[row][col] = 0;
+                    }
+                }
+            }
+        }
+
+    }
+
+    private void compressLeft() {
+
+        // FOR EACH ROW
+        for (int row = 0; row < values.length; row++) {
+            // LOOK LEFT
+            for (int col = values[row].length - 1; col > 0; col--) {
+                if (values[row][col] == values[row][col - 1]) {
+                    values[row][col] = values[row][col] * 2;
+                    score = score + values[row][col];
+                    values[row][col - 1] = 0;
+                }
+            }
+        }
+
+    }
+
+    private void shiftUp() {
+
+        // FOR EACH ROW
+        for (int row = 0; row < values.length; row++) {
+
+            for (int pass = 0; pass < values[row].length - 1; pass++) {
+
+                // LOOK LEFT
+                for (int col = 3; col >= values[row].length - 1 - pass; col--) {
+                    if (values[row][row] == 0) {
+                        values[row][col - 1] = values[row][col];
+                        values[row][col] = 0;
+                    }
+                }
+            }
+        }
+
+    }
+
+    private void compressUp() {
+
+        // FOR EACH ROW
+        for (int row = 0; row < values.length; row++) {
+            // LOOK LEFT
+            for (int col = values[row].length - 1; col > 0; col--) {
+                if (values[row][col] == values[row][col - 1]) {
+                    values[row][col] = values[row][col] * 2;
+                    score = score + values[row][col];
+                    values[row][col - 1] = 0;
                 }
             }
         }
@@ -105,16 +212,26 @@ public class Twenty48 extends javax.swing.JFrame {
         boxRow3Column2 = new javax.swing.JLabel();
         boxRow3Column1 = new javax.swing.JLabel();
         boxRow3Column3 = new javax.swing.JLabel();
-        moveToTheRightButton = new javax.swing.JButton();
+        scoreText = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1000, 500));
         setMinimumSize(new java.awt.Dimension(1000, 500));
         setPreferredSize(new java.awt.Dimension(1000, 500));
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 204));
         jPanel1.setForeground(new java.awt.Color(0, 51, 153));
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPanel1KeyPressed(evt);
+            }
+        });
 
         boxRow0Column0.setBackground(new java.awt.Color(204, 204, 204));
         boxRow0Column0.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -228,21 +345,16 @@ public class Twenty48 extends javax.swing.JFrame {
         boxRow3Column3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         boxRow3Column3.setOpaque(true);
 
-        moveToTheRightButton.setText("Right");
-        moveToTheRightButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Right(evt);
-            }
-        });
+        scoreText.setText("jLabel1");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(moveToTheRightButton)
-                .addGap(27, 27, 27)
+                .addGap(20, 20, 20)
+                .addComponent(scoreText)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(boxRow0Column0, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -286,14 +398,14 @@ public class Twenty48 extends javax.swing.JFrame {
                     .addComponent(boxRow0Column0, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boxRow0Column1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boxRow0Column2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boxRow0Column3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(boxRow0Column3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(scoreText))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boxRow1Column0, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boxRow1Column1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boxRow1Column2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boxRow1Column3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(moveToTheRightButton))
+                    .addComponent(boxRow1Column3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boxRow2Column0, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -329,84 +441,64 @@ public class Twenty48 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Right(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Right
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         // TODO add your handling code here:
-        int holder = 2;
-        boolean position = false;
-        int count = 3;
 
-        for (int r = 0; r < values.length; r++) {
-
-            for (int c = 0; c < values[r].length; c++) {
-
-                if (values[r][c] != 0) {
-
-                    for (int x = 3; x < values[r].length; x--) {
-                        if (x <= c) {
-                            break;
-                        } else {
-                            if (values[r][x] == 0) {
-//                                boxes[r][c].setText("");
-//                                boxes[r][x].setText(values[r][c] + "");
-                                values[r][x] = values[r][c];
-                                values[r][c] = 0;
-
-                            }
-
-                        
-                        }
-                    }
-
-                }
-
-            }
-
+        switch (evt.getKeyCode()) {
+            case KeyEvent.VK_UP:
+                break;
+            case KeyEvent.VK_DOWN:
+                break;
+            case KeyEvent.VK_LEFT:
+                shiftLeft();
+                compressLeft();
+                shiftLeft();
+                break;
+            case KeyEvent.VK_RIGHT:
+                shiftRight();
+                compressRight();
+                shiftRight();
+                break;
         }
+        switch (evt.getKeyCode()) {
+            case KeyEvent.VK_UP:
+            case KeyEvent.VK_DOWN:
+            case KeyEvent.VK_LEFT:
+                updateDisplay();
 
-//        for (int r = 0; r < values.length; r++) {
-//            for (int c = 0; c < values[r].length; c++) {
+            case KeyEvent.VK_RIGHT:
+                placeRandomTwo();
+                updateDisplay();
+                break;
+        }
+    }//GEN-LAST:event_formKeyPressed
+
+    private void jPanel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyPressed
+        // TODO add your handling code here:
 //
-//                if (values[r][c] == 2) {
-//
-//                    int temp = values[r][c];
-//
-//                    for (int x = 3; x < values[r].length; x--) {
-//
-//                        if (values[r][x] != temp) {
-//                            values[r][x] = (values[r][c] * 2);
-//                            values[r][c] = 0;
-//                            break;
-//                        } else {
-//
-//                        }
-//
-//                    }
-//
-//                }
-//
-//            }
+//        switch (evt.getKeyCode()) {
+//            case KeyEvent.VK_UP:
+//                break;
+//            case KeyEvent.VK_DOWN:
+//                break;
+//            case KeyEvent.VK_LEFT:
+//                break;
+//            case KeyEvent.VK_RIGHT:
+//                shiftRight();
+//                compressRight();
+//                shiftRight();
+//                break;
 //        }
-        placeRandomTwo();
-        updateDisplay();
-
-//        int random;
-//        int random2;
-//        boolean placed = false;
-//
-//        do {
-//            random = (int) (Math.random() * 4);
-//            random2 = (int) (Math.random() * 4);
-//
-//            if (values[random][random2] == 0) {
-//                values[random][random2] = 2;
-//                boxes[random][random2].setText(values[random][random2] + "");
-//
-//                placed = true;
-//            }
-//
-//        } while (!placed);
-
-    }//GEN-LAST:event_Right
+//        switch (evt.getKeyCode()) {
+//            case KeyEvent.VK_UP:
+//            case KeyEvent.VK_DOWN:
+//            case KeyEvent.VK_LEFT:
+//            case KeyEvent.VK_RIGHT:
+//                placeRandomTwo();
+//                updateDisplay();
+//                break;
+//        }
+    }//GEN-LAST:event_jPanel1KeyPressed
 
     /**
      * @param args the command line arguments
@@ -466,6 +558,6 @@ public class Twenty48 extends javax.swing.JFrame {
     private javax.swing.JLabel boxRow3Column2;
     private javax.swing.JLabel boxRow3Column3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton moveToTheRightButton;
+    private javax.swing.JLabel scoreText;
     // End of variables declaration//GEN-END:variables
 }

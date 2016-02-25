@@ -17,6 +17,9 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formKeyPressed"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -62,14 +65,17 @@
           <Color id="Default Cursor"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jPanel1KeyPressed"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="moveToTheRightButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="scoreText" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="40" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="boxRow0Column0" min="-2" pref="65" max="-2" attributes="0"/>
@@ -121,6 +127,7 @@
                       <Component id="boxRow0Column1" alignment="3" min="-2" pref="71" max="-2" attributes="0"/>
                       <Component id="boxRow0Column2" alignment="3" min="-2" pref="71" max="-2" attributes="0"/>
                       <Component id="boxRow0Column3" alignment="3" min="-2" pref="71" max="-2" attributes="0"/>
+                      <Component id="scoreText" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -128,7 +135,6 @@
                       <Component id="boxRow1Column1" alignment="3" min="-2" pref="71" max="-2" attributes="0"/>
                       <Component id="boxRow1Column2" alignment="3" min="-2" pref="71" max="-2" attributes="0"/>
                       <Component id="boxRow1Column3" alignment="3" min="-2" pref="71" max="-2" attributes="0"/>
-                      <Component id="moveToTheRightButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -438,13 +444,10 @@
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="moveToTheRightButton">
+        <Component class="javax.swing.JLabel" name="scoreText">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Right"/>
+            <Property name="text" type="java.lang.String" value="jLabel1"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Right"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>

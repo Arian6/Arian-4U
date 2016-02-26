@@ -5,10 +5,10 @@ import becker.xtras.imageTransformation.ImageTransformerGUI;
 
 public class PhotoEditor extends Object {
 
-    public static void main( String args[] ) {
+    public static void main(String args[]) {
 
         ITransformations trans = new Transformer();
-        ImageTransformerGUI theGUI = new ImageTransformerGUI( trans );
+        ImageTransformerGUI theGUI = new ImageTransformerGUI(trans);
 
     }
 

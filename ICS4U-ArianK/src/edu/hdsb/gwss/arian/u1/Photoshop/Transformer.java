@@ -138,6 +138,7 @@ public class Transformer extends Object implements ITransformations {
      * TODO: ICS4U - TODO
      */
     private int[][] copyArray(int[][] a) {
+
         return a;
     }
 
@@ -153,6 +154,12 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] changeIntensity(double percent, int[][] sourcePixels) {
         // TO DO
+        for (int row = 0; row < this.picture.length; row++) {
+
+            for (int pass = 0; pass < this.picture[row].length - 1; pass++) {
+                this.picture[row][pass] = this.picture[row][pass + 1];
+            }
+        }
         return new int[1][1];
     }
 
@@ -160,7 +167,7 @@ public class Transformer extends Object implements ITransformations {
      * TODO: ICS4U - TODO
      */
     private int[][] invert(int[][] sourcePixels) {
-        // TO DO
+
         return new int[1][1];
     }
 
@@ -169,7 +176,18 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] flipX(int[][] sourcePixels) {
         // TO DO
-        return new int[1][1];
+        for (int row = 0; row < sourcePixels.length; row++) {
+
+            for (int pass = 1; pass < sourcePixels[row].length - 1; pass++) {
+                int temp = 0;
+                temp = sourcePixels[row][pass];
+                sourcePixels[row][pass] = sourcePixels[row][sourcePixels[row].length - pass];
+                sourcePixels[row][sourcePixels[row].length - pass] = temp;
+               
+            }
+        }
+        return sourcePixels;
+
     }
 
     /**

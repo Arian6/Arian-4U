@@ -89,31 +89,31 @@ public class Twenty48 extends javax.swing.JFrame {
                 } else if (values[r][c] == 16) {
 
                     boxes[r][c].setText(values[r][c] + "");
-                    boxes[r][c].setBackground(Color.YELLOW);
+                    boxes[r][c].setBackground(Color.red);
                 } else if (values[r][c] == 32) {
 
                     boxes[r][c].setText(values[r][c] + "");
-                    boxes[r][c].setBackground(Color.pink);
+                    boxes[r][c].setBackground(Color.orange);
                 } else if (values[r][c] == 64) {
 
                     boxes[r][c].setText(values[r][c] + "");
-                    boxes[r][c].setBackground(Color.RED);
+                    boxes[r][c].setBackground(Color.yellow);
                 } else if (values[r][c] == 128) {
 
                     boxes[r][c].setText(values[r][c] + "");
-                    boxes[r][c].setBackground(Color.BLUE);
+                    boxes[r][c].setBackground(Color.green);
                 } else if (values[r][c] == 256) {
 
                     boxes[r][c].setText(values[r][c] + "");
-                    boxes[r][c].setBackground(Color.cyan);
+                    boxes[r][c].setBackground(Color.blue);
                 } else if (values[r][c] == 512) {
 
                     boxes[r][c].setText(values[r][c] + "");
-                    boxes[r][c].setBackground(Color.orange);
+                    boxes[r][c].setBackground(Color.cyan);
                 } else if (values[r][c] == 1024) {
 
                     boxes[r][c].setText(values[r][c] + "");
-                    boxes[r][c].setBackground(Color.MAGENTA);
+                    boxes[r][c].setBackground(Color.PINK);
                 } else if (values[r][c] == 2048) {
 
                     boxes[r][c].setText(values[r][c] + "");

@@ -275,17 +275,20 @@ public class Transformer extends Object implements ITransformations {
     private int[][] scale50(int[][] sourcePixels) {
         // TO DO
 
-        int[][] temp = new int[sourcePixels[0].length / 2][sourcePixels[0].length / 2];
+        int[][] temp = new int[sourcePixels.length / 2][sourcePixels[0].length / 2];
+        int count2 = 1;
 
-        for (int row = 0; row < temp.length - 1; row++) {
+        for (int row = 0; row < temp.length; row++) {
+
             int count = 1;
 
-            for (int pass = 0; pass < temp[row].length - 1; pass++, count++) {
+            for (int pass = 0; pass < temp[row].length - 1; pass++) {
 
-                temp[row][pass] = sourcePixels[row][count];
+                temp[row][pass] = sourcePixels[count2][count];
 
-                count++;
+                count = count + 2;
             }
+            count2 = count2 + 2;
 
         }
 

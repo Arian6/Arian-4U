@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 /**
  *
  * @author 1krasniqiari
+ * 
  */
 public class Twenty48 extends javax.swing.JFrame {
 
@@ -55,6 +56,7 @@ public class Twenty48 extends javax.swing.JFrame {
 
         do {
 
+         
             r = (int) (Math.random() * 4);
             c = (int) (Math.random() * 4);
 

@@ -4,7 +4,7 @@
 package edu.hdsb.gwss.arian.u1.Photoshop;
 
 import becker.xtras.imageTransformation.ITransformations;
-import javafx.scene.paint.Color;
+import java.util.ArrayList;
 
 public class Transformer extends Object implements ITransformations {
 
@@ -235,16 +235,6 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] rotate(int[][] sourcePixels) {
         // TO DO
-        for (int row = 0; row < sourcePixels.length; row++) {
-            for (int pass = 0; pass < sourcePixels[row].length - pass; pass++) {
-
-                int swap = sourcePixels[row][pass];
-
-                sourcePixels[row][pass] = sourcePixels[row][sourcePixels[row].length - (pass + 1)];
-                sourcePixels[row][sourcePixels[row].length - (pass + 1)] = swap;
-
-            }
-        }
 
         return sourcePixels;
     }
@@ -284,6 +274,20 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] scale50(int[][] sourcePixels) {
         // TO DO
+
+        ArrayList<Integer> temp = new ArrayList<Integer>();
+
+        for (int row = 0; row < sourcePixels.length; row++) {
+            for (int pass = 0; pass < sourcePixels[row].length ; pass++) {
+
+                temp.add(sourcePixels[row][pass]);
+                
+                sourcePixels[row][pass] = sourcePixels[row][pass + 1];
+
+                pass = pass + 1;
+
+            }
+        }
 
         return sourcePixels;
     }

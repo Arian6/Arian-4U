@@ -4,6 +4,7 @@
 package edu.hdsb.gwss.arian.u1.Photoshop;
 
 import becker.xtras.imageTransformation.ITransformations;
+import javafx.scene.paint.Color;
 
 public class Transformer extends Object implements ITransformations {
 
@@ -108,9 +109,9 @@ public class Transformer extends Object implements ITransformations {
     public void performTransformation(String transformationName) {
 
         if (DARKEN.equals(transformationName)) {
-            this.picture = changeIntensity(2, this.picture);
+            this.picture = changeIntensity(-10, this.picture);
         } else if (BRIGHTEN.equals(transformationName)) {
-            this.picture = changeIntensity(2, this.picture);
+            this.picture = changeIntensity(10, this.picture);
         } else if (INVERT.equals(transformationName)) {
             this.picture = invert(this.picture);
         } else if (FLIPX.equals(transformationName)) {
@@ -154,13 +155,25 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] changeIntensity(double percent, int[][] sourcePixels) {
         // TO DO
+
         for (int row = 0; row < this.picture.length; row++) {
 
             for (int pass = 0; pass < this.picture[row].length - 1; pass++) {
-                this.picture[row][pass] = this.picture[row][pass + 1];
+
+                if (sourcePixels[row][pass] + (int) percent > 255) {
+                    sourcePixels[row][pass] = 255;
+
+                } else if (sourcePixels[row][pass] + (int) percent < 0) {
+                    sourcePixels[row][pass] = 0;
+                } else {
+                    sourcePixels[row][pass] = sourcePixels[row][pass] + (int) percent;
+                }
+
             }
+
         }
-        return new int[1][1];
+        return sourcePixels;
+
     }
 
     /**
@@ -168,7 +181,15 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] invert(int[][] sourcePixels) {
 
-        return new int[1][1];
+        for (int row = 0; row < this.picture.length; row++) {
+
+            for (int pass = 0; pass < this.picture[row].length - 1; pass++) {
+
+                sourcePixels[row][pass] = 255 - sourcePixels[row][pass];
+
+            }
+        }
+        return sourcePixels;
     }
 
     /**
@@ -176,16 +197,17 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] flipX(int[][] sourcePixels) {
         // TO DO
-        for (int row = 0; row < sourcePixels.length; row++) {
 
-            for (int pass = 1; pass < sourcePixels[row].length - 1; pass++) {
-                int temp = 0;
-                temp = sourcePixels[row][pass];
-                sourcePixels[row][pass] = sourcePixels[row][sourcePixels[row].length - pass];
-                sourcePixels[row][sourcePixels[row].length - pass] = temp;
-               
+        for (int row = 0; row < sourcePixels.length - row; row++) {
+            for (int pass = 0; pass < sourcePixels[row].length; pass++) {
+
+                int swap = sourcePixels[row][pass];
+
+                sourcePixels[row][pass] = sourcePixels[sourcePixels.length - (row + 1)][pass];
+                sourcePixels[sourcePixels.length - (row + 1)][pass] = swap;
             }
         }
+
         return sourcePixels;
 
     }
@@ -195,7 +217,17 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] flipY(int[][] sourcePixels) {
         // TO DO
-        return new int[1][1];
+        for (int row = 0; row < sourcePixels.length; row++) {
+            for (int pass = 0; pass < sourcePixels[row].length - pass; pass++) {
+
+                int swap = sourcePixels[row][pass];
+
+                sourcePixels[row][pass] = sourcePixels[row][sourcePixels[row].length - (pass + 1)];
+                sourcePixels[row][sourcePixels[row].length - (pass + 1)] = swap;
+
+            }
+        }
+        return sourcePixels;
     }
 
     /**
@@ -203,7 +235,18 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] rotate(int[][] sourcePixels) {
         // TO DO
-        return new int[1][1];
+        for (int row = 0; row < sourcePixels.length; row++) {
+            for (int pass = 0; pass < sourcePixels[row].length - pass; pass++) {
+
+                int swap = sourcePixels[row][pass];
+
+                sourcePixels[row][pass] = sourcePixels[row][sourcePixels[row].length - (pass + 1)];
+                sourcePixels[row][sourcePixels[row].length - (pass + 1)] = swap;
+
+            }
+        }
+
+        return sourcePixels;
     }
 
     /**
@@ -211,7 +254,29 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] mirror(int[][] sourcePixels) {
         // TO DO
-        return new int[1][1];
+//        
+//         for (int row = 0; row < sourcePixels.length; row++) {
+//            for (int pass = 0; pass < sourcePixels[row].length - pass; pass++) {
+//
+//                int swap = sourcePixels[row][pass];
+//
+//                sourcePixels[row][pass] = sourcePixels[row][sourcePixels[row].length - (pass + 1)];
+//                sourcePixels[row][sourcePixels[row].length - (pass + 1)] = swap;
+//
+//            }
+//        }
+//     
+
+        for (int row = 0; row < sourcePixels.length; row++) {
+            for (int pass = 0; pass < sourcePixels[row].length - 1; pass++) {
+
+                sourcePixels[row][pass] = sourcePixels[row][sourcePixels[row].length - 1 - pass];
+
+            }
+        }
+
+        return sourcePixels;
+
     }
 
     /**
@@ -219,7 +284,8 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] scale50(int[][] sourcePixels) {
         // TO DO
-        return new int[1][1];
+
+        return sourcePixels;
     }
 
     /**

@@ -244,28 +244,28 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] mirror(int[][] sourcePixels) {
         // TO DO
-//        
-//         for (int row = 0; row < sourcePixels.length; row++) {
-//            for (int pass = 0; pass < sourcePixels[row].length - pass; pass++) {
-//
-//                int swap = sourcePixels[row][pass];
-//
-//                sourcePixels[row][pass] = sourcePixels[row][sourcePixels[row].length - (pass + 1)];
-//                sourcePixels[row][sourcePixels[row].length - (pass + 1)] = swap;
-//
-//            }
-//        }
-//     
+        int[][] temp = new int[sourcePixels.length][sourcePixels[0].length * 2];
+        int count = 0;
 
         for (int row = 0; row < sourcePixels.length; row++) {
-            for (int pass = 0; pass < sourcePixels[row].length - 1; pass++) {
+            for (int pass = 0; pass < sourcePixels[row].length; pass++) {
 
-                sourcePixels[row][pass] = sourcePixels[row][sourcePixels[row].length - 1 - pass];
-
+                temp[row][pass] = sourcePixels[row][pass];
             }
         }
 
-        return sourcePixels;
+        for (int row = 0; row < temp.length; row++) {
+
+            for (int pass = temp[row].length - 1; pass > temp[row].length / 2; pass--) {
+
+                temp[row][pass] = sourcePixels[row][count];
+                count = count + 1;
+            }
+            count = 0;
+
+        }
+
+        return temp;
 
     }
 

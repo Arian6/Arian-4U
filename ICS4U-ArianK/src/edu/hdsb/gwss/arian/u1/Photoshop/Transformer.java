@@ -4,7 +4,7 @@
 package edu.hdsb.gwss.arian.u1.Photoshop;
 
 import becker.xtras.imageTransformation.ITransformations;
-import java.lang.reflect.Array;
+
 import java.util.ArrayList;
 
 public class Transformer extends Object implements ITransformations {
@@ -58,7 +58,7 @@ public class Transformer extends Object implements ITransformations {
     public Transformer(int[][] originalPic) {
         this();
         this.setPixels(originalPic);
-        this.allEdits.add(picture);
+
     }
 
     /**
@@ -165,7 +165,7 @@ public class Transformer extends Object implements ITransformations {
 
         this.picture.equals(allEdits.get(allEdits.size() - 1));
 
-        return this.picture;
+        return allEdits.get(allEdits.size() - 1);
     }
 
     /**
@@ -199,6 +199,7 @@ public class Transformer extends Object implements ITransformations {
 
         }
 
+        allEdits.add(this.picture);
         return temp;
 
     }
@@ -225,7 +226,7 @@ public class Transformer extends Object implements ITransformations {
 
             }
         }
-
+        allEdits.add(this.picture);
         return temp;
     }
 
@@ -253,7 +254,7 @@ public class Transformer extends Object implements ITransformations {
                 temp[temp.length - (row + 1)][pass] = swap;
             }
         }
-
+        allEdits.add(this.picture);
         return temp;
 
     }
@@ -282,7 +283,7 @@ public class Transformer extends Object implements ITransformations {
 
             }
         }
-
+        allEdits.add(this.picture);
         return temp;
     }
 
@@ -313,7 +314,7 @@ public class Transformer extends Object implements ITransformations {
 
             }
         }
-
+        allEdits.add(this.picture);
         return temp;
 
     }
@@ -343,7 +344,7 @@ public class Transformer extends Object implements ITransformations {
             count = 0;
 
         }
-
+        allEdits.add(this.picture);
         return temp;
 
     }
@@ -370,7 +371,7 @@ public class Transformer extends Object implements ITransformations {
             count2 = count2 + 2;
 
         }
-
+        allEdits.add(this.picture);
         return temp;
     }
 

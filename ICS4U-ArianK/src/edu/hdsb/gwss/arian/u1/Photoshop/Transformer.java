@@ -4,6 +4,7 @@
 package edu.hdsb.gwss.arian.u1.Photoshop;
 
 import becker.xtras.imageTransformation.ITransformations;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Transformer extends Object implements ITransformations {
@@ -25,6 +26,8 @@ public class Transformer extends Object implements ITransformations {
 
     private int[][] pictureOriginal;
     private int[][] picture;
+
+    static ArrayList<Integer> allEdits = new ArrayList<Integer>();
 
     /**
      * Construct a Transformer object by setting the possible transformations
@@ -138,16 +141,16 @@ public class Transformer extends Object implements ITransformations {
     /**
      * TODO: ICS4U - TODO
      */
-    private int[][] copyArray(int[][] a) {
+    private int[][] copyArray(int[][] sourcePixels) {
 
-        return a;
-
+        return sourcePixels;
     }
 
     /**
      * TODO: ICS4U - TODO
      */
     private int[][] undo() {
+
         return null;
     }
 
@@ -181,6 +184,7 @@ public class Transformer extends Object implements ITransformations {
             }
 
         }
+
         return temp;
 
     }
@@ -207,6 +211,7 @@ public class Transformer extends Object implements ITransformations {
 
             }
         }
+
         return temp;
     }
 
@@ -263,6 +268,7 @@ public class Transformer extends Object implements ITransformations {
 
             }
         }
+
         return temp;
     }
 
@@ -359,6 +365,31 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] blur(int[][] sourcePixels) {
         // TO DO
+//        int[][] temp = new int[sourcePixels[0].length][sourcePixels.length];
+//
+//        for (int row = 0; row < temp.length; row++) {
+//
+//            for (int pass = 0; pass < temp[row].length; pass++) {
+//
+//                temp[row][pass] = sourcePixels[pass][row];
+//
+//            }
+//
+//        }
+//
+//        for (int row = 0; row < temp.length - row; row++) {
+//
+//            for (int pass = 0; pass < temp[row].length; pass++) {
+//
+//                int colour = (sourcePixels[pass][row] * sourcePixels[pass][row]) / 2;
+//                
+//                temp[row][pass] = colour;
+//                temp[row][pass + 1] = colour;
+//                         
+//            }
+//
+//        }
+
         return new int[1][1];
     }
 

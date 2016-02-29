@@ -173,26 +173,18 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] changeIntensity(double percent, int[][] sourcePixels) {
         // TO DO
-        int[][] temp = new int[sourcePixels.length][sourcePixels[0].length];
 
         for (int row = 0; row < sourcePixels.length; row++) {
-            for (int pass = 0; pass < sourcePixels[row].length; pass++) {
 
-                temp[row][pass] = sourcePixels[row][pass];
-            }
-        }
+            for (int pass = 0; pass < sourcePixels[row].length - 1; pass++) {
 
-        for (int row = 0; row < temp.length; row++) {
+                if (sourcePixels[row][pass] + (int) percent > 255) {
+                    sourcePixels[row][pass] = 255;
 
-            for (int pass = 0; pass < temp[row].length - 1; pass++) {
-
-                if (temp[row][pass] + (int) percent > 255) {
-                    temp[row][pass] = 255;
-
-                } else if (temp[row][pass] + (int) percent < 0) {
-                    temp[row][pass] = 0;
+                } else if (sourcePixels[row][pass] + (int) percent < 0) {
+                    sourcePixels[row][pass] = 0;
                 } else {
-                    temp[row][pass] = temp[row][pass] + (int) percent;
+                    sourcePixels[row][pass] = sourcePixels[row][pass] + (int) percent;
                 }
 
             }
@@ -200,7 +192,7 @@ public class Transformer extends Object implements ITransformations {
         }
 
         allEdits.add(this.picture);
-        return temp;
+        return sourcePixels;
 
     }
 
@@ -209,53 +201,34 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] invert(int[][] sourcePixels) {
 
-        int[][] temp = new int[sourcePixels.length][sourcePixels[0].length];
-
         for (int row = 0; row < sourcePixels.length; row++) {
-            for (int pass = 0; pass < sourcePixels[row].length; pass++) {
 
-                temp[row][pass] = sourcePixels[row][pass];
-            }
-        }
+            for (int pass = 0; pass < sourcePixels[row].length - 1; pass++) {
 
-        for (int row = 0; row < temp.length; row++) {
-
-            for (int pass = 0; pass < temp[row].length - 1; pass++) {
-
-                temp[row][pass] = 255 - temp[row][pass];
+                sourcePixels[row][pass] = 255 - sourcePixels[row][pass];
 
             }
         }
         allEdits.add(this.picture);
-        return temp;
+        return sourcePixels;
     }
 
     /**
      * TODO: ICS4U - TODO
      */
     private int[][] flipX(int[][] sourcePixels) {
-        // TO DO
 
-        int[][] temp = new int[sourcePixels.length][sourcePixels[0].length];
-
-        for (int row = 0; row < sourcePixels.length; row++) {
+        for (int row = 0; row < sourcePixels.length - row; row++) {
             for (int pass = 0; pass < sourcePixels[row].length; pass++) {
 
-                temp[row][pass] = sourcePixels[row][pass];
-            }
-        }
+                int swap = sourcePixels[row][pass];
 
-        for (int row = 0; row < temp.length - row; row++) {
-            for (int pass = 0; pass < temp[row].length; pass++) {
-
-                int swap = temp[row][pass];
-
-                temp[row][pass] = temp[temp.length - (row + 1)][pass];
-                temp[temp.length - (row + 1)][pass] = swap;
+                sourcePixels[row][pass] = sourcePixels[sourcePixels.length - (row + 1)][pass];
+                sourcePixels[sourcePixels.length - (row + 1)][pass] = swap;
             }
         }
         allEdits.add(this.picture);
-        return temp;
+        return sourcePixels;
 
     }
 
@@ -264,27 +237,19 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] flipY(int[][] sourcePixels) {
         // TO DO
-        int[][] temp = new int[sourcePixels.length][sourcePixels[0].length];
 
         for (int row = 0; row < sourcePixels.length; row++) {
-            for (int pass = 0; pass < sourcePixels[row].length; pass++) {
+            for (int pass = 0; pass < sourcePixels[row].length - pass; pass++) {
 
-                temp[row][pass] = sourcePixels[row][pass];
-            }
-        }
+                int swap = sourcePixels[row][pass];
 
-        for (int row = 0; row < temp.length; row++) {
-            for (int pass = 0; pass < temp[row].length - pass; pass++) {
-
-                int swap = temp[row][pass];
-
-                temp[row][pass] = temp[row][temp[row].length - (pass + 1)];
-                temp[row][temp[row].length - (pass + 1)] = swap;
+                sourcePixels[row][pass] = sourcePixels[row][sourcePixels[row].length - (pass + 1)];
+                sourcePixels[row][sourcePixels[row].length - (pass + 1)] = swap;
 
             }
         }
         allEdits.add(this.picture);
-        return temp;
+        return sourcePixels;
     }
 
     /**
@@ -293,29 +258,23 @@ public class Transformer extends Object implements ITransformations {
     private int[][] rotate(int[][] sourcePixels) {
         // TO DO
 
-        int[][] temp = new int[sourcePixels[0].length][sourcePixels.length];
+        int[][] temporaryArray = new int[sourcePixels[0].length][sourcePixels.length];
 
-        for (int row = 0; row < temp.length; row++) {
+        fillNewArrayWithOldArray(temporaryArray, sourcePixels);
 
-            for (int pass = 0; pass < temp[row].length; pass++) {
+        for (int row = 0; row < temporaryArray.length; row++) {
+            for (int pass = 0; pass < temporaryArray[row].length - pass; pass++) {
 
-                temp[row][pass] = sourcePixels[pass][row];
+                int swap = temporaryArray[row][pass];
 
-            }
-
-        }
-        for (int row = 0; row < temp.length; row++) {
-            for (int pass = 0; pass < temp[row].length - pass; pass++) {
-
-                int swap = temp[row][pass];
-
-                temp[row][pass] = temp[row][temp[row].length - (pass + 1)];
-                temp[row][temp[row].length - (pass + 1)] = swap;
+                temporaryArray[row][pass] = temporaryArray[row][temporaryArray[row].length - (pass + 1)];
+                temporaryArray[row][temporaryArray[row].length - (pass + 1)] = swap;
 
             }
         }
         allEdits.add(this.picture);
-        return temp;
+        sourcePixels = temporaryArray;
+        return sourcePixels;
 
     }
 
@@ -324,28 +283,23 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] mirror(int[][] sourcePixels) {
         // TO DO
-        int[][] temp = new int[sourcePixels.length][sourcePixels[0].length * 2];
+        int[][] temporaryArray = new int[sourcePixels.length][sourcePixels[0].length * 2];
         int count = 0;
+        fillNewArrayWithOldArray(temporaryArray, sourcePixels);
 
-        for (int row = 0; row < sourcePixels.length; row++) {
-            for (int pass = 0; pass < sourcePixels[row].length; pass++) {
+        for (int row = 0; row < temporaryArray.length; row++) {
 
-                temp[row][pass] = sourcePixels[row][pass];
-            }
-        }
+            for (int pass = temporaryArray[row].length - 1; pass > temporaryArray[row].length / 2; pass--) {
 
-        for (int row = 0; row < temp.length; row++) {
-
-            for (int pass = temp[row].length - 1; pass > temp[row].length / 2; pass--) {
-
-                temp[row][pass] = sourcePixels[row][count];
+                temporaryArray[row][pass] = sourcePixels[row][count];
                 count = count + 1;
             }
             count = 0;
 
         }
+        sourcePixels = temporaryArray;
         allEdits.add(this.picture);
-        return temp;
+        return temporaryArray;
 
     }
 
@@ -355,24 +309,25 @@ public class Transformer extends Object implements ITransformations {
     private int[][] scale50(int[][] sourcePixels) {
         // TO DO
 
-        int[][] temp = new int[sourcePixels.length / 2][sourcePixels[0].length / 2];
+        int[][] temporaryArray = new int[sourcePixels.length / 2][sourcePixels[0].length / 2];
         int count2 = 1;
 
-        for (int row = 0; row < temp.length; row++) {
+        for (int row = 0; row < temporaryArray.length; row++) {
 
             int count = 1;
 
-            for (int pass = 0; pass < temp[row].length - 1; pass++) {
+            for (int pass = 0; pass < temporaryArray[row].length - 1; pass++) {
 
-                temp[row][pass] = sourcePixels[count2][count];
+                temporaryArray[row][pass] = sourcePixels[count2][count];
 
                 count = count + 2;
             }
             count2 = count2 + 2;
 
         }
+        sourcePixels = temporaryArray;
         allEdits.add(this.picture);
-        return temp;
+        return sourcePixels;
     }
 
     /**
@@ -382,32 +337,19 @@ public class Transformer extends Object implements ITransformations {
 
         int[][] backUp = this.copyArray(sourcePixels);
 
-        // TO DO
-//        int[][] temp = new int[sourcePixels[0].length][sourcePixels.length];
-//
-//        for (int row = 0; row < temp.length; row++) {
-//
-//            for (int pass = 0; pass < temp[row].length; pass++) {
-//
-//                temp[row][pass] = sourcePixels[pass][row];
-//
-//            }
-//
-//        }
-//
-//        for (int row = 0; row < temp.length - row; row++) {
-//
-//            for (int pass = 0; pass < temp[row].length; pass++) {
-//
-//                int colour = (sourcePixels[pass][row] * sourcePixels[pass][row]) / 2;
-//                
-//                temp[row][pass] = colour;
-//                temp[row][pass + 1] = colour;
-//                         
-//            }
-//
-//        }
         return new int[1][1];
+    }
+
+    private int[][] fillNewArrayWithOldArray(int[][] temporaryArray, int[][] sourcePixels) {
+
+        for (int row = 0; row < sourcePixels.length; row++) {
+            for (int pass = 0; pass < sourcePixels[row].length; pass++) {
+
+                temporaryArray[row][pass] = sourcePixels[row][pass];
+            }
+        }
+
+        return temporaryArray;
     }
 
     /**

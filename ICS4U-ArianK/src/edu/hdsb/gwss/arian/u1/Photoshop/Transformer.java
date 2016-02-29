@@ -27,7 +27,7 @@ public class Transformer extends Object implements ITransformations {
     private int[][] pictureOriginal;
     private int[][] picture;
 
-    static ArrayList<Integer> allEdits = new ArrayList<Integer>();
+    static ArrayList<int[][]> allEdits = new ArrayList<int[][]>();
 
     /**
      * Construct a Transformer object by setting the possible transformations
@@ -58,6 +58,7 @@ public class Transformer extends Object implements ITransformations {
     public Transformer(int[][] originalPic) {
         this();
         this.setPixels(originalPic);
+        this.allEdits.add(picture);
     }
 
     /**
@@ -77,6 +78,7 @@ public class Transformer extends Object implements ITransformations {
     public void setPixels(int[][] newPix) {
         this.pictureOriginal = newPix;
         this.picture = this.copyArray(newPix);
+
     }
 
     /**
@@ -130,7 +132,7 @@ public class Transformer extends Object implements ITransformations {
         } else if (BLUR.equals(transformationName)) {
             this.picture = blur(this.picture);
         } else if (RESET.equals(transformationName)) {
-            this.picture = this.copyArray(this.picture);
+            this.picture = this.reset(this.picture);
         } else if (UNDO.equals(transformationName)) {
             this.picture = this.undo();
         } else {
@@ -143,7 +145,17 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] copyArray(int[][] sourcePixels) {
 
+        allEdits.add(pictureOriginal);
+
         return sourcePixels;
+
+    }
+
+    private int[][] reset(int[][] sourcePixels) {
+
+        this.picture.equals(allEdits.get(0));
+
+        return allEdits.get(0);
     }
 
     /**
@@ -151,7 +163,9 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] undo() {
 
-        return null;
+        this.picture.equals(allEdits.get(allEdits.size() - 1));
+
+        return this.picture;
     }
 
     /**
@@ -364,6 +378,9 @@ public class Transformer extends Object implements ITransformations {
      * TODO: ICS4U - TODO
      */
     private int[][] blur(int[][] sourcePixels) {
+
+        int[][] backUp = this.copyArray(sourcePixels);
+
         // TO DO
 //        int[][] temp = new int[sourcePixels[0].length][sourcePixels.length];
 //
@@ -389,7 +406,6 @@ public class Transformer extends Object implements ITransformations {
 //            }
 //
 //        }
-
         return new int[1][1];
     }
 

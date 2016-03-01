@@ -360,20 +360,22 @@ public class Transformer extends Object implements ITransformations {
 
         int[][] temporaryArray = new int[sourcePixels.length][sourcePixels[0].length];
         fillNewArrayWithOldArray(temporaryArray, sourcePixels);
+        int lmao = 0;
 
-        for (int row = 1; row < temporaryArray.length - 2; row++) {
-            for (int pass = 1; pass < temporaryArray[row].length - 2; pass++) {
+        for (int row = 1; row < temporaryArray.length - 1; row++) {
+            for (int pass = 1; pass < temporaryArray[row].length - 1; pass++) {
 
-                int lmao = (temporaryArray[row - 1][pass - 1] + temporaryArray[row - 1][pass] + temporaryArray[row - 1][pass + 1] + temporaryArray[row][pass - 1] + temporaryArray[row - 1][pass + 1] + temporaryArray[row + 1][pass - 1] + temporaryArray[row + 1][pass] + temporaryArray[row + 1][pass + 1] + temporaryArray[row][pass]) / 9;
+                lmao = (temporaryArray[row - 1][pass - 1] + temporaryArray[row - 1][pass] + temporaryArray[row - 1][pass + 1] + temporaryArray[row][pass - 1] + temporaryArray[row][pass] + temporaryArray[row][pass + 1] + temporaryArray[row + 1][pass - 1] + temporaryArray[row + 1][pass] + temporaryArray[row][pass + 1]) / 9;
 
                 temporaryArray[row][pass] = lmao;
+
             }
         }
 
         allEdits.add(temporaryArray);
         sourcePixels = temporaryArray;
-
         return sourcePixels;
+
     }
 
     private int[][] fillNewArrayWithOldArray(int[][] temporaryArray, int[][] sourcePixels) {

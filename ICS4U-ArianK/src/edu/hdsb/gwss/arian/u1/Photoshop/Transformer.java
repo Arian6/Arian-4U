@@ -1,10 +1,11 @@
-/*
- * ICS4U.2015.16.S2
+/* Name: MyPhotoshop
+ * Version: v1
+ * Date: March 1 2016
+ * Author: Arian Krasniqi
  */
 package edu.hdsb.gwss.arian.u1.Photoshop;
 
 import becker.xtras.imageTransformation.ITransformations;
-
 import java.util.ArrayList;
 
 public class Transformer extends Object implements ITransformations {
@@ -143,7 +144,7 @@ public class Transformer extends Object implements ITransformations {
     }
 
     /**
-     * TODO: ICS4U - TODO
+     * Set arrayList value 0 to store the original picture
      */
     private int[][] copyArray(int[][] sourcePixels) {
 
@@ -153,30 +154,39 @@ public class Transformer extends Object implements ITransformations {
 
     }
 
+    /**
+     * reset image to picture original an remove all stored edits
+     */
     private int[][] reset(int[][] sourcePixels) {
 
+        //set picture back to original
         this.picture.equals(allEdits.get(0));
 
+        //loop through array list
         for (int count = allEdits.size() - 1; count > 1; count--) {
 
+            // remove all stored versions
             allEdits.remove(count);
 
         }
 
+        //return original array
         return allEdits.get(0);
     }
 
     /**
-     * TODO: ICS4U - TODO
+     * Visit previously store this.picture in the array list
      */
     private int[][] undo() {
 
+        //as long as there is more than 1 stored
         if (allEdits.size() > 1) {
+            //set picture to previously edited
             this.picture.equals(allEdits.get(allEdits.size() - 1));
-
+            //remove edit just made
             allEdits.remove(allEdits.size() - 1);
         }
-
+        //return previous image
         return allEdits.get(allEdits.size() - 1);
     }
 

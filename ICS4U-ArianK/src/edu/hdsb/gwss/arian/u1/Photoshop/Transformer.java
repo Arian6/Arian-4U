@@ -303,13 +303,13 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] mirror(int[][] sourcePixels) {
         // TO DO
-        int[][] temporaryArray = new int[sourcePixels.length][sourcePixels[0].length * 2];
+        int[][] temporaryArray = new int[sourcePixels.length][(sourcePixels[0].length - 1) * 2];
         int count = 0;
         fillNewArrayWithOldArray(temporaryArray, sourcePixels);
 
         for (int row = 0; row < temporaryArray.length; row++) {
 
-            for (int pass = temporaryArray[row].length - 1; pass > temporaryArray[row].length / 2; pass--) {
+            for (int pass = temporaryArray[row].length - 1; pass > Math.ceil(temporaryArray[row].length / 2); pass--) {
 
                 temporaryArray[row][pass] = sourcePixels[row][count];
                 count = count + 1;
@@ -332,13 +332,14 @@ public class Transformer extends Object implements ITransformations {
         // TO DO
 
         int[][] temporaryArray = new int[sourcePixels.length / 2][sourcePixels[0].length / 2];
+
         int count2 = 1;
 
         for (int row = 0; row < temporaryArray.length; row++) {
 
             int count = 1;
 
-            for (int pass = 0; pass < temporaryArray[row].length - 1; pass++) {
+            for (int pass = 0; pass < temporaryArray[row].length; pass++) {
 
                 temporaryArray[row][pass] = sourcePixels[count2][count];
 
@@ -347,6 +348,7 @@ public class Transformer extends Object implements ITransformations {
             count2 = count2 + 2;
 
         }
+        
         allEdits.add(temporaryArray);
         sourcePixels = temporaryArray;
 

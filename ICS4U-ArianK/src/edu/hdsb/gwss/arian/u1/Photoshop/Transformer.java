@@ -46,6 +46,7 @@ public class Transformer extends Object implements ITransformations {
         this.transformations[8] = BLUR;
         this.transformations[9] = UNDO;
         this.transformations[10] = RESET;
+
     }
 
     /**
@@ -67,6 +68,7 @@ public class Transformer extends Object implements ITransformations {
      * @return The pixels representing the image.
      */
     public int[][] getPixels() {
+
         return this.picture;
     }
 
@@ -154,6 +156,12 @@ public class Transformer extends Object implements ITransformations {
     private int[][] reset(int[][] sourcePixels) {
 
         this.picture.equals(allEdits.get(0));
+
+        for (int count = allEdits.size() - 1; count > 1; count--) {
+
+            allEdits.remove(count);
+
+        }
 
         return allEdits.get(0);
     }
@@ -348,7 +356,7 @@ public class Transformer extends Object implements ITransformations {
             count2 = count2 + 2;
 
         }
-        
+
         allEdits.add(temporaryArray);
         sourcePixels = temporaryArray;
 

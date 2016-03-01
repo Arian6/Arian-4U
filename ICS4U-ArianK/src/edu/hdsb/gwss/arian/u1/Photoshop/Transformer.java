@@ -191,14 +191,16 @@ public class Transformer extends Object implements ITransformations {
     }
 
     /**
-     * TODO: ICS4U - TODO
+     * decrease or increase color values by increments of 10
      */
     private int[][] changeIntensity(double percent, int[][] sourcePixels) {
-        // TO DO
 
+        //initialize new storage array
         int[][] temporaryArray = new int[sourcePixels.length][sourcePixels[0].length];
+        //copy current SourcePixels into new array
         fillNewArrayWithOldArray(temporaryArray, sourcePixels);
 
+        //Loop throug han change each colour value
         for (int row = 0; row < temporaryArray.length; row++) {
 
             for (int pass = 0; pass < temporaryArray[row].length - 1; pass++) {
@@ -215,20 +217,26 @@ public class Transformer extends Object implements ITransformations {
             }
 
         }
+        // add to arraylist for undo
         allEdits.add(temporaryArray);
+        //make sourcepixels = to changed array
         sourcePixels = temporaryArray;
 
+        //return new image
         return sourcePixels;
 
     }
 
     /**
-     * TODO: ICS4U - TODO
+     * change every pixels color value to the opposite
      */
     private int[][] invert(int[][] sourcePixels) {
+        //initialize new array storage
         int[][] temporaryArray = new int[sourcePixels.length][sourcePixels[0].length];
+        //copy current SourcePixels into new array
         fillNewArrayWithOldArray(temporaryArray, sourcePixels);
 
+        //loop through an change each pixel value
         for (int row = 0; row < temporaryArray.length; row++) {
 
             for (int pass = 0; pass < temporaryArray[row].length - 1; pass++) {
@@ -237,9 +245,12 @@ public class Transformer extends Object implements ITransformations {
 
             }
         }
+        // add to arraylist for undo
         allEdits.add(temporaryArray);
+        //make sourcepixels = to changed array
         sourcePixels = temporaryArray;
 
+        //return new image
         return sourcePixels;
     }
 
@@ -247,6 +258,7 @@ public class Transformer extends Object implements ITransformations {
      * TODO: ICS4U - TODO
      */
     private int[][] flipX(int[][] sourcePixels) {
+        //initialize new storage array
         int[][] temporaryArray = new int[sourcePixels.length][sourcePixels[0].length];
         fillNewArrayWithOldArray(temporaryArray, sourcePixels);
 

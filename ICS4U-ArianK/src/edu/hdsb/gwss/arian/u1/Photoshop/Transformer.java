@@ -327,6 +327,8 @@ public class Transformer extends Object implements ITransformations {
         for (int row = 0; row < transformationArray.length; row++) {
             for (int column = 0; column < transformationArray[row].length - column; column++) {
 
+             
+                
                 int holderForSwap = transformationArray[row][column];
 
                 transformationArray[row][column] = transformationArray[row][transformationArray[row].length - (column + 1)];

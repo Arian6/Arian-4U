@@ -159,19 +159,17 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] reset(int[][] sourcePixels) {
 
-        //set picture back to original
-        this.picture.equals(allTransformations.get(0));
-
-        //loop through array list
+        // loop through array list
         for (int arrayListIndex = allTransformations.size() - 1; arrayListIndex > 1; arrayListIndex--) {
 
             // remove all stored versions
             allTransformations.remove(arrayListIndex);
 
         }
-
-        //return original array
-        return allTransformations.get(0);
+//
+//        //return original array
+//        return allTransformations.get(0);
+        return this.pictureOriginal;
     }
 
     /**
@@ -193,7 +191,7 @@ public class Transformer extends Object implements ITransformations {
     /**
      * decrease or increase color values by increments of 10
      */
-    private int[][] changeIntensity(double intensityIncrement, int[][] sourcePixels) {
+    private int[][] changeIntensity(int intensityIncrement, int[][] sourcePixels) {
 
         //initialize new storage array
         int[][] transformationArray = new int[sourcePixels.length][sourcePixels[0].length];
@@ -203,17 +201,14 @@ public class Transformer extends Object implements ITransformations {
         //Loop throug han change each colour value
         for (int row = 0; row < transformationArray.length; row++) {
 
-            for (int column = 0; column < transformationArray[row].length - 1; column++) {
-
-                if (transformationArray[row][column] + (int) intensityIncrement > 255) {
+            for (int column = 0; column < transformationArray[row].length; column++) {
+                transformationArray[row][column] = transformationArray[row][column] + intensityIncrement;
+                if (transformationArray[row][column] > 255) {
                     transformationArray[row][column] = 255;
 
-                } else if (transformationArray[row][column] + (int) intensityIncrement < 0) {
+                } else if (transformationArray[row][column] < 0) {
                     transformationArray[row][column] = 0;
-                } else {
-                    transformationArray[row][column] = transformationArray[row][column] + (int) intensityIncrement;
                 }
-
             }
 
         }
@@ -239,7 +234,7 @@ public class Transformer extends Object implements ITransformations {
         //loop through an change each pixel value
         for (int row = 0; row < transformationArray.length; row++) {
 
-            for (int column = 0; column < transformationArray[row].length - 1; column++) {
+            for (int column = 0; column < transformationArray[row].length; column++) {
 
                 transformationArray[row][column] = 255 - transformationArray[row][column];
 
@@ -327,8 +322,6 @@ public class Transformer extends Object implements ITransformations {
         for (int row = 0; row < transformationArray.length; row++) {
             for (int column = 0; column < transformationArray[row].length - column; column++) {
 
-             
-                
                 int holderForSwap = transformationArray[row][column];
 
                 transformationArray[row][column] = transformationArray[row][transformationArray[row].length - (column + 1)];
@@ -382,31 +375,33 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] scale50(int[][] sourcePixels) {
         //intialize new array for transformations
+        if (sourcePixels.length > 1 && sourcePixels[0].length > 1) {
+            
+            int[][] transformationArray = new int[sourcePixels.length / 2][sourcePixels[0].length / 2];
 
-        int[][] transformationArray = new int[sourcePixels.length / 2][sourcePixels[0].length / 2];
+            //place holder for row
+            int rowPlaceHolder = 1;
 
-        //place holder for row
-        int rowPlaceHolder = 1;
+            //for loop that adds every other pixel to the new array
+            for (int row = 0; row < transformationArray.length; row++) {
 
-        //for loop that adds every other pixel to the new array
-        for (int row = 0; row < transformationArray.length; row++) {
+                int columnPlaceHolder = 1;
 
-            int columnPlaceHolder = 1;
+                for (int column = 0; column < transformationArray[row].length; column++) {
 
-            for (int column = 0; column < transformationArray[row].length; column++) {
+                    transformationArray[row][column] = sourcePixels[rowPlaceHolder][columnPlaceHolder];
 
-                transformationArray[row][column] = sourcePixels[rowPlaceHolder][columnPlaceHolder];
+                    columnPlaceHolder = columnPlaceHolder + 2;
+                }
+                rowPlaceHolder = rowPlaceHolder + 2;
 
-                columnPlaceHolder = columnPlaceHolder + 2;
             }
-            rowPlaceHolder = rowPlaceHolder + 2;
 
+            //add transformations to the array lsit for undo
+            allTransformations.add(transformationArray);
+            //apply transformations to sourcepixels
+            sourcePixels = transformationArray;
         }
-
-        //add transformations to the array lsit for undo
-        allTransformations.add(transformationArray);
-        //apply transformations to sourcepixels
-        sourcePixels = transformationArray;
 
         //return sourcePIxels
         return sourcePixels;
@@ -426,58 +421,58 @@ public class Transformer extends Object implements ITransformations {
         int averageColorValueBetweenSurroundingPixels = 0;
 
         // loop around and add up surrounding pixels to current pixel
-        for (int row = 0; row < transformationArray.length; row++) {
-            for (int column = 0; column < transformationArray[row].length; column++) {
+        for (int row = 1; row < transformationArray.length - 1; row++) {
+            for (int column = 1; column < transformationArray[row].length - 1; column++) {
 
                 //FOR SPECIAL CASES WHERE THERE ARE NOT 9 PIXELS SURROUNDING
-                //if top left corner
-                if (row == 0 && column == 0) {
-                    averageColorValueBetweenSurroundingPixels = (transformationArray[row][column] + transformationArray[row][column + 1] + transformationArray[row + 1][column + 1] + transformationArray[row + 1][column]) / 4;
-                    transformationArray[row][column] = averageColorValueBetweenSurroundingPixels;
-                    averageColorValueBetweenSurroundingPixels = 0;
-                }
-                //if top row, inbetween corners
-                if (row == 0 && column > 0 && column < transformationArray[row].length - 1) {
-                    averageColorValueBetweenSurroundingPixels = (transformationArray[row][column] + transformationArray[row][column + 1] + transformationArray[row][column - 1] + transformationArray[row + 1][column] + transformationArray[row + 1][column + 1] + transformationArray[row + 1][column - 1]) / 6;
-                    transformationArray[row][column] = averageColorValueBetweenSurroundingPixels;
-                    averageColorValueBetweenSurroundingPixels = 0;
-                }
-                //if top row, right corner
-                if (row == 0 && column == transformationArray[row].length - 1) {
-                    averageColorValueBetweenSurroundingPixels = (transformationArray[row][column] + transformationArray[row][column - 1] + transformationArray[row + 1][column] + transformationArray[row + 1][column - 1]) / 4;
-                    transformationArray[row][column] = averageColorValueBetweenSurroundingPixels;
-                    averageColorValueBetweenSurroundingPixels = 0;
-                }
-                //if bottom row left corner
-                if (row == transformationArray.length - 1 && column == 0) {
-                    averageColorValueBetweenSurroundingPixels = (transformationArray[row][column] + transformationArray[row][column + 1] + transformationArray[row - 1][column + 1] + transformationArray[row - 1][column]) / 4;
-                    transformationArray[row][column] = averageColorValueBetweenSurroundingPixels;
-                    averageColorValueBetweenSurroundingPixels = 0;
-                }
-                //if bottom row inbetween corners
-                if (row == transformationArray.length - 1 && column > 0 && column < transformationArray[row].length - 1) {
-                    averageColorValueBetweenSurroundingPixels = (transformationArray[row][column] + transformationArray[row][column + 1] + transformationArray[row][column - 1] + transformationArray[row - 1][column] + transformationArray[row - 1][column + 1] + transformationArray[row - 1][column - 1]) / 6;
-                    transformationArray[row][column] = averageColorValueBetweenSurroundingPixels;
-                    averageColorValueBetweenSurroundingPixels = 0;
-                }
-                //if bottom row, right corner
-                if (row == transformationArray.length && column == transformationArray[row].length) {
-                    averageColorValueBetweenSurroundingPixels = (transformationArray[row][column] + transformationArray[row][column - 1] + transformationArray[row - 1][column - 1] + transformationArray[row - 1][column]) / 4;
-                    transformationArray[row][column] = averageColorValueBetweenSurroundingPixels;
-                    averageColorValueBetweenSurroundingPixels = 0;
-                }
-                //if first column, inbetween corners
-                if (column == 0 && row > 0 && row < transformationArray.length - 1) {
-                    averageColorValueBetweenSurroundingPixels = (transformationArray[row][column] + transformationArray[row][column + 1] + transformationArray[row - 1][column] + transformationArray[row - 1][column + 1] + transformationArray[row + 1][column] + transformationArray[row + 1][column + 1]) / 6;
-                    transformationArray[row][column] = averageColorValueBetweenSurroundingPixels;
-                    averageColorValueBetweenSurroundingPixels = 0;
-                }
-                //if last col,oumn, inbetween corners
-                if (column == transformationArray[row].length - 1 && row > 0 && row < transformationArray.length - 1) {
-                    averageColorValueBetweenSurroundingPixels = (transformationArray[row][column] + transformationArray[row][column - 1] + transformationArray[row - 1][column] + transformationArray[row - 1][column - 1] + transformationArray[row + 1][column] + transformationArray[row + 1][column - 1]) / 6;
-                    transformationArray[row][column] = averageColorValueBetweenSurroundingPixels;
-                    averageColorValueBetweenSurroundingPixels = 0;
-                }
+//                //if top left corner
+//                if (row == 0 && column == 0) {
+//                    averageColorValueBetweenSurroundingPixels = (transformationArray[row][column] + transformationArray[row][column + 1] + transformationArray[row + 1][column + 1] + transformationArray[row + 1][column]) / 4;
+//                    transformationArray[row][column] = averageColorValueBetweenSurroundingPixels;
+//                    averageColorValueBetweenSurroundingPixels = 0;
+//                }
+//                //if top row, inbetween corners
+//                if (row == 0 && column > 0 && column < transformationArray[row].length - 1) {
+//                    averageColorValueBetweenSurroundingPixels = (transformationArray[row][column] + transformationArray[row][column + 1] + transformationArray[row][column - 1] + transformationArray[row + 1][column] + transformationArray[row + 1][column + 1] + transformationArray[row + 1][column - 1]) / 6;
+//                    transformationArray[row][column] = averageColorValueBetweenSurroundingPixels;
+//                    averageColorValueBetweenSurroundingPixels = 0;
+//                }
+//                //if top row, right corner
+//                if (row == 0 && column == transformationArray[row].length - 1) {
+//                    averageColorValueBetweenSurroundingPixels = (transformationArray[row][column] + transformationArray[row][column - 1] + transformationArray[row + 1][column] + transformationArray[row + 1][column - 1]) / 4;
+//                    transformationArray[row][column] = averageColorValueBetweenSurroundingPixels;
+//                    averageColorValueBetweenSurroundingPixels = 0;
+//                }
+//                //if bottom row left corner
+//                if (row == transformationArray.length - 1 && column == 0) {
+//                    averageColorValueBetweenSurroundingPixels = (transformationArray[row][column] + transformationArray[row][column + 1] + transformationArray[row - 1][column + 1] + transformationArray[row - 1][column]) / 4;
+//                    transformationArray[row][column] = averageColorValueBetweenSurroundingPixels;
+//                    averageColorValueBetweenSurroundingPixels = 0;
+//                }
+//                //if bottom row inbetween corners
+//                if (row == transformationArray.length - 1 && column > 0 && column < transformationArray[row].length - 1) {
+//                    averageColorValueBetweenSurroundingPixels = (transformationArray[row][column] + transformationArray[row][column + 1] + transformationArray[row][column - 1] + transformationArray[row - 1][column] + transformationArray[row - 1][column + 1] + transformationArray[row - 1][column - 1]) / 6;
+//                    transformationArray[row][column] = averageColorValueBetweenSurroundingPixels;
+//                    averageColorValueBetweenSurroundingPixels = 0;
+//                }
+//                //if bottom row, right corner
+//                if (row == transformationArray.length && column == transformationArray[row].length) {
+//                    averageColorValueBetweenSurroundingPixels = (transformationArray[row][column] + transformationArray[row][column - 1] + transformationArray[row - 1][column - 1] + transformationArray[row - 1][column]) / 4;
+//                    transformationArray[row][column] = averageColorValueBetweenSurroundingPixels;
+//                    averageColorValueBetweenSurroundingPixels = 0;
+//                }
+//                //if first column, inbetween corners
+//                if (column == 0 && row > 0 && row < transformationArray.length - 1) {
+//                    averageColorValueBetweenSurroundingPixels = (transformationArray[row][column] + transformationArray[row][column + 1] + transformationArray[row - 1][column] + transformationArray[row - 1][column + 1] + transformationArray[row + 1][column] + transformationArray[row + 1][column + 1]) / 6;
+//                    transformationArray[row][column] = averageColorValueBetweenSurroundingPixels;
+//                    averageColorValueBetweenSurroundingPixels = 0;
+//                }
+//                //if last col,oumn, inbetween corners
+//                if (column == transformationArray[row].length - 1 && row > 0 && row < transformationArray.length - 1) {
+//                    averageColorValueBetweenSurroundingPixels = (transformationArray[row][column] + transformationArray[row][column - 1] + transformationArray[row - 1][column] + transformationArray[row - 1][column - 1] + transformationArray[row + 1][column] + transformationArray[row + 1][column - 1]) / 6;
+//                    transformationArray[row][column] = averageColorValueBetweenSurroundingPixels;
+//                    averageColorValueBetweenSurroundingPixels = 0;
+//                }
                 //if anywhere where 9 pixels surround the current pixel
                 if (row > 0 && row < transformationArray.length - 1 && column > 0 && column < transformationArray[row].length - 1) {
                     averageColorValueBetweenSurroundingPixels = (transformationArray[row][column] + transformationArray[row][column - 1] + transformationArray[row][column + 1] + transformationArray[row - 1][column] + transformationArray[row - 1][column - 1] + transformationArray[row - 1][column + 1] + transformationArray[row + 1][column] + transformationArray[row + 1][column - 1] + transformationArray[row + 1][column + 1]) / 9;

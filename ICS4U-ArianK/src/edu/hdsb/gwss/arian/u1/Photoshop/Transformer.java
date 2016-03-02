@@ -161,16 +161,12 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] reset() {
 
-        // loop through array list
         for (int arrayListIndex = allTransformations.size() - 1; arrayListIndex > 1; arrayListIndex--) {
 
-            // remove all stored versions
             allTransformations.remove(arrayListIndex);
 
         }
-//
-//        //return original array
-//        return allTransformations.get(0);
+
         return this.pictureOriginal;
     }
 
@@ -181,12 +177,12 @@ public class Transformer extends Object implements ITransformations {
 
         //as long as there is more than 1 stored
         if (allTransformations.size() > 1) {
-            //set picture to previously edited
+
             this.picture.equals(allTransformations.get(allTransformations.size() - 1));
-            //remove edit just made
+
             allTransformations.remove(allTransformations.size() - 1);
         }
-        //return previous image
+
         return allTransformations.get(allTransformations.size() - 1);
     }
 
@@ -195,12 +191,10 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] changeIntensity(int intensityIncrement, int[][] sourcePixels) {
 
-        //initialize new storage array
         int[][] transformationArray = new int[sourcePixels.length][sourcePixels[0].length];
-        //copy current SourcePixels into new array
+
         fillNewArrayWithOldArray(transformationArray, sourcePixels);
 
-//        Loop throug han change each colour value
         for (int row = 0; row < transformationArray.length; row++) {
 
             for (int column = 0; column < transformationArray[row].length; column++) {
@@ -222,12 +216,11 @@ public class Transformer extends Object implements ITransformations {
      * change every pixels color value to the opposite
      */
     private int[][] invert(int[][] sourcePixels) {
-        //initialize new array storage
+
         int[][] transformationArray = new int[sourcePixels.length][sourcePixels[0].length];
-        //copy current SourcePixels into new array
+
         fillNewArrayWithOldArray(transformationArray, sourcePixels);
 
-        //loop through an change each pixel value
         for (int row = 0; row < transformationArray.length; row++) {
 
             for (int column = 0; column < transformationArray[row].length; column++) {
@@ -244,12 +237,11 @@ public class Transformer extends Object implements ITransformations {
      * Flip the image on the x-axis
      */
     private int[][] flipX(int[][] sourcePixels) {
-        //initialize new storage array
+
         int[][] transformationArray = new int[sourcePixels.length][sourcePixels[0].length];
-        //fill new array with sourcePixels
+
         fillNewArrayWithOldArray(transformationArray, sourcePixels);
 
-        //loop through each pixel and flip it to the opposite side
         for (int row = 0; row < transformationArray.length - row; row++) {
             for (int column = 0; column < transformationArray[row].length; column++) {
 
@@ -268,12 +260,10 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] flipY(int[][] sourcePixels) {
 
-        //intitialize new array for transformations
         int[][] transformationArray = new int[sourcePixels.length][sourcePixels[0].length];
-        //fill new array with sourcePixels
-        fillNewArrayWithOldArray(transformationArray, sourcePixels);
 
-        //loop array and flip pxelks on the x axis
+//        fillNewArrayWithOldArray(transformationArray, sourcePixels);
+
         for (int row = 0; row < transformationArray.length; row++) {
             for (int column = 0; column < transformationArray[row].length - column; column++) {
 
@@ -292,12 +282,10 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] rotate(int[][] sourcePixels) {
 
-        
         int[][] transformationArray = new int[sourcePixels[0].length][sourcePixels.length];
-     
+
         fillNewArrayWithOldArrayRotation(transformationArray, sourcePixels);
 
-        
         for (int row = 0; row < transformationArray.length; row++) {
             for (int column = 0; column < transformationArray[row].length - column; column++) {
 
@@ -316,14 +304,13 @@ public class Transformer extends Object implements ITransformations {
      * Create duplicate of the image and flip it opposite the existing one
      */
     private int[][] mirror(int[][] sourcePixels) {
-        // intialize new array for transformations
+
         int[][] transformationArray = new int[sourcePixels.length][(sourcePixels[0].length - 1) * 2];
-        //fill new array with sourcePixels
+
         fillNewArrayWithOldArray(transformationArray, sourcePixels);
-        // coloumn place holder for the loop
+
         int columnPlaceHolder = 0;
 
-        //copppy array backwards into second half of the new array
         for (int row = 0; row < transformationArray.length; row++) {
 
             for (int column = transformationArray[row].length - 1; column > transformationArray[row].length / 2; column--) {
@@ -343,37 +330,32 @@ public class Transformer extends Object implements ITransformations {
      * scale down picture by 50 (width /2 + height / 2)
      */
     private int[][] scale50(int[][] sourcePixels) {
-        //intialize new array for transformations
+
         if (sourcePixels.length > 1 && sourcePixels[0].length > 1) {
 
             int[][] transformationArray = new int[sourcePixels.length / 2][sourcePixels[0].length / 2];
 
-        
-        //place holder for row
-        int rowPlaceHolder = 1;
+            int rowPlaceHolder = 1;
 
-        //for loop that adds every other pixel to the new array
-        for (int row = 0; row < transformationArray.length; row++) {
+            for (int row = 0; row < transformationArray.length; row++) {
 
-            int columnPlaceHolder = 1;
+                int columnPlaceHolder = 1;
 
-            for (int column = 0; column < transformationArray[row].length; column++) {
+                for (int column = 0; column < transformationArray[row].length; column++) {
 
-                transformationArray[row][column] = sourcePixels[rowPlaceHolder][columnPlaceHolder];
+                    transformationArray[row][column] = sourcePixels[rowPlaceHolder][columnPlaceHolder];
 
-                columnPlaceHolder = columnPlaceHolder + 2;
+                    columnPlaceHolder = columnPlaceHolder + 2;
+                }
+                rowPlaceHolder = rowPlaceHolder + 2;
+
             }
-            rowPlaceHolder = rowPlaceHolder + 2;
 
+            allTransformations.add(transformationArray);
+
+            sourcePixels = transformationArray;
         }
 
-        //add transformations to the array lsit for undo
-        allTransformations.add(transformationArray);
-        //apply transformations to sourcepixels
-        sourcePixels = transformationArray;
-        }
-
-        //return sourcePIxels
         return sourcePixels;
     }
 
@@ -383,19 +365,15 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] blur(int[][] sourcePixels) {
 
-        //initialize new array for the transformation
         int[][] transformationArray = new int[sourcePixels.length][sourcePixels[0].length];
-        //fill nbew array with current picture
+
         fillNewArrayWithOldArray(transformationArray, sourcePixels);
-        //intialize average colour value
+
         int averageColorValueBetweenSurroundingPixels = 0;
 
-        // loop around and add up surrounding pixels to current pixel
         for (int row = 1; row < transformationArray.length - 1; row++) {
             for (int column = 1; column < transformationArray[row].length - 1; column++) {
 
-//                }
-                //if anywhere where 9 pixels surround the current pixel
                 if (row > 0 && row < transformationArray.length - 1 && column > 0 && column < transformationArray[row].length - 1) {
                     averageColorValueBetweenSurroundingPixels = (transformationArray[row][column] + transformationArray[row][column - 1] + transformationArray[row][column + 1] + transformationArray[row - 1][column] + transformationArray[row - 1][column - 1] + transformationArray[row - 1][column + 1] + transformationArray[row + 1][column] + transformationArray[row + 1][column - 1] + transformationArray[row + 1][column + 1]) / 9;
                     transformationArray[row][column] = averageColorValueBetweenSurroundingPixels;
@@ -460,7 +438,7 @@ public class Transformer extends Object implements ITransformations {
             }
         }
 
-       return applyTransformationsToSourcePixels(transformationArray, sourcePixels);
+        return applyTransformationsToSourcePixels(transformationArray, sourcePixels);
 
     }
 
@@ -492,12 +470,11 @@ public class Transformer extends Object implements ITransformations {
     }
 
     private int[][] applyTransformationsToSourcePixels(int[][] transformationArray, int[][] sourcePixels) {
-        //add to arraylist for undo
+
         allTransformations.add(transformationArray);
-        //source pixels = newl;y created array
+
         sourcePixels = transformationArray;
 
-        // return transformed image
         return sourcePixels;
     }
 

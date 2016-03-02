@@ -344,7 +344,7 @@ public class Transformer extends Object implements ITransformations {
 
         for (int row = 0; row < transformationArray.length; row++) {
 
-            for (int column = transformationArray[row].length - 1; column > Math.ceil(transformationArray[row].length / 2); column--) {
+            for (int column = transformationArray[row].length - 1; column > transformationArray[row].length / 2; column--) {
 
                 transformationArray[row][column] = sourcePixels[row][columnPlaceHolder];
                 columnPlaceHolder = columnPlaceHolder + 1;
@@ -399,12 +399,47 @@ public class Transformer extends Object implements ITransformations {
         fillNewArrayWithOldArray(transformationArray, sourcePixels);
         int lmao = 0;
 
-        for (int row = 1; row < transformationArray.length - 1; row++) {
-            for (int column = 1; column < transformationArray[row].length - 1; column++) {
+        for (int row = 0; row < transformationArray.length; row++) {
+            for (int column = 0; column < transformationArray[row].length ; column++) {
 
-                lmao = (transformationArray[row - 1][column - 1] + transformationArray[row - 1][column] + transformationArray[row - 1][column + 1] + transformationArray[row][column - 1] + transformationArray[row][column] + transformationArray[row][column + 1] + transformationArray[row + 1][column - 1] + transformationArray[row + 1][column] + transformationArray[row][column + 1]) / 9;
+                if (row == 0 && column == 0) {
+                    lmao = (transformationArray[row][column] + transformationArray[row][column + 1] + transformationArray[row + 1][column + 1] + transformationArray[row + 1][column]) / 4;
+                    transformationArray[row][column] = lmao;
+                }
+                if (row == 0 && column > 0 && column < transformationArray[row].length - 1) {
+                    lmao = (transformationArray[row][column] + transformationArray[row][column + 1] + transformationArray[row][column - 1] + transformationArray[row + 1][column] + transformationArray[row + 1][column + 1] + transformationArray[row + 1][column - 1]) / 6;
+                    transformationArray[row][column] = lmao;
+                }
+                if (row == 0 && column == transformationArray[row].length - 1) {
+                    lmao = (transformationArray[row][column] + transformationArray[row][column - 1] + transformationArray[row + 1][column] + transformationArray[row + 1][column - 1]) / 4;
+                    transformationArray[row][column] = lmao;
+                }
+                if (row == transformationArray.length - 1 && column == 0) {
+                    lmao = (transformationArray[row][column] + transformationArray[row][column + 1] + transformationArray[row - 1][column + 1] + transformationArray[row - 1][column]) / 4;
+                    transformationArray[row][column] = lmao;
+                }
+                if (row == transformationArray.length - 1 && column > 0 && column < transformationArray[row].length -1) {
+                    lmao = (transformationArray[row][column] + transformationArray[row][column + 1] + transformationArray[row][column - 1] + transformationArray[row - 1][column] + transformationArray[row - 1][column + 1] + transformationArray[row - 1][column - 1]) / 6;
 
-                transformationArray[row][column] = lmao;
+                    transformationArray[row][column] = lmao;
+                }
+                if (row == transformationArray.length && column == transformationArray[row].length) {
+                    lmao = (transformationArray[row][column] + transformationArray[row][column - 1] + transformationArray[row - 1][column - 1] + transformationArray[row - 1][column]) / 4;
+                    transformationArray[row][column] = lmao;
+                }
+                if (column == 0 && row > 0 && row < transformationArray.length - 1) {
+                    lmao = (transformationArray[row][column] + transformationArray[row][column + 1] + transformationArray[row - 1][column] + transformationArray[row - 1][column + 1] + transformationArray[row + 1][column] + transformationArray[row + 1][column + 1]) / 6;
+                    transformationArray[row][column] = lmao;
+                }
+                if (column == transformationArray[row].length - 1  && row > 0 && row < transformationArray.length ) {
+                    transformationArray[row][column] = 0;
+//                    lmao = (transformationArray[row][column] + transformationArray[row][column - 1] + transformationArray[row - 1][column] + transformationArray[row - 1][column - 1] + transformationArray[row + 1][column] + transformationArray[row + 1][column - 1]) / 6;
+                    transformationArray[row][column] = lmao;
+                }
+                if (row > 0 && row < transformationArray.length - 1 && column > 0 && column < transformationArray[row].length - 1) {
+                    lmao = (transformationArray[row][column] + transformationArray[row][column - 1] + transformationArray[row][column + 1] + transformationArray[row - 1][column] + transformationArray[row - 1][column - 1] + transformationArray[row - 1][column + 1] + transformationArray[row + 1][column] + transformationArray[row + 1][column - 1] + transformationArray[row + 1][column + 1]) / 9;
+                    transformationArray[row][column] = lmao;
+                }
 
             }
         }

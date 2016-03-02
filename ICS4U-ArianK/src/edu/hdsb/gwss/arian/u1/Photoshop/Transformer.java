@@ -405,40 +405,49 @@ public class Transformer extends Object implements ITransformations {
                 if (row == 0 && column == 0) {
                     lmao = (transformationArray[row][column] + transformationArray[row][column + 1] + transformationArray[row + 1][column + 1] + transformationArray[row + 1][column]) / 4;
                     transformationArray[row][column] = lmao;
+                    lmao = 0;
                 }
                 if (row == 0 && column > 0 && column < transformationArray[row].length - 1) {
                     lmao = (transformationArray[row][column] + transformationArray[row][column + 1] + transformationArray[row][column - 1] + transformationArray[row + 1][column] + transformationArray[row + 1][column + 1] + transformationArray[row + 1][column - 1]) / 6;
                     transformationArray[row][column] = lmao;
+                    lmao = 0;
                 }
                 if (row == 0 && column == transformationArray[row].length - 1) {
                     lmao = (transformationArray[row][column] + transformationArray[row][column - 1] + transformationArray[row + 1][column] + transformationArray[row + 1][column - 1]) / 4;
                     transformationArray[row][column] = lmao;
+                    lmao = 0;
                 }
                 if (row == transformationArray.length - 1 && column == 0) {
                     lmao = (transformationArray[row][column] + transformationArray[row][column + 1] + transformationArray[row - 1][column + 1] + transformationArray[row - 1][column]) / 4;
                     transformationArray[row][column] = lmao;
+                    lmao = 0;
                 }
                 if (row == transformationArray.length - 1 && column > 0 && column < transformationArray[row].length -1) {
                     lmao = (transformationArray[row][column] + transformationArray[row][column + 1] + transformationArray[row][column - 1] + transformationArray[row - 1][column] + transformationArray[row - 1][column + 1] + transformationArray[row - 1][column - 1]) / 6;
 
                     transformationArray[row][column] = lmao;
+                    lmao = 0;
                 }
                 if (row == transformationArray.length && column == transformationArray[row].length) {
                     lmao = (transformationArray[row][column] + transformationArray[row][column - 1] + transformationArray[row - 1][column - 1] + transformationArray[row - 1][column]) / 4;
                     transformationArray[row][column] = lmao;
+                    lmao = 0;
                 }
                 if (column == 0 && row > 0 && row < transformationArray.length - 1) {
                     lmao = (transformationArray[row][column] + transformationArray[row][column + 1] + transformationArray[row - 1][column] + transformationArray[row - 1][column + 1] + transformationArray[row + 1][column] + transformationArray[row + 1][column + 1]) / 6;
                     transformationArray[row][column] = lmao;
+                    lmao = 0;
                 }
-                if (column == transformationArray[row].length - 1  && row > 0 && row < transformationArray.length ) {
-                    transformationArray[row][column] = 0;
-//                    lmao = (transformationArray[row][column] + transformationArray[row][column - 1] + transformationArray[row - 1][column] + transformationArray[row - 1][column - 1] + transformationArray[row + 1][column] + transformationArray[row + 1][column - 1]) / 6;
+                if (column == transformationArray[row].length - 1  && row > 0 && row < transformationArray.length -1) {
+             
+                    lmao = (transformationArray[row][column] + transformationArray[row][column - 1] + transformationArray[row - 1][column] + transformationArray[row - 1][column - 1] + transformationArray[row + 1][column] + transformationArray[row + 1][column - 1]) / 6;
                     transformationArray[row][column] = lmao;
+                    lmao = 0;
                 }
                 if (row > 0 && row < transformationArray.length - 1 && column > 0 && column < transformationArray[row].length - 1) {
                     lmao = (transformationArray[row][column] + transformationArray[row][column - 1] + transformationArray[row][column + 1] + transformationArray[row - 1][column] + transformationArray[row - 1][column - 1] + transformationArray[row - 1][column + 1] + transformationArray[row + 1][column] + transformationArray[row + 1][column - 1] + transformationArray[row + 1][column + 1]) / 9;
                     transformationArray[row][column] = lmao;
+                    lmao = 0;
                 }
 
             }

@@ -261,8 +261,7 @@ public class Transformer extends Object implements ITransformations {
     private int[][] flipY(int[][] sourcePixels) {
 
         int[][] transformationArray = new int[sourcePixels.length][sourcePixels[0].length];
-
-//        fillNewArrayWithOldArray(transformationArray, sourcePixels);
+        fillNewArrayWithOldArray(transformationArray, sourcePixels);
 
         for (int row = 0; row < transformationArray.length; row++) {
             for (int column = 0; column < transformationArray[row].length - column; column++) {

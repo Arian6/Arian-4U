@@ -150,9 +150,7 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] copyArray(int[][] sourcePixels) {
 
-        int[][] transformationArray = sourcePixels;
-
-        return transformationArray;
+        return sourcePixels;
 
     }
 
@@ -209,6 +207,7 @@ public class Transformer extends Object implements ITransformations {
             }
 
         }
+
         return applyTransformationsToSourcePixels(transformationArray, sourcePixels);
     }
 
@@ -382,14 +381,14 @@ public class Transformer extends Object implements ITransformations {
             }
         }
 
-        //                    FOR SPECIAL CASES WHERE THERE ARE NOT 9 PIXELS SURROUNDING
+        //FOR SPECIAL CASES WHERE THERE ARE NOT 9 PIXELS SURROUNDING
         for (int row = 0; row < transformationArray.length; row++) {
             for (int column = 0; column < transformationArray[row].length; column++) {
 
                 //if top left corner
                 if (row == 0 && column == 0) {
                     averageColorValueBetweenSurroundingPixels = (transformationArray[row][column] + transformationArray[row][column + 1] + transformationArray[row + 1][column + 1] + transformationArray[row + 1][column]) / 4;
-                    transformationArray[row][column] = averageColorValueBetweenSurroundingPixels;
+                    transformationArray[0][0] = averageColorValueBetweenSurroundingPixels;
                     averageColorValueBetweenSurroundingPixels = 0;
                 }
                 //if top row, inbetween corners

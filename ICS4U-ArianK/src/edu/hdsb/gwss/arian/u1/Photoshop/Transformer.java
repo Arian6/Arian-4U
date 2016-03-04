@@ -150,7 +150,7 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] copyArray(int[][] sourcePixels) {
 
-        //to eleminate all previous transformations
+        //to eleminate all previous 
         for (int arrayListIndex = allTransformations.size() - 1; arrayListIndex > 1; arrayListIndex--) {
 
             allTransformations.remove(arrayListIndex);
@@ -221,7 +221,6 @@ public class Transformer extends Object implements ITransformations {
 
             }
         }
-
         return applyTransformationsToSourcePixels(transformationArray, sourcePixels);
     }
 

@@ -137,7 +137,7 @@ public class Transformer extends Object implements ITransformations {
         } else if (BLUR.equals(transformationName)) {
             this.picture = blur(this.picture);
         } else if (RESET.equals(transformationName)) {
-            this.picture = this.reset();
+            this.picture = this.copyArray(this.picture);
         } else if (UNDO.equals(transformationName)) {
             this.picture = this.undo();
         } else {
@@ -150,15 +150,7 @@ public class Transformer extends Object implements ITransformations {
      */
     private int[][] copyArray(int[][] sourcePixels) {
 
-        return sourcePixels;
-
-    }
-
-    /**
-     * reset image to picture original an remove all stored edits
-     */
-    private int[][] reset() {
-
+        //to eleminate all previous transformations
         for (int arrayListIndex = allTransformations.size() - 1; arrayListIndex > 1; arrayListIndex--) {
 
             allTransformations.remove(arrayListIndex);
@@ -166,6 +158,7 @@ public class Transformer extends Object implements ITransformations {
         }
 
         return this.pictureOriginal;
+
     }
 
     /**

@@ -315,8 +315,8 @@ public class Transformer extends Object implements ITransformations {
         transformationArray[sourcePixels.length - 1][sourcePixels[0].length - 1] = averageColorValueBetweenSurroundingPixels;
 
         //MIDDLE OF PICTURE
-        for (int row = 1; row < transformationArray.length - 1; row++) {
-            for (int column = 1; column < transformationArray[row].length - 1; column++) {
+        for (int row = 1; row < transformationArray.length ; row++) {
+            for (int column = 1; column < transformationArray[row].length; column++) {
                 if (row > 0 && row < transformationArray.length - 1 && column > 0 && column < transformationArray[row].length - 1) {
                     averageColorValueBetweenSurroundingPixels = (sourcePixels[row][column] + sourcePixels[row][column - 1] + sourcePixels[row][column + 1] + sourcePixels[row - 1][column] + sourcePixels[row - 1][column - 1] + sourcePixels[row - 1][column + 1] + sourcePixels[row + 1][column] + sourcePixels[row + 1][column - 1] + sourcePixels[row + 1][column + 1]) / 9;
                     transformationArray[row][column] = averageColorValueBetweenSurroundingPixels;

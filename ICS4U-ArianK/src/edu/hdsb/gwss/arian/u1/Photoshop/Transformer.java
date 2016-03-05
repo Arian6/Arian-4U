@@ -357,6 +357,7 @@ public class Transformer extends Object implements ITransformations {
     }
 
     //fill any new array with custom dimensions with sourcePixels
+
     private int[][] fillNewArrayWithOldArray(int[][] transformationArray, int[][] sourcePixels) {
         for (int row = 0; row < sourcePixels.length; row++) {
             for (int column = 0; column < sourcePixels[row].length; column++) {
@@ -373,9 +374,7 @@ public class Transformer extends Object implements ITransformations {
     }
 
     public static void main(String[] args) {
-
         int[][] myPicture = new int[4][15];
-
         myPicture[0][0] = 1;
         myPicture[1][1] = 1;
         myPicture[2][2] = 1;
@@ -387,39 +386,31 @@ public class Transformer extends Object implements ITransformations {
         myPicture[2][8] = 1;
         myPicture[1][9] = 1;
         myPicture[0][10] = 1;
-
 //       Construct the test object
         Transformer test = new Transformer(myPicture);
-
 //       Display Original Image
         System.out.println("Original\n");
         display(myPicture);
-
 //       Test flip on X-axis
         System.out.println("\nFlipped on the X axis.\n");
         test.performTransformation(FLIPX);
         display(test.getPixels());
-
 //       Test flip on Y-axis
         System.out.println("\nFlipped on the Y axis.\n");
         test.performTransformation(FLIPY);
         display(test.getPixels());
-
 //       Test Rotate 90 degrees
         System.out.println("\nRotated 90 degrees.\n");
         test.performTransformation(ROTATE);
         display(test.getPixels());
-
 //       Test Rotate Scale 50%
         System.out.println("\nScaled 50%.\n");
         test.performTransformation(SCALE50);
         display(test.getPixels());
-
 //       Test Mirror Image
         System.out.println("\nMirror image.\n");
         test.performTransformation(MIRROR);
         display(test.getPixels());
-
 //       Test Reset
         System.out.println("\nReset image.\n");
         test.performTransformation(RESET);

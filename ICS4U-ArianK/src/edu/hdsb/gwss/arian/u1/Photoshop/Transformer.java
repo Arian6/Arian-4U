@@ -1,6 +1,6 @@
 /* Name: MyPhotoshop
- * Version: v1
- * Date: March 1 2016
+ * Version: v6
+ * Date: March 4 2016
  * Author: Arian Krasniqi
  */
 package edu.hdsb.gwss.arian.u1.Photoshop;

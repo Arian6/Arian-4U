@@ -26,9 +26,10 @@ public class FiveTerms {
         for (int i = 1; i <= 5; i++) {
             System.out.println(sequenceOne(i));
         }
+        System.out.println("");
         System.out.println("Sequence Two: ");
         for (int i = 1; i <= 5; i++) {
-            System.out.println(sequenceTwo(i));
+            System.out.println(decimal.format(sequenceTwo(i)));
         }
     }
 
@@ -49,7 +50,9 @@ public class FiveTerms {
         if (term == 1) {
             return 2;
         } else {
-            return sequenceOne((int) Math.sqrt(((3 * term - 1) + 4)));
+
+            return Math.sqrt(((3 * sequenceTwo(term - 1)) + 4));
+
         }
 
     }

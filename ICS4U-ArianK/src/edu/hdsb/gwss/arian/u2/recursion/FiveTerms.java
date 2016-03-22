@@ -5,7 +5,7 @@
  */
 package edu.hdsb.gwss.arian.u2.recursion;
 
-import java.text.NumberFormat;
+import java.text.DecimalFormat;
 
 /**
  *
@@ -18,18 +18,19 @@ public class FiveTerms {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        NumberFormat decimal = NumberFormat.getNumberInstance();
-        decimal.setMinimumFractionDigits(2);
-        decimal.setMaximumFractionDigits(2);
+        DecimalFormat formatter = new DecimalFormat("0.00");
 
         System.out.println("Sequence One: ");
+
         for (int i = 1; i <= 5; i++) {
             System.out.println(sequenceOne(i));
         }
+
         System.out.println("");
         System.out.println("Sequence Two: ");
+
         for (int i = 1; i <= 5; i++) {
-            System.out.println(decimal.format(sequenceTwo(i)));
+            System.out.println(formatter.format(sequenceTwo(i)));
         }
     }
 

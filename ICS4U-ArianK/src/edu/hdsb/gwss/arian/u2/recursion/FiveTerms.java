@@ -16,57 +16,41 @@ public class FiveTerms {
     /**
      * @param args the command line arguments
      */
-    static int count = 2;
-    static int[] sequanceOneArray = new int[5];
-    static double[] sequanceTwoArray = new double[5];
-
     public static void main(String[] args) {
         // TODO code application logic here
         NumberFormat decimal = NumberFormat.getNumberInstance();
         decimal.setMinimumFractionDigits(2);
         decimal.setMaximumFractionDigits(2);
 
-        sequenceOne(count);
-        count = 1;
-        sequenceTwo(count);
-
-        System.out.println("Sequence One:");
-        for (int i = 0; i < 5; i++) {
-            System.out.println(sequanceOneArray[i]);
+        System.out.println("Sequence One: ");
+        for (int i = 1; i <= 5; i++) {
+            System.out.println(sequenceOne(i));
         }
-
-        System.out.println("");
-        System.out.println("Sequence Two:");
-
-        for (int i = 0; i < 5; i++) {
-            System.out.println(decimal.format(sequanceTwoArray[i]));
+        System.out.println("Sequence Two: ");
+        for (int i = 1; i <= 5; i++) {
+            System.out.println(sequenceTwo(i));
         }
     }
 
-    public static void sequenceOne(int count) {
+    public static int sequenceOne(int term) {
 
-        sequanceOneArray[0] = 1;
-        sequanceOneArray[1] = 3;
-
-        if (count < 5) {
-            sequanceOneArray[count] = sequanceOneArray[count - 1] + sequanceOneArray[count - 2];
-            sequenceOne(count + 1);
+        if (term == 1) {
+            return 1;
+        } else if (term == 2) {
+            return 3;
+        } else {
+            return sequenceOne(term - 1) + sequenceOne(term - 2);
         }
 
     }
 
-    public static void sequenceTwo(int count) {
+    public static double sequenceTwo(double term) {
 
-        NumberFormat decimal = NumberFormat.getNumberInstance();
-        decimal.setMinimumFractionDigits(2);
-        decimal.setMaximumFractionDigits(2);
-        sequanceTwoArray[0] = 2;
-
-        if (count < 5) {
-
-            sequanceTwoArray[count] = Math.sqrt((sequanceTwoArray[count - 1] * 3) + 4);
-
-            sequenceTwo(count + 1);
+        if (term == 1) {
+            return 2;
+        } else {
+            return sequenceOne((int) Math.sqrt(((3 * term - 1) + 4)));
         }
+
     }
 }

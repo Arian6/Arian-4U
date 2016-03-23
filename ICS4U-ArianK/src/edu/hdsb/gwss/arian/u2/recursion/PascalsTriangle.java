@@ -19,32 +19,26 @@ public class PascalsTriangle {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
 
-        for (int j = 1; j <= 10; j++) {
-
-            for (int k = 10; k > j; k--) {
-                System.out.print(" ");
-            }
-            for (int i = 1; i <= 10; i++) {
-                if (triangle(j, i) > 0) {
-                    System.out.print(triangle(j, i) + " ");
-
-                }
-            }
-            System.out.println("");
-        }
-
+        row(7);
     }
 
-    public static int triangle(int row, int col) {
+    public static void row(int row) {
+        if (row > 0) {
+            row(row - 1);
+        }
+        for (int i = 0; i <= row; i++) {            
+            System.out.print(" " + term(row, i) + " ");
+        }
+        System.out.println();
+    }
 
-        if (col == 1 || col == row) {
+    public static int term(int row, int col) {
+
+        if (col == 0 || col == row) {
             return 1;
-        } else if (col > row) {
-            return -1;
         } else {
-            return triangle(row - 1, col) + triangle(row - 1, col - 1);
+            return term(row - 1, col) + term(row - 1, col - 1);
         }
 
     }

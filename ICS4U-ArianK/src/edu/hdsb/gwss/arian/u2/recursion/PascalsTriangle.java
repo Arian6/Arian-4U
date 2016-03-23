@@ -27,9 +27,17 @@ public class PascalsTriangle {
         if (row > 0) {
             row(row - 1);
         }
-        for (int i = 0; i <= row; i++) {            
-            System.out.print(" " + term(row, i) + " ");
+
+        for (int j = 7; j > row; j--) {
+            System.out.print(" ");
         }
+        
+        for (int i = 0; i <= row; i++) {
+
+            System.out.print(term(row, i) + " ");
+
+        }
+
         System.out.println();
     }
 

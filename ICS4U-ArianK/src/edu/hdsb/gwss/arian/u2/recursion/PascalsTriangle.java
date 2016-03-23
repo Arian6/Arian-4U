@@ -31,10 +31,17 @@ public class PascalsTriangle {
         for (int j = 7; j > row; j--) {
             System.out.print(" ");
         }
-        
+
         for (int i = 0; i <= row; i++) {
 
-            System.out.print(term(row, i) + " ");
+            if (row == 6) {
+                if (i > 0 && term(row - 1, i) + term(row - 1, i - 1) > 9) {
+                    System.out.print(" ");
+                }
+                
+
+            }
+             System.out.print(term(row, i) + " ");
 
         }
 

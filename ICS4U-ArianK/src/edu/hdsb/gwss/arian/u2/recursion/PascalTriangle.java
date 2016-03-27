@@ -5,19 +5,19 @@ public class PascalTriangle {
 
         int rows = 10;
 
-        for (int i = 0; i < rows; i++) {
+        for (int i = 0; i < 10; i++) {
 
             int number = 1;
 
             System.out.format("%" + (rows - i) * 2 + "s", "");
-
-            for (int j = 0; j <= i; j++) {
-
-                System.out.format("%4d", number);
-
-                number = number * (i - j) / (j + 1);
-
-            }
+            System.out.format("f");
+//            for (int j = 0; j <= i; j++) {
+//
+//                System.out.format("%4d", number);
+//
+//                number = number * (i - j) / (j + 1);
+//
+//            }
 
             System.out.println();
 

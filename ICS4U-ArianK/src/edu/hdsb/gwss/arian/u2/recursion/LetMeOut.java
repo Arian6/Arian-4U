@@ -66,12 +66,12 @@ public class LetMeOut {
             }
         }
 
-            return successful;
-        }
-        
-        /**
-         * Display the current maze.
-         */
+        return successful;
+    }
+
+    /**
+     * Display the current maze.
+     */
     public void solve() {
 
         // FIND RANDOM START LOCATION

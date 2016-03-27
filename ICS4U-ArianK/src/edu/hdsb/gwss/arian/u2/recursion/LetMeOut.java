@@ -27,8 +27,6 @@ public class LetMeOut {
      */
     public boolean findExitFrom(int row, int col) {
 
-        int temp1 = row;
-        int temp2 = col;
         boolean successful = false;
 
         if (successful == false) {
@@ -36,34 +34,44 @@ public class LetMeOut {
             if (maze[row][col] == EXIT) {
                 successful = true;
                 return successful;
-            } else if (maze[row][col] == OPEN ) {
-
-                findExitFrom(row, col + 1);
-
-                findExitFrom(row, col - 1);
-
-                findExitFrom(row + 1, col);
-
-                findExitFrom(row - 1, col);
-
-                maze[row][col] = GOOD_PATH;
             }
 
-//                for (int i = 2; i < 5; i++) {
-//                    for (int j = 2; i < 11; j++) {
-//                        if (maze[i][j] == GOOD_PATH) {
-//                            maze[i][j] = OPEN;
-//                        }
-//                    }
-//                }
+            if (maze[row][col] != OPEN) {
+                successful = true;
+                return successful;
+            }
+
+            if (maze[row][col + 1] == OPEN) {
+                maze[row][col] = GOOD_PATH;
+                findExitFrom(row, col + 1);
+                if (maze[row][col - 1] == OPEN) {
+                    maze[row][col] = GOOD_PATH;
+                    findExitFrom(row, col - 1);
+                }
+                if (maze[row + 1][col] == OPEN) {
+                    maze[row][col] = GOOD_PATH;
+                    findExitFrom(row + 1, col);
+                }
+                if (maze[row - 1][col] == OPEN) {
+                    maze[row][col] = GOOD_PATH;
+                    findExitFrom(row - 1, col);
+                } else {
+                    maze[row][col] = 'D';
+                    successful = true;
+
+                }
+
+                successful = true;
+
+            }
         }
 
-        return successful;
-    }
-
-    /**
-     * Display the current maze.
-     */
+            return successful;
+        }
+        
+        /**
+         * Display the current maze.
+         */
     public void solve() {
 
         // FIND RANDOM START LOCATION

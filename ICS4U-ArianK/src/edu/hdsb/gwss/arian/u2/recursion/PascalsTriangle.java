@@ -28,24 +28,42 @@ public class PascalsTriangle {
             row(row - 1);
         }
 
-        for (int j = 7; j > row; j--) {
-            System.out.print(" ");
-        }
-
+//        for (int j = 0; j < 7; j++) {
+//            System.out.format("%" + (7 - j) * 2 + "s", "");
+//        }
+        
         for (int i = 0; i <= row; i++) {
 
-            if (row == 6) {
-                if (i > 0 && term(row - 1, i) + term(row - 1, i - 1) > 9) {
-                    System.out.print(" ");
-                }
-                
-
-            }
-             System.out.print(term(row, i) + " ");
+            System.out.format("%" + term(row, i) + "s", "");
+            System.out.format("%4s", term(row, i));
 
         }
 
         System.out.println();
+        
+//        
+//         int rows = 10;
+//
+//        for (int i = 0; i < rows; i++) {
+//
+//            int number = 1;
+//
+//            System.out.format("%" + (rows - i) * 2 + "s", "");
+//
+//            for (int j = 0; j <= i; j++) {
+//
+//                System.out.format("%4d", number);
+//
+//                number = number * (i - j) / (j + 1);
+//
+//            }
+//
+//            System.out.println();
+//
+//        }
+//
+//    }
+
     }
 
     public static int term(int row, int col) {

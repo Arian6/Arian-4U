@@ -31,7 +31,6 @@ public class PascalsTriangle {
 //        for (int j = 0; j < 7; j++) {
 //            System.out.format("%" + (7 - j) * 2 + "s", "");
 //        }
-        
         for (int i = 0; i <= row; i++) {
 
             System.out.format("%" + term(row, i) + "s", "");
@@ -40,7 +39,7 @@ public class PascalsTriangle {
         }
 
         System.out.println();
-        
+
 //        
 //         int rows = 10;
 //
@@ -63,7 +62,6 @@ public class PascalsTriangle {
 //        }
 //
 //    }
-
     }
 
     public static int term(int row, int col) {

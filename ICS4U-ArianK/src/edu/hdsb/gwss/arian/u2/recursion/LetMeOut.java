@@ -26,65 +26,37 @@ public class LetMeOut {
      * Display the current maze.
      */
     public boolean findExitFrom(int row, int col) {
-        char location = maze[row][col];
-        char right = maze[row][col + 1];
-        char left = maze[row][col - 1];
-        char up = maze[row - 1][col];
-        char down = maze[row + 1][col];
+
+        int temp1 = row;
+        int temp2 = col;
         boolean successful = false;
 
-//        if (location == EXIT) {
-//            successful = true;
-//            return successful;
-//        }
-//
-//        if (location != OPEN) {
-//            successful = false;
-//            return successful;
-//        }
-//        maze[row][col] = GOOD_PATH;
-        if (row == 6 && col == 9) {
-            System.out.println("lol");
-        }
-        if (maze[row][col + 1] == OPEN) {
-            maze[row][col + 1] = TRIED;
-            findExitFrom(row, col + 1);
-        }
-        if (maze[row][col - 1] == OPEN) {
-            maze[row][col - 1] = TRIED;
-            findExitFrom(row, col - 1);
-        }
-        if (maze[row - 1][col] == OPEN) {
-            maze[row - 1][col] = TRIED;
-            findExitFrom(row - 1, col);
-        }
-        if (maze[row + 1][col] == OPEN) {
-            maze[row + 1][col] = TRIED;
-            findExitFrom(row + 1, col);
-        }
+        if (successful == false) {
 
-        if (maze[row][col + 1] == EXIT) {
-            maze[row][col + 1] = TRIED;
-              System.out.println("lol");
-            findExitFrom(row, col);
-        }
-        if (maze[row][col - 1] == EXIT) {
-            maze[row][col - 1] = TRIED;
-              System.out.println("lol");
-            findExitFrom(row, col);
-        }
-        if (maze[row - 1][col] == EXIT) {
-            maze[row - 1][col] = TRIED;
-              System.out.println("lol");
-            findExitFrom(row, col);
-        }
-        if (maze[row + 1][col] == EXIT) {
-            maze[row + 1][col] = TRIED;
-              System.out.println("lol");
-            findExitFrom(row, col);
-        }
+            if (maze[row][col] == EXIT) {
+                successful = true;
+                return successful;
+            } else if (maze[row][col] == OPEN ) {
 
-        maze[row][col] = GOOD_PATH;
+                findExitFrom(row, col + 1);
+
+                findExitFrom(row, col - 1);
+
+                findExitFrom(row + 1, col);
+
+                findExitFrom(row - 1, col);
+
+                maze[row][col] = GOOD_PATH;
+            }
+
+//                for (int i = 2; i < 5; i++) {
+//                    for (int j = 2; i < 11; j++) {
+//                        if (maze[i][j] == GOOD_PATH) {
+//                            maze[i][j] = OPEN;
+//                        }
+//                    }
+//                }
+        }
 
         return successful;
     }

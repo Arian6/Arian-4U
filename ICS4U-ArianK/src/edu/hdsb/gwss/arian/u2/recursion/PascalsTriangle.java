@@ -18,30 +18,35 @@ public class PascalsTriangle {
     /**
      * @param args the command line arguments
      */
+
+
     public static void main(String[] args) {
 
         row(7);
     }
 
     public static void row(int row) {
-        boolean test = false;
-        
-        if (!test) {
+
         if (row >= 1) {
             row(row - 1);
 
         }
 
-        System.out.format("%" + (row - 7) * 2 + "s", "");
+        for (int j = 7; j > row; j--) {
+            System.out.print("  ");
+        }
 
         for (int j = 0; j <= row; j++) {
 
-            System.out.format("%4s", term(row, j));
+            if (term(row, j) > 9) {
+                System.out.format(term(row, j) + "  ");
+            } else {
+                System.out.format(term(row, j) + "   ");
+            }
 
         }
+       
         System.out.println();
-        test = true;
-        }
 
     }
 

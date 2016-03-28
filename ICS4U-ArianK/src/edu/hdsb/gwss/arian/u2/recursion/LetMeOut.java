@@ -29,42 +29,40 @@ public class LetMeOut {
 
         boolean successful = false;
 
-        if (successful == false) {
-
-            if (maze[row][col] == EXIT) {
-                successful = true;
-                return successful;
-            }
-
-            if (maze[row][col] != OPEN) {
-                successful = true;
-                return successful;
-            }
-
-            if (maze[row][col + 1] == OPEN) {
-                maze[row][col] = GOOD_PATH;
-                findExitFrom(row, col + 1);
-                if (maze[row][col - 1] == OPEN) {
-                    maze[row][col] = GOOD_PATH;
-                    findExitFrom(row, col - 1);
-                }
-                if (maze[row + 1][col] == OPEN) {
-                    maze[row][col] = GOOD_PATH;
-                    findExitFrom(row + 1, col);
-                }
-                if (maze[row - 1][col] == OPEN) {
-                    maze[row][col] = GOOD_PATH;
-                    findExitFrom(row - 1, col);
-                } else {
-                    maze[row][col] = 'D';
-                    successful = true;
-
-                }
-
-                successful = true;
-
-            }
+        if (maze[row][col] == EXIT) {
+            successful = true;
+            return successful;
         }
+        if (maze[row][col] != OPEN) {
+            successful = false;
+            return successful;
+        }
+
+        maze[row][col] = GOOD_PATH;
+
+        if (findExitFrom(row - 1, col) == true) {
+//            maze[row - 1][col] = GOOD_PATH;
+            successful = true;
+            return successful;
+        }
+
+        if (findExitFrom(row, col + 1) == true) {
+//            maze[row][col + 1] = GOOD_PATH;
+            successful = true;
+            return successful;
+        }
+        if (findExitFrom(row + 1, col) == true) {
+//            maze[row + 1][col] = GOOD_PATH;
+            successful = true;
+            return successful;
+        }
+        if (findExitFrom(row, col - 1) == true) {
+//            maze[row][col - 1] = GOOD_PATH;
+            successful = true;
+            return successful;
+        }
+
+        maze[row][col] = TRIED;
 
         return successful;
     }
@@ -84,6 +82,7 @@ public class LetMeOut {
 
         // START!
         System.out.println("START LOCATION: (" + row + "," + col + ")");
+
         findExitFrom(row, col);
 
         // SHOW EXIT

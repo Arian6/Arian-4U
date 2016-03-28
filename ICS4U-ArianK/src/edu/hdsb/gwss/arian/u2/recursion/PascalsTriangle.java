@@ -18,8 +18,6 @@ public class PascalsTriangle {
     /**
      * @param args the command line arguments
      */
-
-
     public static void main(String[] args) {
 
         row(7);
@@ -45,7 +43,7 @@ public class PascalsTriangle {
             }
 
         }
-       
+
         System.out.println();
 
     }

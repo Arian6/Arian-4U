@@ -41,23 +41,23 @@ public class LetMeOut {
         maze[row][col] = GOOD_PATH;
 
         if (findExitFrom(row - 1, col) == true) {
-//            maze[row - 1][col] = GOOD_PATH;
+
             successful = true;
             return successful;
         }
 
         if (findExitFrom(row, col + 1) == true) {
-//            maze[row][col + 1] = GOOD_PATH;
+
             successful = true;
             return successful;
         }
         if (findExitFrom(row + 1, col) == true) {
-//            maze[row + 1][col] = GOOD_PATH;
+
             successful = true;
             return successful;
         }
         if (findExitFrom(row, col - 1) == true) {
-//            maze[row][col - 1] = GOOD_PATH;
+
             successful = true;
             return successful;
         }

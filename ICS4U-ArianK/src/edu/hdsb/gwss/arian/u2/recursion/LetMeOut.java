@@ -62,7 +62,7 @@ public class LetMeOut {
             return successful;
         }
 
-        maze[row][col] = TRIED;
+        maze[row][col] = OPEN;
 
         return successful;
     }

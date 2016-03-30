@@ -9,6 +9,7 @@ public class LetMeOut {
     private static final char WALL = 'W';
     private static final char EXIT = 'X';
     private static final char OPEN = '.';
+    private static final char TRIED = '-';
     private static final char GOOD_PATH = '+';
 
     private char[][] maze = {
@@ -33,31 +34,33 @@ public class LetMeOut {
             successful = true;
             return successful;
         }
+
         if (maze[row][col] != OPEN) {
             successful = false;
             return successful;
         }
 
-        maze[row][col] = GOOD_PATH;
+        maze[row][col] = TRIED;
 
         if (findExitFrom(row - 1, col) == true) {
+            maze[row][col] = GOOD_PATH;
+            successful = true;
+            return successful;
+        }
 
+        if (findExitFrom(row + 1, col) == true) {
+            maze[row][col] = GOOD_PATH;
             successful = true;
             return successful;
         }
 
         if (findExitFrom(row, col + 1) == true) {
-
-            successful = true;
-            return successful;
-        }
-        if (findExitFrom(row + 1, col) == true) {
-
+            maze[row][col] = GOOD_PATH;
             successful = true;
             return successful;
         }
         if (findExitFrom(row, col - 1) == true) {
-
+            maze[row][col] = GOOD_PATH;
             successful = true;
             return successful;
         }

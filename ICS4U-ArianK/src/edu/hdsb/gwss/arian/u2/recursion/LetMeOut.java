@@ -1,6 +1,7 @@
-/*
- * Name:            Let Me Out
- * Date:            Nov, 2014
+/* Name: LetMeOut
+ * Version: v1
+ * Date: March 30 2016
+ * Author: Arian Krasniqi
  */
 package edu.hdsb.gwss.arian.u2.recursion;
 

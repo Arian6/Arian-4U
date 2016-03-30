@@ -1,27 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/* Name: RecursiveFunctions
+ * Version: v1
+ * Date: March 30 2016
+ * Author: Arian Krasniqi
  */
 package edu.hdsb.gwss.arian.u2.recursion;
 
-/**
- *
- * @author ARIAN
- */
 public class RecursiveFunctions {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+        //print first functions
         System.out.println("First Algorithm : f(x,y)");
         System.out.println("f(5,3): " + firstFunction(5, 3));
         System.out.println("f(2,2): " + firstFunction(2, 2));
         System.out.println("f(1,4): " + firstFunction(1, 4));
         System.out.println("f(-5,-2): " + firstFunction(-5, -2));
-
+        //print ackermanns function
         System.out.println("Ackermann's Function : a(m,n)");
         System.out.println("a(1,1): " + ackermann(1, 1));
         System.out.println("a(2,1): " + ackermann(2, 1));

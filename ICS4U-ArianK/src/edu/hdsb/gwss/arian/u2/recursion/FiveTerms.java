@@ -1,25 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/* Name: FiveTerms
+ * Version: v1
+ * Date: March 30 2016
+ * Author: Arian Krasniqi
  */
 package edu.hdsb.gwss.arian.u2.recursion;
 
 import java.text.DecimalFormat;
 
-/**
- *
- * @author 1krasniqiari
- */
 public class FiveTerms {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+        //formatter
         DecimalFormat formatter = new DecimalFormat("0.00");
 
+        //print sequence one
         System.out.println("Sequence One: ");
 
         for (int i = 1; i <= 5; i++) {
@@ -27,6 +21,7 @@ public class FiveTerms {
         }
 
         System.out.println("");
+        //print sequence two
         System.out.println("Sequence Two: ");
 
         for (int i = 1; i <= 5; i++) {

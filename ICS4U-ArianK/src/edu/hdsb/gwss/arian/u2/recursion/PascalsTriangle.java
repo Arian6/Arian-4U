@@ -1,25 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/* Name: Pascals Triangle
+ * Version: v1
+ * Date: March 30 2016
+ * Author: Arian Krasniqi
  */
 package edu.hdsb.gwss.arian.u2.recursion;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
-/**
- *
- * @author ARIAN
- */
 public class PascalsTriangle {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-
+        //call recursion for 7 rows of pascals 
         row(7);
     }
 
@@ -30,12 +19,14 @@ public class PascalsTriangle {
 
         }
 
+        //space out to middle decreasing each time
         for (int j = 7; j > row; j--) {
             System.out.print("  ");
         }
 
         for (int j = 0; j <= row; j++) {
 
+            //format and special cases for 2 digit integers
             if (term(row, j) > 9) {
                 System.out.format(term(row, j) + "  ");
             } else {

@@ -17,6 +17,7 @@ public class Triangle {
     private int sideLengthB;
     private int sideLengthC;
 
+   
     //EMPTY constructor
     //"special method"
     // it is called once, only ONCE!

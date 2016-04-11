@@ -6,6 +6,10 @@ public class Pacman {
   private int lives;
   private int colourR;
   private boolean isOpen = true;
+  private int pacSize = 90;
+  private int eyeSize = 10;
+  private int radianX ;
+  private int radianY ;
 
 
   public Pacman() {
@@ -19,24 +23,42 @@ public class Pacman {
     this.yLoc = yLoc;
     this.lives = 3;
   }
-
-  public void move() {   
+  public void move() {
     if (key == CODED) {
       if (keyCode == UP) {
+           this.radianX =300;
+        this.radianY = 600;
         this.yLoc = yLoc - 5;
+        if (this.yLoc < 0) {
+          this.yLoc = height;
+        }
       }
       if (keyCode == DOWN) {
+        this.radianX = 475;
+        this.radianY = 780;
         this.yLoc = yLoc + 5;
+        if (this.yLoc > height) {
+          this.yLoc = 0;
+        }
       }
-      if (keyCode == LEFT) {
+      if (keyCode == LEFT) { 
+        this.radianX =210;
+        this.radianY = 515;
+        
         this.xLoc = xLoc - 5;
+        if (this.xLoc < 0) {
+          this.xLoc = width;
+        }
       }
       if (keyCode == RIGHT) {
+        this.radianX = 30;
+        this.radianY = 330;
         this.xLoc = xLoc + 5;
+        if (this.xLoc > width) {
+          this.xLoc = 0;
+        }
       }
     }
-
- 
   }
 
   //left 30, 330
@@ -46,15 +68,31 @@ public class Pacman {
 
 
   public void display() {    
-    fill(0, 0, colourR);
+    fill(#FFF703);
 
     if (this.isOpen == true) {
-      ellipse( this.xLoc, this.yLoc, 50, 50 );
-      ellipse( this.xLoc, this.yLoc, 50, 50 );
+
+
+      //YELLOW CIRCLES
+      noStroke();
+      fill(254, 255, 36);
+      arc(xLoc, yLoc, pacSize, pacSize, radians(radianX), radians(radianY));
+
+      //EYE
+      fill(0, 0, 0);
+      ellipse(xLoc + 17, yLoc - 22, eyeSize, eyeSize);
 
       this.isOpen = false;
-    } else if (this.isOpen == false) {
-      arc( this.xLoc, this.yLoc, 50, 50, radians(30), radians(330) );
+    } else  if (this.isOpen == false) {
+
+      //YELLOW CIRCLE
+      noStroke();
+      fill(254, 255, 36);
+      ellipse(xLoc, yLoc, pacSize, pacSize);
+
+      //EYE
+      fill(0, 0, 0);
+      ellipse(xLoc + 17, yLoc - 22, eyeSize, eyeSize);
       this.isOpen = true;
     }
   }

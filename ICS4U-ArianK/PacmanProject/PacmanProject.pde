@@ -1,9 +1,9 @@
 
-Pacman p2 = new Pacman(50, 100);
+Pacman p2 = new Pacman(300,300);
 
 void setup() {
-  size(1000,800);
-  frameRate(5);
+  size(600,600);
+  frameRate(10);
 }
 
 void draw() {

@@ -32,36 +32,36 @@ public class Pacman {
         //variable adjust
         this.radianX =300;
         this.radianY = 600;
-         this.eyeXLoc = 15;
+        this.eyeXLoc = 15;
         this.eyeYLoc = 10;
         this.yLoc = yLoc - 5;
-        
-        if (this.yLoc < 0) {
+
+        if (this.yLoc < 0 + pacSize / 2) {
           this.yLoc = height;
         }
       }
       if (keyCode == DOWN) {
-        
+
         this.radianX = 475;
         this.radianY = 780;
-           this.eyeXLoc = 15;
+        this.eyeXLoc = 15;
         this.eyeYLoc = -10;
         this.yLoc = yLoc + 5;
-        
-        if (this.yLoc > height) {
+
+        if (this.yLoc > height - pacSize / 2) {
           this.yLoc = 0;
         }
       }
       if (keyCode == LEFT) { 
-        
+
         this.radianX =210;
         this.radianY = 515;
         this.eyeXLoc = -6;
         this.eyeYLoc = 15;
         this.xLoc = xLoc - 5;
-        
-        
-        if (this.xLoc < 0) {
+
+
+        if (this.xLoc < 0 + pacSize / 2) {
           this.xLoc = width;
         }
       }
@@ -71,7 +71,7 @@ public class Pacman {
         this.eyeXLoc = 6;
         this.eyeYLoc = 15;
         this.xLoc = xLoc + 5;
-        if (this.xLoc > width) {
+        if (this.xLoc > width - pacSize / 2) {
           this.xLoc = 0;
         }
       }

@@ -3,7 +3,7 @@ Pacman p2 = new Pacman(300,300);
 
 void setup() {
   size(600,600);
-  frameRate(10);
+  frameRate(1000);
 }
 
 void draw() {

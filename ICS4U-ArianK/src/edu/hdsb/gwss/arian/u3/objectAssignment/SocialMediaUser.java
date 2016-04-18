@@ -15,9 +15,11 @@ public class SocialMediaUser {
 
         private static final int RED = 1;
         private static final int ORANGE = 2;
-         private static final int YELLOW = 3;
-          private static final int GREEN = 4;
-           private static final int BLUE = 5;
+        private static final int YELLOW = 3;
+        private static final int GREEN = 4;
+        private static final int BLUE = 5;
+        
+        
     
     private static int lastIdUsed = 0;
 
@@ -30,11 +32,8 @@ public class SocialMediaUser {
     public SocialMediaUser() {
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        return hash;
-    }
+    
+    
 
     //@Override
     public boolean equals(SocialMediaUser a) {

@@ -5,12 +5,17 @@
  */
 package edu.hdsb.gwss.arian.u3.objectAssignment;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author ARIAN
  */
 public class SocialMedia {
     
+    
+    
+    public ArrayList<String[]> products = new ArrayList<String[]>();
     
     
     

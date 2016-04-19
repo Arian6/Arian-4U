@@ -53,7 +53,15 @@ public class SocialMediaAccount {
     }
 
     public void setMedia(SocialMedia media) {
-        this.media = media;
+        if( media == null ) {
+            
+        }
+        else if( this.media != null ) {
+            System.out.println( "Sorry. Can't set Media; Already associated with an account");
+        }
+        else {
+            this.media = media;
+        }
     }
 
     public String getUsername() {

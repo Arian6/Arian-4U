@@ -17,12 +17,13 @@ public class SocialMedia {
     private static final String Owner = "";
     
     private String name;
-   
-   
     private boolean isValid;
-    private ArrayList<SocialMediaUser> users;
+    
+    private ArrayList<SocialMediaAccount> users;
+    
     
     public SocialMedia() {
+        
     }
 
    

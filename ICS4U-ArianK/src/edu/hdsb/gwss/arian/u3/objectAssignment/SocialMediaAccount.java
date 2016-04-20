@@ -13,6 +13,9 @@ import java.util.Objects;
  */
 public class SocialMediaAccount {
 
+    private static final String[] COLOURS = {"unknown", "red", "orange", "yellow", "green", "blue"};
+
+    private static final int UNKNOWN = 0;
     private static final int RED = 1;
     private static final int ORANGE = 2;
     private static final int YELLOW = 3;
@@ -25,7 +28,7 @@ public class SocialMediaAccount {
     private String username;
     private String password;
     private int age;
-    private int profileColour;
+    private int profileColourID;
     private int socialId;
     private boolean isValidAccount;
 
@@ -42,12 +45,13 @@ public class SocialMediaAccount {
         this.media = media;
     }
 
-    public SocialMediaAccount(SocialMedia media, String password, int age, int profileColour, boolean isValidAccount) {
+    public SocialMediaAccount(SocialMedia media, String username, String password, int age, int profileColourID, boolean isValidAccount) {
         this.socialId = ++lastIdUsed;
         this.media = media;
+        this.username = username;
         this.password = password;
         this.age = age;
-        this.profileColour = profileColour;
+        this.profileColourID = profileColourID;
         this.isValidAccount = isValidAccount;
     }
 
@@ -69,7 +73,7 @@ public class SocialMediaAccount {
 //        } else if (this.media != null) {
 //            System.out.println("Sorry. Can't set Media; Already associated with an account");
 //        } else {
-            this.media = media;
+        this.media = media;
 //        }
     }
 
@@ -128,7 +132,7 @@ public class SocialMediaAccount {
 
     public void setIsValidAccount(boolean isValidAccount) {
 
-        if(this.media == null || this.username == null || this.password == null) {
+        if (this.media == null || this.username == null || this.password == null) {
             System.out.println("Invalid Account");
             this.isValidAccount = false;
         }
@@ -148,16 +152,20 @@ public class SocialMediaAccount {
         }
     }
 
-    public int getProfileColour() {
-        return profileColour;
+    public int getProfileColourID() {
+        return profileColourID;
     }
 
-    public void setProfileColour(int profileColour) {
-        if (this.profileColour <= 0 || this.profileColour > 5) {
+    public String getProfileColour() {
+        return COLOURS[profileColourID];
+    }
+
+    public void setProfileColourID(int profileColour) {
+        if (this.profileColourID <= 0 || this.profileColourID > 5) {
             System.out.println("Invalid Profile Colour");
-            this.profileColour = 1;
+            this.profileColourID = 1;
         } else {
-            this.profileColour = profileColour;
+            this.profileColourID = profileColour;
         }
     }
 
@@ -201,7 +209,7 @@ public class SocialMediaAccount {
     }
 
     public String toString() {
-        return "Media Platofrm: " + media.getPlatform() + ", Account # : " + socialId + " ---//    INFO: " + "username= " + username + ", password= " + password + ", age= " + age + ", profileColour= " + profileColour + ", Valid Account = " + isValidAccount;
+        return "Media Platofrm: " + media.getPlatform() + ", Account # : " + socialId + " ---//    INFO: " + "username= " + username + ", password= " + password + ", age= " + age + ", profileColour= " + COLOURS[profileColourID] + ", Valid Account = " + isValidAccount;
     }
 
 }

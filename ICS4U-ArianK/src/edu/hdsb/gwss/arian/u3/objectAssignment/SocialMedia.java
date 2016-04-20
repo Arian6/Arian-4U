@@ -17,13 +17,13 @@ public class SocialMedia {
     private String platform;
     private int userAmount;
     private double netWorth;
-    private boolean isValid;
+    private boolean isValidPlatform;
 
     protected ArrayList<SocialMediaAccount> users = new ArrayList<SocialMediaAccount>();
 
     public SocialMedia() {
         this.userAmount = users.size();
-        this.isValid = false;
+        this.isValidPlatform = false;
     }
 
     public SocialMedia(String platform) {
@@ -33,7 +33,7 @@ public class SocialMedia {
     public SocialMedia(String platform, double netWorth, boolean isValid) {
         this.platform = platform;
         this.netWorth = netWorth;
-        this.isValid = isValid;
+        this.isValidPlatform = isValid;
     }
 
     public String getPlatform() {
@@ -53,7 +53,7 @@ public class SocialMedia {
 
     private int getUserAmount() {
 
-        return userAmount;
+        return users.size();
     }
 
     public void setUserAmount(int userAmount) {
@@ -61,7 +61,7 @@ public class SocialMedia {
             System.out.println("Not the correct amount of users");
 
         } else {
-            this.userAmount = userAmount;
+            this.userAmount = users.size();
         }
     }
 
@@ -78,11 +78,11 @@ public class SocialMedia {
     }
 
     public boolean isIsValid() {
-        return isValid;
+        return isValidPlatform;
     }
 
     public void setIsValid(boolean isValid) {
-        this.isValid = isValid;
+        this.isValidPlatform = isValid;
     }
 
     public ArrayList<SocialMediaAccount> getUsers() {
@@ -103,10 +103,31 @@ public class SocialMedia {
         if (this.users != other.users) {
             return false;
         }
-        if (this.isValid != other.isValid) {
+        if (this.isValidPlatform != other.isValidPlatform) {
             return false;
         }
         return true;
     }
+
+    public boolean isValid() {
+        if (this.platform == null && this.platform.length() == 0) {
+            return false;
+        }
+        if (this.userAmount <= 0) {
+            return false;
+        }
+        if (this.isValidPlatform == false) {
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "SocialMedia{" + "platform=" + platform + ", userAmount=" + users.size() + ", netWorth=" + netWorth + ", isValidPlatform=" + isValidPlatform + '}';
+    }
+    
+    
 
 }

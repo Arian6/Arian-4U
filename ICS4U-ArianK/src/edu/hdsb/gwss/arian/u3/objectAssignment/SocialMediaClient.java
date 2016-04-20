@@ -16,15 +16,13 @@ public class SocialMediaClient {
      */
     public static void main(String[] args) {
 
-        SocialMedia facebook = new SocialMedia("facebook");
+        SocialMedia facebook = new SocialMedia("facebook", 16000, true);
 
-        SocialMediaAccount account1 = new SocialMediaAccount(facebook, "ak", "123");
+        SocialMediaAccount account1 = new SocialMediaAccount(facebook, "ak", "123", 16, 3, true);
+        SocialMediaAccount account2 = new SocialMediaAccount(facebook, "sdfk", "123", 16, 3, true);
+        SocialMediaAccount account3 = new SocialMediaAccount(facebook, "ghdgfk", "123", 16, 3, true);
 
-        SocialMediaAccount account2 = new SocialMediaAccount();
-        SocialMediaAccount account3 = new SocialMediaAccount();
-
-        System.out.println(account1.toString());
-       
+        System.out.println(facebook.toString());
 
     }
 

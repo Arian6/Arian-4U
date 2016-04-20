@@ -30,21 +30,33 @@ public class SocialMediaAccount {
     private boolean isValidAccount;
 
     public SocialMediaAccount() {
-        this.socialId = -1;
         this.isValidAccount = false;
-        this.media = media;
+
     }
 
     public SocialMediaAccount(SocialMedia media, String username, String password) {
         this.socialId = ++lastIdUsed;
+        this.isValidAccount = true;
+        this.username = username;
+        this.password = password;
         this.media = media;
+    }
+
+    public SocialMediaAccount(SocialMedia media, String password, int age, int profileColour, boolean isValidAccount) {
+        this.socialId = ++lastIdUsed;
+        this.media = media;
+        this.password = password;
+        this.age = age;
+        this.profileColour = profileColour;
+        this.isValidAccount = isValidAccount;
     }
 
     public static int getLastIdUsed() {
         return lastIdUsed;
     }
 
-    public static void setLastIdUsed(int lastIdUsed) {
+    private static void setLastIdUsed(int lastIdUsed) {
+
         SocialMediaAccount.lastIdUsed = lastIdUsed;
     }
 
@@ -53,24 +65,34 @@ public class SocialMediaAccount {
     }
 
     public void setMedia(SocialMedia media) {
-        if( media == null ) {
-            
-        }
-        else if( this.media != null ) {
-            System.out.println( "Sorry. Can't set Media; Already associated with an account");
-        }
-        else {
+//        if (media == null) {
+//        } else if (this.media != null) {
+//            System.out.println("Sorry. Can't set Media; Already associated with an account");
+//        } else {
             this.media = media;
-        }
+//        }
     }
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        
-        this.username = username;
+    public void setUsername(String username, SocialMedia x) {
+        boolean verify = false;
+
+        for (int i = 0; i < x.users.size(); i++) {
+            if (x.users.get(i).username == this.username) {
+                System.out.println("Username has been taken");
+                this.username = null;
+                verify = false;
+                i = x.users.size();
+            }
+            verify = true;
+        }
+
+        if (verify == true) {
+            this.username = username;
+        }
     }
 
     private String getPassword() {
@@ -78,11 +100,11 @@ public class SocialMediaAccount {
     }
 
     private void setPassword(String password) {
-        if(this.password.length() <6 || this.password.length() > 16) {
-        System.out.println("invalid password");
-        this.password = null;
-    } else {
-        this.password = password;
+        if (this.password.length() < 6 || this.password.length() > 16) {
+            System.out.println("invalid password");
+            this.password = null;
+        } else {
+            this.password = password;
         }
     }
 
@@ -91,11 +113,12 @@ public class SocialMediaAccount {
     }
 
     private void setSocialId(int socialId) {
-        if(this.socialId <= 0) {
+        if (this.socialId <= 0) {
             System.out.println("Invalid Id");
             this.socialId = -1;
         } else {
-        this.socialId = socialId;
+            this.socialId = ++lastIdUsed;
+            this.socialId = socialId;
         }
     }
 
@@ -104,12 +127,14 @@ public class SocialMediaAccount {
     }
 
     public void setIsValidAccount(boolean isValidAccount) {
-        
+
+        if(this.media == null || this.username == null || this.password == null) {
+            System.out.println("Invalid Account");
+            this.isValidAccount = false;
+        }
         this.isValidAccount = isValidAccount;
     }
 
-    
-    
     public int getAge() {
         return age;
     }
@@ -133,7 +158,7 @@ public class SocialMediaAccount {
             this.profileColour = 1;
         } else {
             this.profileColour = profileColour;
-        }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+        }
     }
 
     public boolean equals(SocialMediaAccount account) {
@@ -163,20 +188,20 @@ public class SocialMediaAccount {
         if (this.username == null && this.username.length() == 0) {
             return false;
         }
-        if (this.password == null && this.password.length() < 6 ||this.password.length() > 16) {
+        if (this.password == null && this.password.length() < 6 || this.password.length() > 16) {
             return false;
         }
         if (this.media == null) {
             return false;
         }
-        if (this.socialId <= 0 ) {
+        if (this.socialId <= 0) {
             return false;
         }
         return true;
     }
 
     public String toString() {
-        return "Media Platofrm: " + media + ", Account # : " + socialId + " ---//    INFO: " + "username= " + username + ", password= " + password + ", age= " + age + ", profileColour= " + profileColour;
+        return "Media Platofrm: " + media.getPlatform() + ", Account # : " + socialId + " ---//    INFO: " + "username= " + username + ", password= " + password + ", age= " + age + ", profileColour= " + profileColour + ", Valid Account = " + isValidAccount;
     }
 
 }

@@ -13,20 +13,82 @@ import java.util.Objects;
  * @author ARIAN
  */
 public class SocialMedia {
-    
-    private static final String Owner = "";
-    
-    private String name;
+
+    private String platform;
+    private int userAmount;
+    private double netWorth;
     private boolean isValid;
-    
-    private ArrayList<SocialMediaAccount> users;
-    
-    
+
+    protected ArrayList<SocialMediaAccount> users = new ArrayList<SocialMediaAccount>();
+
     public SocialMedia() {
-        
+        this.userAmount = users.size();
+        this.isValid = false;
     }
 
-   
+    public SocialMedia(String platform) {
+        this.platform = platform;
+    }
+
+    public SocialMedia(String platform, double netWorth, boolean isValid) {
+        this.platform = platform;
+        this.netWorth = netWorth;
+        this.isValid = isValid;
+    }
+
+    public String getPlatform() {
+        return platform;
+    }
+
+    public void setPlatform(String platform) {
+        if (this.platform == null) {
+            System.out.println("Not a real social media");
+        } else if (this.platform.length() < 0 || this.platform.length() > 16) {
+            System.out.println("Platform is invalid");
+            this.platform = null;
+        } else {
+            this.platform = platform;
+        }
+    }
+
+    private int getUserAmount() {
+
+        return userAmount;
+    }
+
+    public void setUserAmount(int userAmount) {
+        if (this.userAmount != users.size()) {
+            System.out.println("Not the correct amount of users");
+
+        } else {
+            this.userAmount = userAmount;
+        }
+    }
+
+    public double getNetWorth() {
+        return netWorth;
+    }
+
+    public void setNetWorth(double netWorth) {
+        if (this.netWorth < 0) {
+            System.out.println("Join something else");
+        } else {
+            this.netWorth = netWorth;
+        }
+    }
+
+    public boolean isIsValid() {
+        return isValid;
+    }
+
+    public void setIsValid(boolean isValid) {
+        this.isValid = isValid;
+    }
+
+    public ArrayList<SocialMediaAccount> getUsers() {
+        return users;
+    }
+
     public boolean equals(Object obj) {
         if (obj == null) {
             return false;
@@ -35,7 +97,7 @@ public class SocialMedia {
             return false;
         }
         final SocialMedia other = (SocialMedia) obj;
-        if (!Objects.equals(this.name, other.name)) {
+        if (!Objects.equals(this.platform, other.platform)) {
             return false;
         }
         if (this.users != other.users) {
@@ -46,11 +108,5 @@ public class SocialMedia {
         }
         return true;
     }
-    
-    
-    
-    
-    
-    
-    
+
 }

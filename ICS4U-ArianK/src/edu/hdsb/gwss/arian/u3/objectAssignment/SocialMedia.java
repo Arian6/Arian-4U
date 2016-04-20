@@ -15,14 +15,12 @@ import java.util.Objects;
 public class SocialMedia {
 
     private String platform;
-    private int userAmount;
     private double netWorth;
     private boolean isValidPlatform;
 
     protected ArrayList<SocialMediaAccount> users = new ArrayList<SocialMediaAccount>();
 
     public SocialMedia() {
-        this.userAmount = users.size();
         this.isValidPlatform = false;
     }
 
@@ -34,6 +32,38 @@ public class SocialMedia {
         this.platform = platform;
         this.netWorth = netWorth;
         this.isValidPlatform = isValid;
+    }
+
+    public void add(SocialMediaAccount user) {
+        // USERS CAN'T BE:
+        //  1. null
+        //  2. invalid
+        //  3. can't already exist
+        boolean verify2 = false;
+
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getUsername() == user.getUsername()) {
+                System.out.println("Username has been taken");
+                verify2 = false;
+                i = users.size();
+            }
+            verify2 = true;
+        }
+
+        if (user == null) {
+            System.out.println("Cannot add empty account");
+        } else if (user.isValid() == false) {
+            System.out.println("Cannot add invalid account");
+        } else if (verify2 == false) {
+             System.out.println("Username already exists");
+        } else {
+
+            this.users.add(user);
+        }
+    }
+
+    public int getNumberOfUsers() {
+        return users.size();
     }
 
     public String getPlatform() {
@@ -48,20 +78,6 @@ public class SocialMedia {
             this.platform = null;
         } else {
             this.platform = platform;
-        }
-    }
-
-    private int getUserAmount() {
-
-        return users.size();
-    }
-
-    public void setUserAmount(int userAmount) {
-        if (this.userAmount != users.size()) {
-            System.out.println("Not the correct amount of users");
-
-        } else {
-            this.userAmount = users.size();
         }
     }
 
@@ -113,9 +129,7 @@ public class SocialMedia {
         if (this.platform == null && this.platform.length() == 0) {
             return false;
         }
-        if (this.userAmount <= 0) {
-            return false;
-        }
+
         if (this.isValidPlatform == false) {
             return false;
         }
@@ -125,9 +139,7 @@ public class SocialMedia {
 
     @Override
     public String toString() {
-        return "SocialMedia{" + "platform=" + platform + ", userAmount=" + users.size() + ", netWorth=" + netWorth + ", isValidPlatform=" + isValidPlatform + '}';
+        return "SocialMedia{" + "platform=" + platform + ", userAmount=" + getNumberOfUsers() + ", netWorth=" + netWorth + ", isValidPlatform=" + isValidPlatform + '}';
     }
-    
-    
 
 }

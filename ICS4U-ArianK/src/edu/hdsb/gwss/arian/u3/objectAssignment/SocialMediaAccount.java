@@ -30,16 +30,16 @@ public class SocialMediaAccount {
     private int age;
     private int profileColourID;
     private int socialId;
-    private boolean isValidAccount;
+    private boolean ValidAccount;
 
     public SocialMediaAccount() {
-        this.isValidAccount = false;
+        this.ValidAccount = false;
 
     }
 
     public SocialMediaAccount(SocialMedia media, String username, String password) {
         this.socialId = ++lastIdUsed;
-        this.isValidAccount = true;
+        this.ValidAccount = true;
         this.username = username;
         this.password = password;
         this.media = media;
@@ -52,7 +52,7 @@ public class SocialMediaAccount {
         this.password = password;
         this.age = age;
         this.profileColourID = profileColourID;
-        this.isValidAccount = isValidAccount;
+        this.ValidAccount = isValidAccount;
     }
 
     public static int getLastIdUsed() {
@@ -84,19 +84,19 @@ public class SocialMediaAccount {
     public void setUsername(String username, SocialMedia x) {
         boolean verify = false;
 
-        for (int i = 0; i < x.users.size(); i++) {
-            if (x.users.get(i).username == this.username) {
-                System.out.println("Username has been taken");
-                this.username = null;
-                verify = false;
-                i = x.users.size();
-            }
-            verify = true;
-        }
+//        for (int i = 0; i < x.users.size(); i++) {
+//            if (x.users.get(i).username == this.username) {
+//                System.out.println("Username has been taken");
+//                verify = false;
+//                i = x.users.size();
+//            }else {
+//            verify = true;
+//            }
+//        }
 
-        if (verify == true) {
+//        if (verify == true) {
             this.username = username;
-        }
+//        }
     }
 
     private String getPassword() {
@@ -127,16 +127,16 @@ public class SocialMediaAccount {
     }
 
     public boolean isIsValidAccount() {
-        return isValidAccount;
+        return ValidAccount;
     }
 
     public void setIsValidAccount(boolean isValidAccount) {
 
         if (this.media == null || this.username == null || this.password == null) {
             System.out.println("Invalid Account");
-            this.isValidAccount = false;
+            this.ValidAccount = false;
         }
-        this.isValidAccount = isValidAccount;
+        this.ValidAccount = isValidAccount;
     }
 
     public int getAge() {
@@ -193,7 +193,7 @@ public class SocialMediaAccount {
     }
 
     public boolean isValid() {
-        if (this.username == null && this.username.length() == 0) {
+        if (this.username == null || this.username.length() == 0) {
             return false;
         }
         if (this.password == null && this.password.length() < 6 || this.password.length() > 16) {
@@ -209,7 +209,7 @@ public class SocialMediaAccount {
     }
 
     public String toString() {
-        return "Media Platofrm: " + media.getPlatform() + ", Account # : " + socialId + " ---//    INFO: " + "username= " + username + ", password= " + password + ", age= " + age + ", profileColour= " + COLOURS[profileColourID] + ", Valid Account = " + isValidAccount;
+        return "Media Platofrm: " + media.getPlatform() + ", Account # : " + socialId + " ---//    INFO: " + "username= " + username + ", password= " + password + ", age= " + age + ", profileColour= " + COLOURS[profileColourID] + ", Valid Account = " + ValidAccount;
     }
 
 }

@@ -13,63 +13,35 @@ import java.util.Objects;
  * @author ARIAN
  */
 public class SocialMedia {
-
-    private String platform;
+    
+    private String platform = "abc";
     private double netWorth;
     private boolean isValidPlatform;
-
+    
     protected ArrayList<SocialMediaAccount> users = new ArrayList<SocialMediaAccount>();
-
+    
     public SocialMedia() {
         this.isValidPlatform = false;
     }
-
+    
     public SocialMedia(String platform) {
         this.platform = platform;
     }
-
+    
     public SocialMedia(String platform, double netWorth, boolean isValid) {
         this.platform = platform;
         this.netWorth = netWorth;
         this.isValidPlatform = isValid;
     }
-
-    public void add(SocialMediaAccount user) {
-        // USERS CAN'T BE:
-        //  1. null
-        //  2. invalid
-        //  3. can't already exist
-        boolean verify2 = false;
-
-        for (int i = 0; i < users.size(); i++) {
-            if (users.get(i).getUsername() == user.getUsername()) {
-                System.out.println("Username has been taken");
-                verify2 = false;
-                i = users.size();
-            }
-            verify2 = true;
-        }
-
-        if (user == null) {
-            System.out.println("Cannot add empty account");
-        } else if (user.isValid() == false) {
-            System.out.println("Cannot add invalid account");
-        } else if (verify2 == false) {
-             System.out.println("Username already exists");
-        } else {
-
-            this.users.add(user);
-        }
-    }
-
+    
     public int getNumberOfUsers() {
         return users.size();
     }
-
+    
     public String getPlatform() {
         return platform;
     }
-
+    
     public void setPlatform(String platform) {
         if (this.platform == null) {
             System.out.println("Not a real social media");
@@ -80,11 +52,11 @@ public class SocialMedia {
             this.platform = platform;
         }
     }
-
+    
     public double getNetWorth() {
         return netWorth;
     }
-
+    
     public void setNetWorth(double netWorth) {
         if (this.netWorth < 0) {
             System.out.println("Join something else");
@@ -92,19 +64,19 @@ public class SocialMedia {
             this.netWorth = netWorth;
         }
     }
-
+    
     public boolean isIsValid() {
         return isValidPlatform;
     }
-
+    
     public void setIsValid(boolean isValid) {
         this.isValidPlatform = isValid;
     }
-
+    
     public ArrayList<SocialMediaAccount> getUsers() {
         return users;
     }
-
+    
     public boolean equals(Object obj) {
         if (obj == null) {
             return false;
@@ -124,22 +96,59 @@ public class SocialMedia {
         }
         return true;
     }
-
+    
     public boolean isValid() {
         if (this.platform == null && this.platform.length() == 0) {
             return false;
         }
-
+        
         if (this.isValidPlatform == false) {
             return false;
         }
-
+        
         return true;
     }
-
+    
     @Override
     public String toString() {
         return "SocialMedia{" + "platform=" + platform + ", userAmount=" + getNumberOfUsers() + ", netWorth=" + netWorth + ", isValidPlatform=" + isValidPlatform + '}';
     }
-
+    
+    public void add(SocialMediaAccount account) {
+        
+        if (account == null) {
+            System.out.println("Cannot add empty account");
+        } else if (users.contains(account)) {
+            System.out.println("Account already exists!");
+        } else if (account.isValid() == false) {
+            System.out.println("Cannot add invalid account");
+        } else if (account.uniqueUsername(this, account.getUsername()) == false) {
+            System.out.println("Username already exists");
+        } else {
+            this.users.add(account);
+            System.out.println(account.getUsername() + " is now added");
+        }
+    }
+    
+    public void remove(SocialMediaAccount account) {
+        
+        if (users.contains(account)) {
+            this.users.remove(account);
+            System.out.println(account.getUsername() + " is now removed");
+            
+        } else {
+            System.out.println("Cannot remove account that is not in the list!");
+        }
+    }
+    
+    public SocialMediaAccount get(SocialMediaAccount account) {
+        
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i) == account) {
+                return users.get(i);
+            }
+        }
+        return null;
+    }
+    
 }

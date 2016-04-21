@@ -60,8 +60,9 @@ public class SocialMediaAccount {
     }
 
     private static void setLastIdUsed(int lastIdUsed) {
-
-        SocialMediaAccount.lastIdUsed = lastIdUsed;
+       
+        
+        System.out.println("Sorry, but this cannot be changed");
     }
 
     public SocialMedia getMedia() {
@@ -69,34 +70,28 @@ public class SocialMediaAccount {
     }
 
     public void setMedia(SocialMedia media) {
-//        if (media == null) {
-//        } else if (this.media != null) {
-//            System.out.println("Sorry. Can't set Media; Already associated with an account");
-//        } else {
-        this.media = media;
-//        }
+        if (media == null) {
+            System.out.println("Sorry. Can't set Media");
+            this.media = null;
+        } else {
+
+            this.media = media;
+
+        }
     }
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username, SocialMedia x) {
-        boolean verify = false;
+    protected void setUsername(SocialMedia x, String username) {
 
-//        for (int i = 0; i < x.users.size(); i++) {
-//            if (x.users.get(i).username == this.username) {
-//                System.out.println("Username has been taken");
-//                verify = false;
-//                i = x.users.size();
-//            }else {
-//            verify = true;
-//            }
-//        }
-
-//        if (verify == true) {
+        if (uniqueUsername(x, this.username) == true) {
             this.username = username;
-//        }
+        } else {
+            System.out.println("Username already taken");
+        }
+
     }
 
     private String getPassword() {
@@ -206,6 +201,22 @@ public class SocialMediaAccount {
             return false;
         }
         return true;
+    }
+
+    public boolean uniqueUsername(SocialMedia a, String username) {
+        boolean verify = false;
+
+        for (int i = 0; i < a.users.size(); i++) {
+            if (a.users.get(i).username == username) {
+
+                verify = false;
+                i = a.users.size();
+            } else {
+                verify = true;
+            }
+        }
+
+        return verify;
     }
 
     public String toString() {

@@ -22,7 +22,7 @@ public class SocialMediaAccount {
     private static final int GREEN = 4;
     private static final int BLUE = 5;
 
-    private static int lastIdUsed;
+    private static int lastIdUsed = 0;
 
     private SocialMedia media;
     private String username;
@@ -33,6 +33,7 @@ public class SocialMediaAccount {
     private boolean ValidAccount;
 
     public SocialMediaAccount() {
+        this.socialId = lastIdUsed;
         this.ValidAccount = false;
 
     }
@@ -60,8 +61,7 @@ public class SocialMediaAccount {
     }
 
     private static void setLastIdUsed(int lastIdUsed) {
-       
-        
+
         System.out.println("Sorry, but this cannot be changed");
     }
 
@@ -84,10 +84,12 @@ public class SocialMediaAccount {
         return username;
     }
 
-    protected void setUsername(SocialMedia x, String username) {
+    private void setUsername(SocialMedia x, String username) {
 
         if (uniqueUsername(x, this.username) == true) {
             this.username = username;
+        } else if (this.username.length() <= 0 || this.username.length() > 16) {
+            System.out.println("Username invalid");
         } else {
             System.out.println("Username already taken");
         }
@@ -191,6 +193,12 @@ public class SocialMediaAccount {
         if (this.username == null || this.username.length() == 0) {
             return false;
         }
+        if (this.username.length() <= 0 || this.username.length() > 16) {
+            return false;
+        }
+        if (uniqueUsername(this.media, this.username) == false) {
+            return false;
+        }
         if (this.password == null && this.password.length() < 6 || this.password.length() > 16) {
             return false;
         }
@@ -208,7 +216,6 @@ public class SocialMediaAccount {
 
         for (int i = 0; i < a.users.size(); i++) {
             if (a.users.get(i).username == username) {
-
                 verify = false;
                 i = a.users.size();
             } else {

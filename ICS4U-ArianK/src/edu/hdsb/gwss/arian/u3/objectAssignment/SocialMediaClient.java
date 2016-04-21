@@ -17,10 +17,13 @@ public class SocialMediaClient {
     public static void main(String[] args) {
 
         SocialMedia facebook = new SocialMedia();
+        SocialMedia twitter = new SocialMedia();
 //
-        SocialMediaAccount account1 = new SocialMediaAccount(facebook, "ak", "123", 16, 3, true);
-//        SocialMediaAccount account2 = new SocialMediaAccount(facebook, "sdfk", "123", 16, 3, true);
-//        SocialMediaAccount account3 = new SocialMediaAccount(facebook, "ghdgfk", "123", 16, 3, true);
+        SocialMediaAccount account1 = new SocialMediaAccount();
+      SocialMediaAccount account2 = new SocialMediaAccount(facebook, "arian_k", "1234");
+      SocialMediaAccount account3 = new SocialMediaAccount(twitter, "arian_16", "4321", 16, 5, true);
+      
+      SocialMediaAccount invalidAccount = new SocialMediaAccount(twitter, "arian_16", "4321", -1, 61, true);
 //
 //        facebook.add(account1);
 //        facebook.add(account2);
@@ -39,10 +42,45 @@ public class SocialMediaClient {
 //        
 
         //Test 1 Empty constructer
+        //pre
+           //post
+           
         assert (account1.getUsername() == null);
-        assert (facebook.getNumberOfUsers() == 0);
-        assert (facebook.getNetWorth() == 0);
-        assert (facebook.getUsers().isEmpty());
+        assert (account1.getMedia() == null);
+        assert (account1.getProfileColourID() == 0);
+        assert (account1.getProfileColour().equals("unknown"));
+        assert (account1.getSocialId() == 0);
+        assert (account1.getAge() == 0);
+        
+        
+        //primary key
+        //pre
+        //post
+        //I would have asserts for passwords, but user should not be able to call
+        //getpassword therefore it is a private class
+      
+        assert (account2.getUsername().equals("arian_k"));
+        assert (account2.getMedia().equals(facebook));
+       
+        // full constructor
+        
+        assert (account3.getUsername().equals("arian_16"));
+        assert (account3.getMedia().equals(twitter));
+        assert (account3.getProfileColourID() == 5);
+        assert (account3.getProfileColour().equals("blue"));
+        assert (account3.getSocialId() == 2);
+        assert (account3.getAge() == 16);
+        
+        //isvalid
+         assert (invalidAccount.isValid() == false);
+         
+         //add invalid
+         
+        assert( facebook.getUsers().size() == 0);
+        facebook.add( invalidAccount );
+        assert( facebook.getUsers().size() == 0);
+        
+        
 
     }
 

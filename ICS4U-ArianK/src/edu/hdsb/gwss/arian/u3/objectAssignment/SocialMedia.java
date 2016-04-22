@@ -141,10 +141,10 @@ public class SocialMedia {
         }
     }
 
-    public SocialMediaAccount get(SocialMediaAccount account) {
+    public SocialMediaAccount get(String username) {
 
         for (int i = 0; i < users.size(); i++) {
-            if (users.get(i) == account) {
+            if (users.get(i).getUsername().equals(username)) {
                 System.out.println("Account exists, getting account");
                 return users.get(i);
             }

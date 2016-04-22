@@ -47,6 +47,7 @@ public class SocialMediaAccount {
 
     public SocialMediaAccount(SocialMedia media, String username, String password, int age, int profileColourID, boolean isVerified) {
         this.socialId = ++lastIdUsed;
+        this.setMedia(media);
         this.media = media;
         this.username = username;
         this.password = password;

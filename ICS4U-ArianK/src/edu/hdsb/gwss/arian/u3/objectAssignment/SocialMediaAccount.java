@@ -1,7 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/* Name: SocialMediaAccount
+ * Version: v1
+ * Date: April 21 2016
+ * Author: Arian Krasniqi
  */
 package edu.hdsb.gwss.arian.u3.objectAssignment;
 
@@ -30,30 +30,29 @@ public class SocialMediaAccount {
     private int age;
     private int profileColourID;
     private int socialId;
-    private boolean ValidAccount;
+    private boolean isVerified;
 
     public SocialMediaAccount() {
         this.socialId = lastIdUsed;
-        this.ValidAccount = false;
+        this.isVerified = false;
 
     }
 
     public SocialMediaAccount(SocialMedia media, String username, String password) {
         this.socialId = ++lastIdUsed;
-        this.ValidAccount = true;
         this.username = username;
         this.password = password;
         this.media = media;
     }
 
-    public SocialMediaAccount(SocialMedia media, String username, String password, int age, int profileColourID, boolean isValidAccount) {
+    public SocialMediaAccount(SocialMedia media, String username, String password, int age, int profileColourID, boolean isVerified) {
         this.socialId = ++lastIdUsed;
         this.media = media;
         this.username = username;
         this.password = password;
         this.age = age;
         this.profileColourID = profileColourID;
-        this.ValidAccount = isValidAccount;
+        this.isVerified = isVerified;
     }
 
     public static int getLastIdUsed() {
@@ -84,7 +83,7 @@ public class SocialMediaAccount {
         return username;
     }
 
-    private void setUsername(SocialMedia x, String username) {
+    public void setUsername(SocialMedia x, String username) {
 
         if (uniqueUsername(x, this.username) == true) {
             this.username = username;
@@ -123,17 +122,16 @@ public class SocialMediaAccount {
         }
     }
 
-    public boolean isIsValidAccount() {
-        return ValidAccount;
+    public boolean isIsVerified() {
+        return isVerified;
     }
 
-    public void setIsValidAccount(boolean isValidAccount) {
-
-        if (this.media == null || this.username == null || this.password == null) {
-            System.out.println("Invalid Account");
-            this.ValidAccount = false;
+    public void setIsVerified(boolean isVerified) {
+        if (this.isValid() == false) {
+            System.out.println("Invalid Account Cannot be verified");
+        } else {
+            this.isVerified = isVerified;
         }
-        this.ValidAccount = isValidAccount;
     }
 
     public int getAge() {
@@ -167,39 +165,39 @@ public class SocialMediaAccount {
     }
 
     public boolean equals(SocialMediaAccount account) {
-        if (this == account) {
+        if (account.isValid() == true) {
+            if (account == null) {
+                return false;
+            }
+            if (getClass() != account.getClass()) {
+                return false;
+            }
+            final SocialMediaAccount other = (SocialMediaAccount) account;
+            if (!Objects.equals(this.username, other.username)) {
+                return false;
+            }
+            if (!Objects.equals(this.password, other.password)) {
+                return false;
+            }
+            if (!Objects.equals(this.media, other.media)) {
+                return false;
+            }
             return true;
         }
-        if (account == null) {
-            return false;
-        }
-        if (getClass() != account.getClass()) {
-            return false;
-        }
-        final SocialMediaAccount other = (SocialMediaAccount) account;
-        if (!Objects.equals(this.username, other.username)) {
-            return false;
-        }
-        if (!Objects.equals(this.password, other.password)) {
-            return false;
-        }
-        if (!Objects.equals(this.media, other.media)) {
-            return false;
-        }
-        return true;
+        return false;
     }
 
     public boolean isValid() {
-        if (this.username == null || this.username.length() == 0) {
+        if (this.username == null) {
             return false;
         }
         if (this.username.length() <= 0 || this.username.length() > 16) {
             return false;
         }
-        if (uniqueUsername(this.media, this.username) == false) {
+        if (uniqueUsername(this.media, this.username) == true) {
             return false;
         }
-        if (this.password == null && this.password.length() < 6 || this.password.length() > 16) {
+        if (this.password == null || this.password.length() < 6 || this.password.length() > 16) {
             return false;
         }
         if (this.media == null) {
@@ -215,7 +213,7 @@ public class SocialMediaAccount {
         boolean verify = false;
 
         for (int i = 0; i < a.users.size(); i++) {
-            if (a.users.get(i).username == username) {
+            if (a.users.get(i).username.equals(username)) {
                 verify = false;
                 i = a.users.size();
             } else {
@@ -226,8 +224,9 @@ public class SocialMediaAccount {
         return verify;
     }
 
+    @Override
     public String toString() {
-        return "Media Platofrm: " + media.getPlatform() + ", Account # : " + socialId + " ---//    INFO: " + "username= " + username + ", password= " + password + ", age= " + age + ", profileColour= " + COLOURS[profileColourID] + ", Valid Account = " + ValidAccount;
+        return "Media Platofrm: " + media.getPlatform() + ", Account # : " + socialId + " ---//    INFO: " + "username= " + username + ", password= " + password + ", age= " + age + ", profileColour= " + COLOURS[profileColourID] + ", Valid Account = " + isVerified;
     }
 
 }

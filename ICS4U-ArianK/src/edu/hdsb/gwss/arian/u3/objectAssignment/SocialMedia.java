@@ -1,6 +1,6 @@
 /* Name: SocialMedia
  * Version: v1
- * Date: April 21 2016
+ * Date: April 22 2016
  * Author: Arian Krasniqi
  */
 package edu.hdsb.gwss.arian.u3.objectAssignment;
@@ -16,22 +16,23 @@ public class SocialMedia {
 
     private String platform;
     private double netWorth;
-    private boolean isValidPlatform;
-
+    private boolean monetized;
     protected ArrayList<SocialMediaAccount> users = new ArrayList<SocialMediaAccount>();
 
     public SocialMedia() {
-        this.isValidPlatform = false;
+
+        this.monetized = false;
     }
 
     public SocialMedia(String platform) {
+
         this.platform = platform;
     }
 
-    public SocialMedia(String platform, double netWorth, boolean isValid) {
+    public SocialMedia(String platform, double netWorth, boolean monetized) {
         this.platform = platform;
         this.netWorth = netWorth;
-        this.isValidPlatform = isValid;
+        this.monetized = monetized;
     }
 
     public int getNumberOfUsers() {
@@ -65,12 +66,17 @@ public class SocialMedia {
         }
     }
 
-    public boolean isIsValid() {
-        return isValidPlatform;
+    public boolean isMonetized() {
+        return monetized;
     }
 
-    public void setIsValid(boolean isValid) {
-        this.isValidPlatform = isValid;
+    public void setMonetized(boolean monetized) {
+        if (this.netWorth <= 0) {
+            System.out.println("This social media is not monetized");
+            this.monetized = false;
+
+        }
+        this.monetized = monetized;
     }
 
     public ArrayList<SocialMediaAccount> getUsers() {
@@ -91,9 +97,7 @@ public class SocialMedia {
         if (this.users != other.users) {
             return false;
         }
-        if (this.isValidPlatform != other.isValidPlatform) {
-            return false;
-        }
+
         return true;
     }
 
@@ -101,17 +105,15 @@ public class SocialMedia {
         if (this.platform == null && this.platform.length() == 0) {
             return false;
         }
-
-        if (this.isValidPlatform == false) {
+        if (this.platform.length() < 0 || this.platform.length() > 16) {
             return false;
         }
-
         return true;
     }
 
     @Override
     public String toString() {
-        return "SocialMedia{" + "platform=" + platform + ", userAmount=" + getNumberOfUsers() + ", netWorth=" + netWorth + ", isValidPlatform=" + isValidPlatform + '}';
+        return "SocialMedia{" + "platform=" + platform + ", userAmount=" + getNumberOfUsers() + ", netWorth=" + netWorth + ", Monetized=" + monetized + '}';
     }
 
     public void add(SocialMediaAccount account) {
@@ -122,8 +124,6 @@ public class SocialMedia {
             System.out.println("Account already exists!");
         } else if (account.isValid() == false) {
             System.out.println("Cannot add invalid account");
-        } else if (this.isValidPlatform == false) {
-            System.out.println("Cannot add account to an invalid social media");
         } else {
             this.users.add(account);
             System.out.println(account.getUsername() + " is now added");
@@ -145,7 +145,7 @@ public class SocialMedia {
 
         for (int i = 0; i < users.size(); i++) {
             if (users.get(i) == account) {
-                System.out.println("Account exists");
+                System.out.println("Account exists, getting account");
                 return users.get(i);
             }
         }

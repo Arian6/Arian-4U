@@ -1,6 +1,6 @@
 /* Name: SocialMediaAccount
  * Version: v1
- * Date: April 21 2016
+ * Date: April 22 2016
  * Author: Arian Krasniqi
  */
 package edu.hdsb.gwss.arian.u3.objectAssignment;

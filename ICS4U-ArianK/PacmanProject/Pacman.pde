@@ -79,7 +79,7 @@ public class Pacman {
   }
 
 
-  public void display() {    
+  public void display() {
     fill(#FFF703);
 
     if (this.isOpen == true) {

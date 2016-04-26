@@ -1,17 +1,12 @@
-public class Pacman {
+public class Pacman extends Character{
 
   // INSTANCE VARIABLES; 'properties'
-  private int xLoc;
-  private int yLoc;
+  //private int xLoc;
+  //private int yLoc;
   private int lives;
   private int colourR;
   private boolean isOpen = true;
-  private int pacSize = 50;
-  private int eyeSize = 5;
-  private int eyeXLoc = 6;
-  private int eyeYLoc = 15;
-  private int radianX = 30;
-  private int radianY = 330;
+
 
 
   public Pacman() {
@@ -26,57 +21,57 @@ public class Pacman {
     this.lives = 3;
   }
 
-  public void move() {
-    if (key == CODED) {
-      if (keyCode == UP) {
-        //variable adjust
-        this.radianX =300;
-        this.radianY = 600;
-        this.eyeXLoc = 15;
-        this.eyeYLoc = 10;
-        this.yLoc = yLoc - 5;
+  //public void move() {
+  //  if (key == CODED) {
+  //    if (keyCode == UP) {
+  //      //variable adjust
+  //      this.radianX =300;
+  //      this.radianY = 600;
+  //      this.eyeXLoc = 15;
+  //      this.eyeYLoc = 10;
+  //      this.yLoc = yLoc - 5;
 
-        if (this.yLoc < 0 + pacSize / 2) {
-          this.yLoc = height;
-        }
-      }
-      if (keyCode == DOWN) {
+  //      if (this.yLoc < 0 + pacSize / 2) {
+  //        this.yLoc = height;
+  //      }
+  //    }
+  //    if (keyCode == DOWN) {
 
-        this.radianX = 475;
-        this.radianY = 780;
-        this.eyeXLoc = 15;
-        this.eyeYLoc = -10;
-        this.yLoc = yLoc + 5;
+  //      this.radianX = 475;
+  //      this.radianY = 780;
+  //      this.eyeXLoc = 15;
+  //      this.eyeYLoc = -10;
+  //      this.yLoc = yLoc + 5;
 
-        if (this.yLoc > height - pacSize / 2) {
-          this.yLoc = 0;
-        }
-      }
-      if (keyCode == LEFT) { 
+  //      if (this.yLoc > height - pacSize / 2) {
+  //        this.yLoc = 0;
+  //      }
+  //    }
+  //    if (keyCode == LEFT) { 
 
-        this.radianX =210;
-        this.radianY = 515;
-        this.eyeXLoc = -6;
-        this.eyeYLoc = 15;
-        this.xLoc = xLoc - 5;
+  //      this.radianX =210;
+  //      this.radianY = 515;
+  //      this.eyeXLoc = -6;
+  //      this.eyeYLoc = 15;
+  //      this.xLoc = xLoc - 5;
 
 
-        if (this.xLoc < 0 + pacSize / 2) {
-          this.xLoc = width;
-        }
-      }
-      if (keyCode == RIGHT) {
-        this.radianX = 30;
-        this.radianY = 330;
-        this.eyeXLoc = 6;
-        this.eyeYLoc = 15;
-        this.xLoc = xLoc + 5;
-        if (this.xLoc > width - pacSize / 2) {
-          this.xLoc = 0;
-        }
-      }
-    }
-  }
+  //      if (this.xLoc < 0 + pacSize / 2) {
+  //        this.xLoc = width;
+  //      }
+  //    }
+  //    if (keyCode == RIGHT) {
+  //      this.radianX = 30;
+  //      this.radianY = 330;
+  //      this.eyeXLoc = 6;
+  //      this.eyeYLoc = 15;
+  //      this.xLoc = xLoc + 5;
+  //      if (this.xLoc > width - pacSize / 2) {
+  //        this.xLoc = 0;
+  //      }
+  //    }
+  //  }
+  //}
 
 
   public void display() {

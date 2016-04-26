@@ -1,11 +1,16 @@
-public class Pacman extends Character{
+public class Pacman extends Character {
 
   // INSTANCE VARIABLES; 'properties'
-  //private int xLoc;
-  //private int yLoc;
-  private int lives;
-  private int colourR;
+
+  private int lives = 3;
   private boolean isOpen = true;
+  private int score;
+  int pacSize = 50;
+  int eyeSize = 5;
+  int eyeXLoc = 6;
+  int eyeYLoc = 15;
+  int radianX = 30;
+  int radianY = 330;
 
 
 
@@ -21,58 +26,6 @@ public class Pacman extends Character{
     this.lives = 3;
   }
 
-  //public void move() {
-  //  if (key == CODED) {
-  //    if (keyCode == UP) {
-  //      //variable adjust
-  //      this.radianX =300;
-  //      this.radianY = 600;
-  //      this.eyeXLoc = 15;
-  //      this.eyeYLoc = 10;
-  //      this.yLoc = yLoc - 5;
-
-  //      if (this.yLoc < 0 + pacSize / 2) {
-  //        this.yLoc = height;
-  //      }
-  //    }
-  //    if (keyCode == DOWN) {
-
-  //      this.radianX = 475;
-  //      this.radianY = 780;
-  //      this.eyeXLoc = 15;
-  //      this.eyeYLoc = -10;
-  //      this.yLoc = yLoc + 5;
-
-  //      if (this.yLoc > height - pacSize / 2) {
-  //        this.yLoc = 0;
-  //      }
-  //    }
-  //    if (keyCode == LEFT) { 
-
-  //      this.radianX =210;
-  //      this.radianY = 515;
-  //      this.eyeXLoc = -6;
-  //      this.eyeYLoc = 15;
-  //      this.xLoc = xLoc - 5;
-
-
-  //      if (this.xLoc < 0 + pacSize / 2) {
-  //        this.xLoc = width;
-  //      }
-  //    }
-  //    if (keyCode == RIGHT) {
-  //      this.radianX = 30;
-  //      this.radianY = 330;
-  //      this.eyeXLoc = 6;
-  //      this.eyeYLoc = 15;
-  //      this.xLoc = xLoc + 5;
-  //      if (this.xLoc > width - pacSize / 2) {
-  //        this.xLoc = 0;
-  //      }
-  //    }
-  //  }
-  //}
-
 
   public void display() {
     fill(#FFF703);
@@ -86,7 +39,7 @@ public class Pacman extends Character{
       arc(xLoc, yLoc, pacSize, pacSize, radians(radianX), radians(radianY));
       //EYE
       fill(0, 0, 0);
-      ellipse(xLoc + eyeXLoc, yLoc - eyeYLoc, eyeSize, eyeSize);
+      ellipse(xLoc + 6, yLoc - 15, 5, 5);
 
       this.isOpen = false;
     } else  if (this.isOpen == false) {
@@ -98,8 +51,15 @@ public class Pacman extends Character{
 
       //EYE
       fill(0, 0, 0);
-      ellipse(xLoc + eyeXLoc, yLoc - eyeYLoc, eyeSize, eyeSize);
+      ellipse(xLoc + 6, yLoc - 15, 5, 5);
       this.isOpen = true;
     }
   }
+  
+  //public boolean isAlive() {
+  //  if( 
+    
+  //  return true;
+  //}
+  
 }

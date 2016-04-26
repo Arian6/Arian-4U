@@ -1,8 +1,5 @@
 public class Ghost extends Character {
-  int look = 0;
-  //int xLoc = 50;
-  //int yLoc = 50;
-
+  
   int colour ;
 
 
@@ -18,7 +15,6 @@ public class Ghost extends Character {
 
 
   public void display() { 
-    
 
       //body
       fill(colour);
@@ -38,12 +34,5 @@ public class Ghost extends Character {
   }
 
 
-  //public void move() {
 
-  //  xLoc = xLoc + 5;
-  //  if (this.xLoc > width - 50 / 2) {
-  //        this.xLoc = 0;
-  //      }
-
-  //
 }

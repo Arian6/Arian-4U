@@ -1,9 +1,14 @@
 abstract class Character {
   protected int xLoc;
   protected int yLoc;
- 
-
-
+  protected boolean isAlive;
+  
+  //abstract int display();
+  
+  public Character() {
+    
+  }
+  
   public void move(int x, int y) {
   
     
@@ -23,4 +28,6 @@ abstract class Character {
     this.xLoc = xLoc + x;
     this.yLoc = yLoc + y;
   }
+  
+  //abstract boolean isAlive();
 }

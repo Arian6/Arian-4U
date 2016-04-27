@@ -13,6 +13,15 @@ public class Ghost extends Character {
     this.colour = c;
   }
 
+public int getXLoc() {
+  
+  return this.xLoc;
+}
+
+public void setXLoc() {
+  
+  
+}
 
   public void display() { 
 

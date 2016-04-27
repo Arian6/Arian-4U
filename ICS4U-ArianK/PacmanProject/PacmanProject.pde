@@ -15,25 +15,27 @@ void draw() {
   noStroke();
 
   p2.display();
-  if (key == CODED) {
-    if (keyCode == UP) {
 
-      p2.move(0, -5);
-    }
-    if (keyCode == DOWN) {
+  if (keyCode == UP) {
 
-      p2.move(0, 5);
-    }
-    if (keyCode == LEFT) {
-
-      p2.move(-5, 0);
-    }
-    if (keyCode == RIGHT) {
-
-
-      p2.move(5, 0);
-    }
+    p2.move(0, -5);
   }
+  if (keyCode == DOWN) {
+
+    p2.move(0, 5);
+  }
+  if (keyCode == LEFT) {
+
+    p2.move(-5, 0);
+  }
+  if (keyCode == RIGHT) {
+
+
+    p2.move(5, 0);
+  } else {
+    p2.move(0, 0);
+  }
+
 
 
 

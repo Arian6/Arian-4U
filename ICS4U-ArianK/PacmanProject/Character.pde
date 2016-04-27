@@ -9,6 +9,8 @@ abstract class Character {
     
   }
   
+  
+  
   public void move(int x, int y) {
   
     

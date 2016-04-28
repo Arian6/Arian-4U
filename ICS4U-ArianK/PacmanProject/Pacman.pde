@@ -4,14 +4,14 @@ public class Pacman extends Character {
 
   private int lives = 3;
   private boolean isOpen = true;
-  private int score;
+ 
 
-  int pacSize = 50;
-  int eyeSize = 5;
-  int eyeXLoc = 6;
-  int eyeYLoc = 15;
-  int radianX = 30;
-  int radianY = 330;
+  private int pacSize = 50;
+  private int eyeSize = 5;
+  private int eyeXLoc = 6;
+   private int eyeYLoc = 15;
+   private  int radianX = 30;
+   private  int radianY = 330;
 
 
 
@@ -40,6 +40,37 @@ public class Pacman extends Character {
   }
 
   
+  public void direction(String dir) {
+
+    
+    if (dir.equals("L")){
+      this.eyeXLoc = -6;
+      this.eyeYLoc = 15;
+      this.radianX = 210;
+      this.radianY = 515;
+    }
+    
+    if (dir.equals("R")){
+      this.eyeXLoc = 6;
+      this.eyeYLoc = 15;
+      this.radianX = 30;
+      this.radianY = 330;
+    }
+    if (dir.equals("U")){
+      this.eyeXLoc = 13;
+      this.eyeYLoc = 10;
+      this.radianX = 300;
+      this.radianY = 610;
+    }
+    if (dir.equals("D")){
+      this.eyeXLoc = 13;
+      this.eyeYLoc = -10;
+      this.radianX = 475;
+      this.radianY = 780;
+    }
+
+    
+  }
 
   public void display() {
 
@@ -55,7 +86,7 @@ public class Pacman extends Character {
         arc(xLoc, yLoc, pacSize, pacSize, radians(radianX), radians(radianY));
         //EYE
         fill(0, 0, 0);
-        ellipse(xLoc + 6, yLoc - 15, 5, 5);
+        ellipse(xLoc + eyeXLoc, yLoc - eyeYLoc, eyeSize,eyeSize);
 
         this.isOpen = false;
       } else  if (this.isOpen == false) {
@@ -67,7 +98,7 @@ public class Pacman extends Character {
 
         //EYE
         fill(0, 0, 0);
-        ellipse(xLoc + 6, yLoc - 15, 5, 5);
+        ellipse(xLoc + eyeXLoc, yLoc - eyeYLoc, eyeSize, eyeSize);
         this.isOpen = true;
       }
     } else {
@@ -92,9 +123,5 @@ public class Pacman extends Character {
   }
 
 
-  //public boolean isAlive() {
-  //  if( 
-
-  //  return true;
-  //}
+ 
 }

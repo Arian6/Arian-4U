@@ -6,13 +6,13 @@ public class Ghost extends Character {
 
 
   public Ghost() {
-    randomX = (int) (Math.random() * 600);
-    randomY = (int) (Math.random() * 600);
+    randomX = (int) (Math.random() * width);
+    randomY = (int) (Math.random() * height);
 
-    if (randomX < 250 && randomX > 350 && randomY < 250 || randomY > 350) {
-     this.xLoc = randomX;
-      this.yLoc = randomY;
-    }
+  //if (randomX < 250 && randomX > 350 && randomY < 250 || randomY > 350) {
+  //  this.xLoc = randomX;
+  //  this.yLoc = randomY;
+  //}
   }
 
   public Ghost(color c) {

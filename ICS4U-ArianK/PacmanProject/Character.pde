@@ -16,18 +16,18 @@ abstract class Character {
   }
 
 
-  public boolean hitsGhost(Ghost g, Pacman p) {
+  public boolean touching( Character other ) {
 
 
 
-    if (g.getXLoc() - 25 < this.getXLoc() && this.getXLoc() < g.getXLoc() + 25 && g.getYLoc() - 20 < this.getYLoc() && this.getYLoc() < g.getYLoc() + 20 ) {
-      if (p.lives > 0) {
-        p.lives = p.lives - 1;
-      }
-      p.reset();
-      hasMoved = false;
-      return true;
-    }
+//    if (this.getXLoc() - 25 < this.getXLoc() && this.getXLoc() < other.getXLoc() + 25 && other.getYLoc() - 20 < this.getYLoc() && this.getYLoc() < g.getYLoc() + 20 ) {
+//      if (p.lives > 0) {
+//        p.lives = p.lives - 1;
+//      }
+//      p.reset();
+//      hasMoved = false;
+//      return true;
+//    }
     return false;
   }
 
@@ -50,14 +50,22 @@ abstract class Character {
 
 
 
-    this.xLoc = 300;
-    this.yLoc = 300;
+    this.xLoc =  (int) (Math.random() * width);;
+    this.yLoc =  (int) (Math.random() * height);;
   }
 
 
 
   public void move(int x, int y) {
 
+    
+  
+  
+   
+    
+    
+    
+    
     if (p2.lives > 0) {
       if (this.xLoc > width ) {
         this.xLoc = 0;

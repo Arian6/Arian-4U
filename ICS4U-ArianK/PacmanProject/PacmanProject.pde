@@ -22,14 +22,15 @@ void draw() {
 
   p2.display();
   p2.livesDisplay();
-
-  //p2.hitsGhost(c, p2); 
-  //p2.hitsGhost(i, p2); 
-  //p2.hitsGhost(b, p2); 
-  //p2.hitsGhost(p, p2);
+  
+  p2.touching(c); 
+  p2.touching(i); 
+  p2.touching(b); 
+  p2.touching(p);
 
   if ( keyPressed) {
     hasMoved = true;
+
   }
 
   if (key == CODED && hasMoved ) {
@@ -56,10 +57,17 @@ void draw() {
 
   c.display();
   c.move(0, 5);
+  c.direction("D");
+  //
   b.display();
+  b.direction("U");
   b.move(0, -5);
+  //
   p.display();
   p.move(5, 0);
+  p.direction("L");
+  //
   i.display();
   i.move(-5, 0);
+  i.direction("R");
 }

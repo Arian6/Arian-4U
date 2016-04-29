@@ -1,71 +1,86 @@
 abstract class Character {
   protected int xLoc;
   protected int yLoc;
-
-
-  abstract void display();
+  protected boolean isAlive = true;
+    protected int eyeSize = 5;
 
   public Character() {
-    this.xLoc = 50;
-    this.yLoc = 50;
+    this.xLoc = (int) (Math.random() * 600);
+    this.yLoc = (int) (Math.random() * 600);
   }
 
   public Character(int xLoc, int yLoc) {
-    this.xLoc = 50;
-    this.yLoc = 50;
+    this.isAlive = true;
+    this.xLoc =  (int) (Math.random() * 600);
+    this.yLoc =  (int) (Math.random() * 600);
   }
 
+  abstract void display();
+  
+  abstract void direction(String dir);
 
   public boolean touching( Character other ) {
 
+    if(hasMoved == true) {
+    if (other.getXLoc() - 50 < this.getXLoc() && this.getXLoc() < other.getXLoc() + 50 && other.getYLoc() - 50 < this.getYLoc() && this.getYLoc() < other.getYLoc() + 50 ) {
 
+      isAlive = false;
+      hasMoved = false;
+      return true;
+    }
+    }
 
-//    if (this.getXLoc() - 25 < this.getXLoc() && this.getXLoc() < other.getXLoc() + 25 && other.getYLoc() - 20 < this.getYLoc() && this.getYLoc() < g.getYLoc() + 20 ) {
-//      if (p.lives > 0) {
-//        p.lives = p.lives - 1;
-//      }
-//      p.reset();
-//      hasMoved = false;
-//      return true;
-//    }
     return false;
+    
   }
+
 
   public int getXLoc() {
 
     return this.xLoc;
   }
 
-  private void setXLoc() {
+  public void setXLoc(int x) {
+    if (x < 0 || x > 600) {
+      System.out.println("Invalid xLoc");
+      this.xLoc = (int) (Math.random() * 600);
+    } else {
+      this.xLoc = x;
+    }
   }
+
+
+
   public int getYLoc() {
 
     return this.yLoc;
   }
 
-  private void setYLoc() {
+  public void setYLoc(y) {
+    if (y < 0 || y > 600) {
+      System.out.println("Invalid yLoc");
+      this.yLoc = (int) (Math.random() * 600);
+    } else {
+      this.yLoc = y;
+    }
   }
 
-  public void reset() {
+  public boolean getIsAlive() {
 
-
-
-    this.xLoc =  (int) (Math.random() * width);;
-    this.yLoc =  (int) (Math.random() * height);;
+    return this.isAlive;
   }
 
-
+  public void setIsAlive(boolean isAlive) {
+    if (isAlive != touching( this )) {
+      System.out.println("Wrong State");
+    } else {
+      this.isAlive = isAlive;
+    }
+  }
 
   public void move(int x, int y) {
 
-    
-  
-  
-   
-    
-    
-    
-    
+
     if (p2.lives > 0) {
       if (this.xLoc > width ) {
         this.xLoc = 0;
@@ -84,6 +99,4 @@ abstract class Character {
       this.yLoc = yLoc + y;
     }
   }
-
-  //abstract boolean isAlive();
 }

@@ -2,7 +2,7 @@ public class Pacman extends Character {
 
   // INSTANCE VARIABLES; 'properties'
 
-  protected int lives = 3;
+  private int lives = 3;
   private boolean isOpen = true;
   private int eyeXLoc = 6;
   private int eyeYLoc = 15;
@@ -80,6 +80,65 @@ public class Pacman extends Character {
     
   }
   
+       public int getLives() {
+    return this.lives;
+  }
+  
+ public void setLives(int l) {
+    
+     if (l < 0 || l > 3) {
+      System.out.println("Invalid lives amount");
+      
+    } else {
+      this.lives = l;
+    }
+    
+  }
+  
+    public boolean getIsOpen() {
+    return this.isOpen;
+  }
+  
+ private void setIsOpen(boolean o) {
+    
+     if (this.isOpen != o) {
+      System.out.println("Cannot preform this task");
+      
+    } else {
+      this.isOpen = o;
+    }
+    
+  }
+  
+    public int getRadianX() {
+    return this.radianX;
+  }
+  
+ private void setRadianX(int radX) {
+    
+     if (radX < 0 || radX > 1080) {
+      System.out.println("Cannot preform this task");
+      
+    } else {
+      this.radianX = radX;
+    }
+    
+  }
+  
+      public int getRadianY() {
+    return this.radianY;
+  }
+  
+ private void setRadianY(int radY) {
+    
+     if (radY < 0 || radY > 1080) {
+      System.out.println("Cannot preform this task");
+      
+    } else {
+      this.radianX = radY;
+    }
+    
+  }
   
 
   public void direction(String dir) {
@@ -161,6 +220,12 @@ public class Pacman extends Character {
       }
     }
   }
+  
+   public String toString() {
+         
+         
+         return "Pacman is located at (" + this.getXLoc() + ", " + this.getYLoc() + ")" + " Is his Mouth open? = " + this.isOpen + ".   Pacman currently has " + this.getLives() + " lives";
+    }
 
   public void livesDisplay() {
 

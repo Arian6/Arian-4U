@@ -21,13 +21,15 @@ void draw() {
   noStroke();
 
   p2.display();
+  
   p2.livesDisplay();
   
   p2.touching(c); 
   p2.touching(i); 
   p2.touching(b); 
   p2.touching(p);
-
+  
+  
   if ( keyPressed) {
     hasMoved = true;
 
@@ -40,7 +42,6 @@ void draw() {
     }
     if (keyCode == DOWN) {
       p2.direction("D");
-
       p2.move(0, 5);
     }
     if (keyCode == LEFT) {
@@ -54,19 +55,22 @@ void draw() {
   }
 
 
-
+//GHOST MOVE DOWN
   c.display();
   c.move(0, 5);
   c.direction("D");
   //
+  
+ //GHOST MOVE UP
   b.display();
   b.direction("U");
   b.move(0, -5);
   //
+  //GHOST MOVE LEFT
   p.display();
   p.move(5, 0);
   p.direction("L");
-  //
+  //  //GHOST MOVE RIGHT
   i.display();
   i.move(-5, 0);
   i.direction("R");

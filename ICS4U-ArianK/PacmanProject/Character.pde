@@ -1,8 +1,8 @@
-abstract class Character {
+abstract class Character implements Interface {
   protected int xLoc;
   protected int yLoc;
   protected boolean isAlive = true;
-    protected int eyeSize = 5;
+  protected int eyeSize = 5;
 
   public Character() {
     this.xLoc = (int) (Math.random() * 600);
@@ -16,22 +16,21 @@ abstract class Character {
   }
 
   abstract void display();
-  
+
   abstract void direction(String dir);
 
   public boolean touching( Character other ) {
 
-    if(hasMoved == true) {
-    if (other.getXLoc() - 50 < this.getXLoc() && this.getXLoc() < other.getXLoc() + 50 && other.getYLoc() - 50 < this.getYLoc() && this.getYLoc() < other.getYLoc() + 50 ) {
+    if (hasMoved == true) {
+      if (other.getXLoc() - 50 < this.getXLoc() && this.getXLoc() < other.getXLoc() + 50 && other.getYLoc() - 50 < this.getYLoc() && this.getYLoc() < other.getYLoc() + 50 ) {
 
-      isAlive = false;
-      hasMoved = false;
-      return true;
-    }
+        isAlive = false;
+        hasMoved = false;
+        return true;
+      }
     }
 
     return false;
-    
   }
 
 
@@ -56,7 +55,7 @@ abstract class Character {
     return this.yLoc;
   }
 
-  public void setYLoc(y) {
+  public void setYLoc(int y) {
     if (y < 0 || y > 600) {
       System.out.println("Invalid yLoc");
       this.yLoc = (int) (Math.random() * 600);

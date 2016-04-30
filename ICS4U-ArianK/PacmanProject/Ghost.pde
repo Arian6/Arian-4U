@@ -138,4 +138,11 @@ public class Ghost extends Character {
     ellipse(xLoc + 15 + eyeDirectionX, yLoc + eyeDirectionY, eyeSize, eyeSize);
     ellipse(xLoc + 35+ eyeDirectionX, yLoc + eyeDirectionY, eyeSize, eyeSize);
   }
+  
+  
+  public String toString() {
+         return "This Ghost is located at (" + this.getXLoc() + ", " + this.getYLoc() + ")" + " The colour of this ghost is = " + this.colour;
+    }
+
+  
 }

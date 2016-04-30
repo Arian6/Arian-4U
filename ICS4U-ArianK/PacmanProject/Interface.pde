@@ -1,21 +1,11 @@
-public interface Inteface {
+public interface Interface {
 
-    public void display();
-
-    //public int pop();
-
-    public void direction();
+    public void move(int x, int y);
     
-    public void oi();
-
-    //public int size();
+    public boolean touching( Character other );
     
-    //public int capacity();
-
-    //public boolean isEmpty();
+    public String toString();
     
-    //public boolean isFull();
 
-    //public void makeEmpty();
 
 }

@@ -5,24 +5,22 @@
  */
 package edu.hdsb.gwss.arian.u3.CulminatingTask;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author ARIAN
  */
 public class Master extends Lock {
 
-    public Master() {
-        super(3,39);
-
-    }
-
-    public Master(int num1, int num2, int num3) {
-       super();
-       comboSetter3Digit(num1, num2, num3, 39);
-    }
+    public static final int COMBO_MAX = 39;
+    public static final int COMBO_LENGTH = 3;
     
-    public String type() {
-        return "M";
+    public Master() {
+        super();
+        this.comboGenerator(COMBO_LENGTH, COMBO_MAX);
     }
+
+   
 
 }

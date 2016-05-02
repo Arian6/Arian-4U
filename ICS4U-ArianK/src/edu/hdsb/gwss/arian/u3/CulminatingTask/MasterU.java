@@ -5,32 +5,25 @@
  */
 package edu.hdsb.gwss.arian.u3.CulminatingTask;
 
+import java.util.ArrayList;
+
 
 /**
  *
  * @author ARIAN
  */
-public class MasterU extends Lock {
+public class MasterU extends Lock  {
 
+    public static final int COMBO_MAX = 9;
+    public static final int COMBO_LENGTH = 4;
+    
     public MasterU() {
-
-        super(4, 9);
-    }
-
-    public MasterU(int num1, int num2, int num3, int num4) {
         super();
-        comboSetter4Digit(num1, num2, num3, num4);
-
+        this.comboGenerator(COMBO_LENGTH, COMBO_MAX);
     }
+    
+    
 
-    public void setLockCombo(int num1, int num2, int num3, int num4) {
-        this.getterCount = 0;
-        changeLock(4);
-        comboSetter4Digit(num1, num2, num3, num4);
-    }
 
-    public String type() {
-
-        return "MU";
-    }
+  
 }

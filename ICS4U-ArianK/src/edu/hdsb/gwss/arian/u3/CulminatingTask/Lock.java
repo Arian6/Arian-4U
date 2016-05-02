@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author ARIAN
  */
-abstract class Lock implements LockInterface{
+public abstract class Lock implements LockInterface {
 
     protected static int lastIdUsed = 0;
 
@@ -21,29 +21,20 @@ abstract class Lock implements LockInterface{
     private boolean locked;
     protected ArrayList<Integer> lockCombo = new ArrayList<Integer>();
 
-   
-
     public Lock() {
-        serialNumber = ++lastIdUsed;
-
-    }
-
-    public Lock(int digits, int highestPossible) {
-        this();
-        comboGenerator(digits, highestPossible);
-
+        this.serialNumber = ++lastIdUsed;
+        this.getterCount = 0;
+        this.unlockTries = 0;
+        this.locked = false;        
     }
 
     public void changeLock(int digits) {
 
-        for (int i = digits - 1; i >= 0; i--) {
-            this.lockCombo.remove(i);
-
-        }
+        this.lockCombo.removeAll(lockCombo);
 
     }
 
-    public void comboGenerator(int digits, int highestPossible) {
+    protected void comboGenerator(int digits, int highestPossible) {
 
         for (int i = 0; i < digits; i++) {
             this.lockCombo.add((int) (Math.random() * highestPossible));
@@ -107,12 +98,12 @@ abstract class Lock implements LockInterface{
         }
 
     }
-    
+
     public void unlock(int num1, int num2, int num3, int num4) {
 
         this.unlockTries++;
         if (unlockTries < 3) {
-            if (this.lockCombo.get(0).equals(num1) && this.lockCombo.get(1).equals(num2) && this.lockCombo.get(2).equals(num3)&& this.lockCombo.get(3).equals(num4)) {
+            if (this.lockCombo.get(0).equals(num1) && this.lockCombo.get(1).equals(num2) && this.lockCombo.get(2).equals(num3) && this.lockCombo.get(3).equals(num4)) {
                 System.out.println("The lock has been unlocked!");
                 this.locked = false;
                 this.unlockTries = 0;

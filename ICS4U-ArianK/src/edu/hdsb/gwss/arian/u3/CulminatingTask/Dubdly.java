@@ -5,24 +5,22 @@
  */
 package edu.hdsb.gwss.arian.u3.CulminatingTask;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author ARIAN
  */
 public class Dubdly extends Lock {
 
+    public static final int COMBO_MAX = 59;
+    public static final int COMBO_LENGTH = 3;
+    
     public Dubdly() {
-        super(3,59);
+        super();
+        this.comboGenerator(COMBO_LENGTH, COMBO_MAX);
     }
 
-    public Dubdly(int num1, int num2, int num3) {
-   
-        super();
-       comboSetter3Digit(num1, num2, num3, 59);
-    }
-    
-    public String type() {
-        return "D";
-    }
+ 
     
 }

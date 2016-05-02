@@ -5,6 +5,8 @@
  */
 package edu.hdsb.gwss.arian.u3.CulminatingTask;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author ARIAN
@@ -17,12 +19,19 @@ public class LockClient {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        Master m = new Master(6,2,4);
-        Dubdly a = new Dubdly(8,2,1);
+        ArrayList<Integer> newCombo = new ArrayList<Integer>();
+        newCombo.add( 1 );
+        newCombo.add( 3 );
+        newCombo.add( 5 );
+        
+        
+        
+        Master m = new Master();
+        Dubdly a = new Dubdly();
       
-        Android b = new Android(3,8,1);
+        Android b = new Android();
       
-        MasterU c = new MasterU(3,2,1,8);
+        MasterU c = new MasterU();
         
    
    System.out.println(c.getLockCombo());

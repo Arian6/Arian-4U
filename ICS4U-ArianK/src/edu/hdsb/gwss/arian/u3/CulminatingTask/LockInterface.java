@@ -5,20 +5,17 @@
  */
 package edu.hdsb.gwss.arian.u3.CulminatingTask;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author ARIAN
  */
 public interface LockInterface {
     
-    public void changeLock();
-    
-    public void comboGenerator(int digits, int highestPossible);
-    
-     
-    
-    
-    
-    
-    
+//    public void lock();
+//    public void unlock( ArrayList<Integer> combo );
+//    public int getSerialNumber();
+//    public ArrayList<Integer> getCombo();
+
 }

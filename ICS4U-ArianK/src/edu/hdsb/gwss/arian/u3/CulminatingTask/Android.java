@@ -5,7 +5,6 @@
  */
 package edu.hdsb.gwss.arian.u3.CulminatingTask;
 
-import java.util.ArrayList;
 
 /**
  *
@@ -23,7 +22,7 @@ public class Android extends Lock {
     }
   
     public void setLockCombo(int num1, int num2, int num3 ) {
-        getterCount = 0;
+        this.getterCount = 0;
         changeLock(3);
         comboSetter3Digit(num1, num2, num3, 9); 
     }

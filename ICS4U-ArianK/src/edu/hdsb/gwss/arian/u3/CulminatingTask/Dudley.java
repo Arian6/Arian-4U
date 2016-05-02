@@ -11,16 +11,15 @@ import java.util.ArrayList;
  *
  * @author ARIAN
  */
-public class Dubdly extends Lock {
+public class Dudley extends Lock {
 
     public static final int COMBO_MAX = 59;
     public static final int COMBO_LENGTH = 3;
     
-    public Dubdly() {
+    public Dudley() {
         super();
         this.comboGenerator(COMBO_LENGTH, COMBO_MAX);
     }
 
- 
     
 }

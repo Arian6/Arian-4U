@@ -21,6 +21,6 @@ public class Master extends Lock {
         this.comboGenerator(COMBO_LENGTH, COMBO_MAX);
     }
 
-   
+  
 
 }

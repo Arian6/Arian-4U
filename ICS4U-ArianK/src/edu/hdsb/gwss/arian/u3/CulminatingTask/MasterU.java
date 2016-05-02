@@ -7,8 +7,6 @@ package edu.hdsb.gwss.arian.u3.CulminatingTask;
 
 import java.util.ArrayList;
 
-
-
 /**
  *
  * @author ARIAN
@@ -17,47 +15,23 @@ public class MasterU extends Lock {
 
     public MasterU() {
 
-        serialNumber = ++lastIdUsed;
-        comboGenerator(4, 9);
-        System.out.println("Your lock combination is: " + lockCombo);
+        super(4, 9);
     }
 
     public MasterU(int num1, int num2, int num3, int num4) {
-        serialNumber = ++lastIdUsed;
-        if (isValid(num1, 9) && isValid(num2, 9) && isValid(num3,9) && isValid(num4, 9)) {
-            lockCombo.add(num1);
-            lockCombo.add(num2);
-            lockCombo.add(num3);
-            lockCombo.add(num4);
-            System.out.println("Your lock combination is: " + lockCombo);
-        } else {
-          
-            System.out.println("Re-enter lock combo");
-        }
+        super();
+        comboSetter4Digit(num1, num2, num3, num4);
+
     }
 
-    
-    public void setLockCombo(int num1, int num2, int num3, int num4 ) {
+    public void setLockCombo(int num1, int num2, int num3, int num4) {
         getterCount = 0;
-        
-         changeLock(4);
-        
-        
-        if (isValid(num1, 9) && isValid(num2, 9) && isValid(num3,9) && isValid(num4, 9)) {
-            lockCombo.add(num1);
-            lockCombo.add(num2);
-            lockCombo.add(num3);
-             lockCombo.add(num4);
-             System.out.println("Your lock combination is: " + lockCombo);
-            
-        }else {
-            System.out.println("Invalid combo lock");
-        }             
+        changeLock(4);
+        comboSetter4Digit(num1, num2, num3, num4);
     }
-    
-    
-public String type() {
-        
-    return "MU";
+
+    public String type() {
+
+        return "MU";
     }
 }

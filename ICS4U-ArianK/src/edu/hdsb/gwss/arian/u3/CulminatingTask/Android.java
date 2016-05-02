@@ -14,41 +14,18 @@ import java.util.ArrayList;
 public class Android extends Lock {
 
     public  Android() {
-    
-        serialNumber = ++lastIdUsed;
-        comboGenerator(3, 9);
-        System.out.println("Your lock combination is: " + lockCombo);
+        super(3,9);
     }
 
     public Android(int num1, int num2, int num3) {
-        serialNumber = ++lastIdUsed;
-        if (isValid(num1, 9) && isValid(num2, 9) && isValid(num3,9)) {
-            lockCombo.add(num1);
-            lockCombo.add(num2);
-            lockCombo.add(num3);
-           
-            System.out.println("Your lock combination is: " + lockCombo);
-        } else {
-          
-            System.out.println("Re-enter lock combo");
-        }
-       
+        super();
+        comboSetter3Digit(num1, num2, num3, 9);
     }
   
     public void setLockCombo(int num1, int num2, int num3 ) {
         getterCount = 0;
-        
         changeLock(3);
-        
-        if (isValid(num1, 9) && isValid(num2, 9) && isValid(num3,9)) {
-            lockCombo.add(num1);
-            lockCombo.add(num2);
-            lockCombo.add(num3);
-            System.out.println("Your lock combination is: " + lockCombo);
-            
-        }else {
-            System.out.println("Invalid combo lock");
-        }             
+        comboSetter3Digit(num1, num2, num3, 9); 
     }
     
     

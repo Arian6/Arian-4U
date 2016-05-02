@@ -17,43 +17,61 @@ public class LockClient {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        Master m = new Master();
-        Dubdly a = new Dubdly();
+        Master m = new Master(6,2,4);
+        Dubdly a = new Dubdly(8,2,1);
       
-        Android b = new Android();
+        Android b = new Android(3,8,1);
       
-        MasterU c = new MasterU();
+        MasterU c = new MasterU(3,2,1,8);
         
    
+   System.out.println(c.getLockCombo());
    
-       System.out.println();
-       System.out.println(m.getLockCombo());
-       System.out.println(m.getLockCombo());
-       System.out.println();
-       System.out.println(a.getLockCombo());
-       System.out.println(a.getLockCombo());
-        System.out.println();
-        System.out.println(b.getLockCombo());
-       System.out.println(b.getLockCombo());
-         System.out.println();
-       System.out.println(c.getLockCombo());
-       System.out.println(c.getLockCombo());
-       
-       b.setLockCombo(3, 8, 6);
-       
-       System.out.println();
-        System.out.println(b.getLockCombo());
-       System.out.println(b.getLockCombo());
-       
-        System.out.println(c.getLockCombo());
-        System.out.println(c.getLockCombo());
-        c.setLockCombo(3, 8, 6, 9);
-         System.out.println(c.getLockCombo());
-        System.out.println(c.getLockCombo());
+   System.out.println(c.getLockCombo());
    
-      
-      
+   c.setLockCombo(4, 8, 1, 8);
+   
+    System.out.println(c.getLockCombo());
+   
+   System.out.println(c.getLockCombo());
+   
+   a.lock();
+   
+   a.unlock(5, 4, 1);
+   a.unlock(4, 5, 1);
+   a.unlock(5, 4, 1);
+   a.unlock(5, 4, 1);
+   
         
+        
+//       System.out.println();
+//       System.out.println(m.getLockCombo());
+//       System.out.println(m.getLockCombo());
+//       System.out.println();
+//       System.out.println(a.getLockCombo());
+//       System.out.println(a.getLockCombo());
+//        System.out.println();
+//        System.out.println(b.getLockCombo());
+//       System.out.println(b.getLockCombo());
+//         System.out.println();
+//       System.out.println(c.getLockCombo());
+//       System.out.println(c.getLockCombo());
+//       
+//       b.setLockCombo(3, 8, 6);
+//       
+//       System.out.println();
+//        System.out.println(b.getLockCombo());
+//       System.out.println(b.getLockCombo());
+//       
+//        System.out.println(c.getLockCombo());
+//        System.out.println(c.getLockCombo());
+//        c.setLockCombo(3, 8, 6, 9);
+//         System.out.println(c.getLockCombo());
+//        System.out.println(c.getLockCombo());
+//   
+//      
+//      
+//        
         System.out.println(m.getSerialNumber());
          System.out.println(a.getSerialNumber());
           System.out.println(b.getSerialNumber());

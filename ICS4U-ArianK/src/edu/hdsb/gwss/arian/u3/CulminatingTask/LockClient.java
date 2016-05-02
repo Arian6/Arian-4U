@@ -39,9 +39,9 @@ public class LockClient {
         System.out.println(c.getLockCombo());
 
         System.out.println(c.getLockCombo());
-//   
-//   
-//   
+   
+   
+   
         c.lock();
 
         c.unlock(4, 8, 3);

@@ -11,9 +11,9 @@ import java.util.ArrayList;
  *
  * @author ARIAN
  */
-public abstract class Lock implements LockInterface {
+public class Lock implements LockInterface {
 
-    protected static int lastIdUsed = 0;
+    private static int lastIdUsed = 0;
 
     protected int getterCount;
     protected int unlockTries;
@@ -28,7 +28,7 @@ public abstract class Lock implements LockInterface {
         this.locked = false;
     }
 
-    public void changeLock(int digits) {
+    protected void clearLock(int digits) {
         this.lockCombo.removeAll(lockCombo);
 
     }
@@ -41,29 +41,27 @@ public abstract class Lock implements LockInterface {
         System.out.println("Your lock combination is: " + this.lockCombo);
     }
 
-    public void setCombo(int num1, int num2, int num3) {
+    protected void setCombo(int num1, int num2, int num3) {
 
-        if(this instanceof Android) {
-             this.getterCount = 0;
-             this.unlockTries = 0;
-             changeLock(3);
-      
-        if (isValid(num1, 9) && isValid(num2, 9) && isValid(num3, 9)) {
-            this.lockCombo.add(num1);
-            this.lockCombo.add(num2);
-            this.lockCombo.add(num3);
+        if (this instanceof Android || this instanceof MasterU) {
+            this.getterCount = 0;
+            this.unlockTries = 0;
+            clearLock(3);
 
-            System.out.println("Your lock combination is: " + this.lockCombo);
-        } else {
+            if (isValid(num1, 9) && isValid(num2, 9) && isValid(num3, 9)) {
+                this.lockCombo.add(num1);
+                this.lockCombo.add(num2);
+                this.lockCombo.add(num3);
+                
+            } else {
 
-            System.out.println("Re-enter lock combo");
-        }
+                System.out.println("Re-enter lock combo");
+            }
         } else {
             System.out.println("Lock is not configurable");
         }
-        
-    }
 
+    }
 
     public void lock() {
         if (this.locked = false) {
@@ -93,7 +91,6 @@ public abstract class Lock implements LockInterface {
 
     }
 
-
     public boolean isValid(int x, int limit) {
         if (x < 0 || x > limit) {
             System.out.println("This number is invalid");
@@ -105,11 +102,12 @@ public abstract class Lock implements LockInterface {
     }
 
     public static int getLastIdUsed() {
+        
         return lastIdUsed;
     }
 
-    public static void setLastIdUsed(int lastIdUsed) {
-        Lock.lastIdUsed = lastIdUsed;
+    private static void setLastIdUsed(int lastIdUsed) {
+        System.out.println("Sorry, but this cannot be changed");
     }
 
     public int getSerialNumber() {
@@ -117,7 +115,13 @@ public abstract class Lock implements LockInterface {
     }
 
     public void setSerialNumber(int serialNumber) {
-        this.serialNumber = serialNumber;
+        if (this.serialNumber <= 0) {
+            System.out.println("Invalid Id");
+            this.serialNumber = -1;
+        } else {
+            this.serialNumber = ++lastIdUsed;
+            this.serialNumber = serialNumber;
+        }
     }
 
     public boolean isLocked() {
@@ -125,6 +129,7 @@ public abstract class Lock implements LockInterface {
     }
 
     public void setLocked(boolean locked) {
+        
         this.locked = locked;
     }
 
@@ -139,7 +144,5 @@ public abstract class Lock implements LockInterface {
         }
 
     }
-    
-    
 
 }

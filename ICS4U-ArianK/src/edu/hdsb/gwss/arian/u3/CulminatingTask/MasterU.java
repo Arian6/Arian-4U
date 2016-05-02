@@ -21,24 +21,14 @@ public class MasterU extends Lock {
         this.comboGenerator(COMBO_LENGTH, COMBO_MAX);
     }
 
-    public void setCombo(int num1, int num2, int num3, int num4) {
+     protected void setCombo(int num1, int num2, int num3, int num4) {
         if (this instanceof MasterU) {
-            this.unlockTries = 0;
-            this.getterCount = 0;
-            changeLock(4);
-            if (isValid(num1, 9) && isValid(num2, 9) && isValid(num3, 9) && isValid(num4, 9)) {
-                this.lockCombo.add(num1);
-                this.lockCombo.add(num2);
-                this.lockCombo.add(num3);
+            super.setCombo(num1, num2, num3);
+            if (isValid(num1, 9)) {
                 this.lockCombo.add(num4);
-
-                System.out.println("Your lock combination is: " + this.lockCombo);
             } else {
-
-                System.out.println("Re-enter lock combo");
+                System.out.println("Invalid lock combination");
             }
-        } else {
-            System.out.println("Lock is not configurable");
         }
     }
 

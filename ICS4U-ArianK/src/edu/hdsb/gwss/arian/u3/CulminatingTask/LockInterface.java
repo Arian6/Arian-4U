@@ -12,10 +12,13 @@ import java.util.ArrayList;
  * @author ARIAN
  */
 public interface LockInterface {
-    
-//    public void lock();
-//    public void unlock( ArrayList<Integer> combo );
+
+    public void lock();
+//
+//    public void unlock(ArrayList<Integer> combo);
+//
 //    public int getSerialNumber();
+//
 //    public ArrayList<Integer> getCombo();
 
 }

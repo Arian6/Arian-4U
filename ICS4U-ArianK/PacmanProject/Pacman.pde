@@ -226,6 +226,7 @@ public class Pacman extends Character {
          
          return "Pacman is located at (" + this.getXLoc() + ", " + this.getYLoc() + ")" + " Is his Mouth open? = " + this.isOpen + ".   Pacman currently has " + this.getLives() + " lives";
     }
+    
 
   public void livesDisplay() {
 

@@ -11,8 +11,8 @@ abstract class Character implements Interface {
 
   public Character(int xLoc, int yLoc) {
     this.isAlive = true;
-    this.xLoc =  (int) (Math.random() * 600);
-    this.yLoc =  (int) (Math.random() * 600);
+    this.xLoc =  xLoc;
+    this.yLoc =  yLoc;
   }
 
   abstract void display();

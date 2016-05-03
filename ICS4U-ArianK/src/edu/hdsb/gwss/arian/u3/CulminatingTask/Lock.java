@@ -1,16 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/* Name: Lock
+ * Version: v5
+ * Date: May 2 2016
+ * Author: Arian Krasniqi
  */
 package edu.hdsb.gwss.arian.u3.CulminatingTask;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author ARIAN
- */
 public class Lock implements LockInterface {
 
     private static int lastIdUsed = 0;
@@ -52,7 +48,7 @@ public class Lock implements LockInterface {
                 this.lockCombo.add(num1);
                 this.lockCombo.add(num2);
                 this.lockCombo.add(num3);
-                
+
             } else {
 
                 System.out.println("Re-enter lock combo");
@@ -102,7 +98,7 @@ public class Lock implements LockInterface {
     }
 
     public static int getLastIdUsed() {
-        
+
         return lastIdUsed;
     }
 
@@ -128,18 +124,24 @@ public class Lock implements LockInterface {
         return locked;
     }
 
-    public void setLocked(boolean locked) {
-        
-        this.locked = locked;
+    private void setLocked(boolean locked) {
+        if (this.locked == true) {
+            System.out.println("The lock is locked");
+
+        } else {
+
+            this.locked = locked;
+        }
     }
 
-    public ArrayList<Integer> getLockCombo() {
+    protected ArrayList<Integer> getLockCombo() {
         getterCount++;
         if (getterCount > 1) {
-            System.out.println("Cannot retrieve combo");
+            System.out.println("Cannot retrieve combo anymore");
             return null;
 
         } else {
+            System.out.println("Your lock combo is: " + lockCombo);
             return lockCombo;
         }
 

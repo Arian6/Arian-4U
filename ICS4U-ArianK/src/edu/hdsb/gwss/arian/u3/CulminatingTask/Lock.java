@@ -39,7 +39,7 @@ public class Lock implements LockInterface {
 
     protected void setCombo(int num1, int num2, int num3) {
 
-        if (this instanceof Android || this instanceof MasterU) {
+        if (this instanceof Android) {
             this.getterCount = 0;
             this.unlockTries = 0;
             clearLock(3);

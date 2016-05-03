@@ -5,17 +5,18 @@
  */
 package edu.hdsb.gwss.arian.u3.CulminatingTask;
 
+import java.util.ArrayList;
 
 public interface LockInterface {
 
-    public void lock();
-//
-   
-    
-//    public void unlock(ArrayList<Integer> combo);
-////
-//    public int getSerialNumber();
-////
-//    public ArrayList<Integer> getCombo();
+    ArrayList<Integer> getLockCombo();
+
+    void setCombo(int num1, int num2, int num3);
+
+    int getSerialNumber();
+
+    void lock();
+
+    void unlock(int num1, int num2, int num3);
 
 }

@@ -15,7 +15,7 @@ public class MasterU extends Lock {
         this.comboGenerator(COMBO_LENGTH, COMBO_MAX);
     }
 
-    protected void setCombo(int num1, int num2, int num3, int num4) {
+    public void setCombo(int num1, int num2, int num3, int num4) {
         if (this instanceof MasterU) {
             this.getterCount = 0;
             this.unlockTries = 0;

@@ -87,7 +87,6 @@ public class LockClient {
         System.out.println();
         mu.unlock(3, 3, 3, 3);
 
-  
     }
 
 }

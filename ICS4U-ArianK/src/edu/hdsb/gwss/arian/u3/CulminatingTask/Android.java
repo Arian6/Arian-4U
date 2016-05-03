@@ -5,6 +5,8 @@
  */
 package edu.hdsb.gwss.arian.u3.CulminatingTask;
 
+
+
 public class Android extends Lock {
 
     public static final int COMBO_MAX = 59;
@@ -15,6 +17,7 @@ public class Android extends Lock {
         this.comboGenerator(COMBO_LENGTH, COMBO_MAX);
     }
 
+   
     
     
     

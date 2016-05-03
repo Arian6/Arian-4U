@@ -7,6 +7,10 @@ package edu.hdsb.gwss.arian.u3.CulminatingTask;
 
 import java.util.ArrayList;
 
+/**
+ *
+ * @author ARIAN
+ */
 public class Lock implements LockInterface {
 
     private static int lastIdUsed = 0;
@@ -15,7 +19,7 @@ public class Lock implements LockInterface {
     protected int unlockTries;
     protected int serialNumber;
     protected boolean locked;
-    protected ArrayList<Integer> lockCombo = new ArrayList<Integer>();
+    public ArrayList<Integer> lockCombo = new ArrayList<Integer>();
 
     public Lock() {
         this.serialNumber = ++lastIdUsed;
@@ -24,12 +28,12 @@ public class Lock implements LockInterface {
         this.locked = false;
     }
 
-    protected void clearLock(int digits) {
+    public void clearLock(int digits) {
         this.lockCombo.removeAll(lockCombo);
 
     }
 
-    protected void comboGenerator(int digits, int highestPossible) {
+    public void comboGenerator(int digits, int highestPossible) {
 
         for (int i = 0; i < digits; i++) {
             this.lockCombo.add((int) (Math.random() * highestPossible));
@@ -37,7 +41,7 @@ public class Lock implements LockInterface {
         System.out.println("Your lock combination is: " + this.lockCombo);
     }
 
-    protected void setCombo(int num1, int num2, int num3) {
+    public void setCombo(int num1, int num2, int num3) {
 
         if (this instanceof Android) {
             this.getterCount = 0;
@@ -134,7 +138,7 @@ public class Lock implements LockInterface {
         }
     }
 
-    protected ArrayList<Integer> getLockCombo() {
+    public ArrayList<Integer> getLockCombo() {
         getterCount++;
         if (getterCount > 1) {
             System.out.println("Cannot retrieve combo anymore");
@@ -146,5 +150,7 @@ public class Lock implements LockInterface {
         }
 
     }
+
+ 
 
 }

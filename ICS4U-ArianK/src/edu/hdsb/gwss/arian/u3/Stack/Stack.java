@@ -11,11 +11,18 @@ package edu.hdsb.gwss.arian.u3.Stack;
  */
 public class Stack implements StackInterface {
 
-    private static final int DEFAULT_SIZE = 10;
-    
-    
+    private static final int DEFAULT_SIZE = 25;
+
     private int[] stack;
     private int top = -1;
+
+    public Stack() {
+        this.stack = new int[DEFAULT_SIZE];
+    }
+
+    public Stack(int capacity) {
+        this.stack = new int[capacity];
+    }
 
     public int top() {
         if (top == -1) {
@@ -29,52 +36,54 @@ public class Stack implements StackInterface {
         if (this.isEmpty()) {
             return -1;
         } else {
-            return this.top--;
+            this.top = this.top - 1;
+            return this.top;
         }
-        
+
     }
 
-    
     public void push(int value) {
-        if(this.isFull()){
+        this.top++;
+        if (this.isFull()) {
+
+           
+        } else {
+       
+            stack[top] = value;
+            
             
         }
+
     }
 
-   
     public int size() {
-        return top - 1;
+        return top;
     }
 
-    
     public int capacity() {
-        return stack.length - 1;
+        return stack.length + 1;
     }
 
-   
     public boolean isEmpty() {
-        if(this.top == -1) {
+        if (this.top == -1) {
             return true;
         } else {
             return false;
         }
     }
 
-    
     public boolean isFull() {
-        if(this.size() == this.capacity()) {
+        
+        if (this.top == 5) {
             return true;
         } else {
-            return false;
+        return false;
         }
+
     }
 
-    
     public void makeEmpty() {
         this.top = -1;
     }
-    
-    
 
-    
 }

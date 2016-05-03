@@ -8,7 +8,6 @@ package edu.hdsb.gwss.arian.u3.CulminatingTask;
 public class LockClient {
 
     public static void main(String[] args) {
-
         // set locks
         Master m = new Master();
         Dudley d = new Dudley();
@@ -86,6 +85,8 @@ public class LockClient {
 
         System.out.println();
         mu.unlock(3, 3, 3, 3);
+        
+        
 
     }
 

@@ -62,7 +62,7 @@ public class Stack implements StackInterface {
 
     
     public boolean isFull() {
-        if(this.top == this.capacity()) {
+        if(this.size() == this.capacity()) {
             return true;
         } else {
             return false;

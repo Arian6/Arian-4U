@@ -115,18 +115,6 @@ public class StackClient {
         System.out.println("----------------------------");
         System.out.println();
         
-        
-        
-        
-
-//        a.push(2);
-//        a.push(3);
-//        a.push(4);
-//        a.push(5);
-//        a.push(6);
-//        a.push(7);
-//        System.out.println(a.top());
-//         
     }
 
 }

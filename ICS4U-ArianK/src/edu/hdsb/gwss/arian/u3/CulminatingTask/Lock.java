@@ -6,6 +6,7 @@
 package edu.hdsb.gwss.arian.u3.CulminatingTask;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -19,7 +20,8 @@ public class Lock implements LockInterface {
     protected int unlockTries;
     protected int serialNumber;
     protected boolean locked;
-    public ArrayList<Integer> lockCombo = new ArrayList<Integer>();
+    protected ArrayList<Integer> lockCombo = new ArrayList<Integer>();
+    protected ArrayList<Integer>
 
     public Lock() {
         this.serialNumber = ++lastIdUsed;
@@ -146,11 +148,10 @@ public class Lock implements LockInterface {
 
         } else {
             System.out.println("Your lock combo is: " + lockCombo);
+            //ArrayList<Integer> aCopy = ArrayLists..copyOf(lockCombo, lockCombo.size());
             return lockCombo;
         }
 
     }
-
- 
 
 }

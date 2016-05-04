@@ -9,14 +9,14 @@ public interface StackInterface {
 
     public int pop();
 
-    public void push( int value );
+    public void push(int value);
 
     public int size();
-    
+
     public int capacity();
 
     public boolean isEmpty();
-    
+
     public boolean isFull();
 
     public void makeEmpty();

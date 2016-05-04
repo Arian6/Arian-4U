@@ -17,18 +17,20 @@ public class Stack implements StackInterface {
     private int top = -1;
 
     public Stack() {
-        this.stack = new int[DEFAULT_SIZE];
+        this(DEFAULT_SIZE);
+
     }
 
     public Stack(int capacity) {
+
         this.stack = new int[capacity];
     }
 
     public int top() {
-        if (top == -1) {
+        if (this.top == -1) {
             return -1;
         } else {
-            return top;
+            return stack[this.top];
         }
     }
 
@@ -37,31 +39,28 @@ public class Stack implements StackInterface {
             return -1;
         } else {
             this.top = this.top - 1;
-            return this.top;
+            return stack[top + 1];
         }
 
     }
 
     public void push(int value) {
-        this.top++;
-        if (this.isFull()) {
 
-           
-        } else {
-       
-            stack[top] = value;
-            
-            
+        if (!this.isFull()) {
+
+            this.top++;
+            this.stack[top] = value;
+
         }
 
     }
 
     public int size() {
-        return top;
+        return this.top + 1;
     }
 
     public int capacity() {
-        return stack.length + 1;
+        return stack.length;
     }
 
     public boolean isEmpty() {
@@ -73,11 +72,11 @@ public class Stack implements StackInterface {
     }
 
     public boolean isFull() {
-        
-        if (this.top == 5) {
+
+        if (this.size() == this.capacity()) {
             return true;
         } else {
-        return false;
+            return false;
         }
 
     }

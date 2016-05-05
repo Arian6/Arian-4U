@@ -15,15 +15,20 @@ public class Queue implements QueueInterface{
 
     private int[] stack;
     private int front = -1;
+    private int back = -1;
+    
     
     @Override
     public int front() {
-        
+
+        return front;
     }
 
     @Override
     public int back() {
-       
+        
+        
+       return back;
     }
 
     @Override

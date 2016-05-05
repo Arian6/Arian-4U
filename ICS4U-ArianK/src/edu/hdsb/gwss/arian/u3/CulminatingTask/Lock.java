@@ -21,7 +21,7 @@ public class Lock implements LockInterface {
     protected int serialNumber;
     protected boolean locked;
     protected ArrayList<Integer> lockCombo = new ArrayList<Integer>();
-    protected ArrayList<Integer>
+
 
     public Lock() {
         this.serialNumber = ++lastIdUsed;

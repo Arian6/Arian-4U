@@ -43,17 +43,23 @@ public class Queue implements QueueInterface{
 
     @Override
     public int size() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+       return this.back + 1;
     }
 
     @Override
     public int capacity() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.stack.length;
     }
 
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(front == -1) {
+            return true;
+        } else {
+            return false;
+        }
+        
     }
 
     @Override

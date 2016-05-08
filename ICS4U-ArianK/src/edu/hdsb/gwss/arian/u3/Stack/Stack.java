@@ -17,7 +17,7 @@ public class Stack implements StackInterface {
     private int top = -1;
 
     public Stack() {
-        this(DEFAULT_SIZE);
+        this.stack = new int[DEFAULT_SIZE];
 
     }
 
@@ -27,7 +27,7 @@ public class Stack implements StackInterface {
     }
 
     public int top() {
-        if (this.top == -1) {
+        if (this.isEmpty()) {
             return -1;
         } else {
             return stack[this.top];

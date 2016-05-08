@@ -16,20 +16,25 @@ public class QueueClient {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Queue a = new Queue(4);
-         
-        a.enqueue(1);
-        a.enqueue(2);
-        a.enqueue(3);
-        a.enqueue(4);
+        
         //queue.enqueue("E");
-        System.out.println(a.size());
-        System.out.println(a.dequeue());
-        a.enqueue(5);
-        System.out.println(a.size());
-        //queue.enqueue("F");
-        System.out.println(a.dequeue());
-        System.out.println(a.size());
+        //System.out.println(3 % 4);
+      Queue queue = new Queue(5);
+         
+        queue.enqueue(1);
+        queue.enqueue(2);
+        queue.enqueue(3);
+        queue.enqueue(4);
+        queue.enqueue(5);
+        queue.enqueue(6);
+        queue.enqueue(7);
+        System.out.println(queue.size());
+        System.out.println(queue.dequeue());
+        //queue.enqueue(6);
+        System.out.println(queue.size());
+        //queue.enqueue(7);
+        System.out.println(queue.dequeue());
+        System.out.println(queue.size());
     }
     
 }

@@ -41,7 +41,7 @@ public class Queue implements QueueInterface {
         if (this.back == -1) {
             return -1;
         } else {
-            return this.queue[this.back ];
+            return this.queue[this.back];
         }
 
     }
@@ -49,54 +49,53 @@ public class Queue implements QueueInterface {
     @Override
     public void enqueue(int value) {
 
-        if (this.front == -1 && this.back == -1) {
-            this.front++;
-            this.back++;
-        }
         if (!this.isFull()) {
-             this.back = (back + 1) % this.capacity();
-            this.queue[this.back] = value;
-            
-            
+            if (this.isEmpty()) {
+                this.front++;
+                this.back++;
+                this.queue[this.back] = value;
+            } else {
+                this.back = (this.back + 1) % capacity();
+                this.queue[this.back] = value;
+            }
+
         }
-        //back ==  front + count - 1 % length
+
     }
 
     @Override
     public int dequeue() {
         int holder = 0;
+
         
         if (!this.isEmpty()) {
-
+            if(this.size() == 1) {
+            holder = this.queue[front];
+            this.makeEmpty();
+        } else {
             holder = this.queue[front];
             this.queue[front] = 0;
-            this.front = (this.front + 1) % this.queue.length;
+            this.front = (this.front + 1) % this.capacity();
+            }
         }
-        
+
         return holder;
 
-        //fronmt == front + 1 % length
     }
 
     @Override
     public int size() {
 
-        if(this.isEmpty()) {
+        if (this.isEmpty()) {
             return 0;
-        } else if (this.back == 0 && this.front == 0) {
+        } else if (this.back == this.front) {
             return 1;
-        }
-        else if (this.back > this.front) {
-            return (this.back + 1 - this.front) ;
+        } else if (this.back > this.front) {
+            return ((this.back + 1) - this.front);
         } else {
-            return this.capacity() + 1 - (this.front + this.back) ;
+            return (this.capacity() - this.front) + (this.back + 1);
         }
 
-//        if(this.back - this.front < 0) {
-//            return (this.back - this.front) * -1;
-//        } else {
-//        return this.back - this.front;
-//        }
     }
 
     @Override
@@ -106,29 +105,19 @@ public class Queue implements QueueInterface {
 
     @Override
     public boolean isEmpty() {
-        if (this.front == 0 && this.back == 0) {
-            return false;
-        } else if (this.front == this.back) {
+        if (this.front == -1 && this.back == -1) {
             return true;
-        } else {
-            return false;
         }
-
+        return false;
     }
 
     @Override
     public boolean isFull() {
-
-//        if ((this.back - this.front) == -1 || (this.back - this.front) == (this.capacity() - 1)) {
-//            return true;
-//        }
-//        return false;
-
         if (this.size() == this.capacity()) {
-                    return true;
-                } else {
-                    return false;
-                }
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override

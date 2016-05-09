@@ -54,8 +54,8 @@ public class Queue implements QueueInterface {
             this.back++;
         }
         if (!this.isFull()) {
-             this.back = (back + 1) % this.queue.length;
-            this.queue[back] = value;
+             this.back = (back + 1) % this.capacity();
+            this.queue[this.back] = value;
             
             
         }
@@ -81,10 +81,15 @@ public class Queue implements QueueInterface {
     @Override
     public int size() {
 
-        if (this.back > this.front) {
-            return (this.back - this.front) ;
+        if(this.isEmpty()) {
+            return 0;
+        } else if (this.back == 0 && this.front == 0) {
+            return 1;
+        }
+        else if (this.back > this.front) {
+            return (this.back + 1 - this.front) ;
         } else {
-            return this.capacity() - this.front + this.back ;
+            return this.capacity() + 1 - (this.front + this.back) ;
         }
 
 //        if(this.back - this.front < 0) {
@@ -96,7 +101,7 @@ public class Queue implements QueueInterface {
 
     @Override
     public int capacity() {
-        return this.queue.length ;
+        return this.queue.length;
     }
 
     @Override
@@ -119,7 +124,7 @@ public class Queue implements QueueInterface {
 //        }
 //        return false;
 
-        if (this.size() + 1== this.capacity()) {
+        if (this.size() == this.capacity()) {
                     return true;
                 } else {
                     return false;

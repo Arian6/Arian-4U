@@ -29,53 +29,7 @@ public class QueueClient {
         queue.enqueue(6);
 
         System.out.println(queue.size());
-        System.out.println(queue.dequeue());
-        System.out.println(queue.front());
-        System.out.println(queue.back());
-        System.out.println();
-        System.out.println(queue.size());
-        System.out.println(queue.dequeue());
-        System.out.println(queue.front());
-        System.out.println(queue.back());
-        System.out.println();
-        System.out.println(queue.size());
-        System.out.println(queue.dequeue());
-        System.out.println(queue.front());
-        System.out.println(queue.back());
-        System.out.println();
-        System.out.println(queue.size());
-        System.out.println(queue.dequeue());
-        System.out.println(queue.front());
-        System.out.println(queue.back());
-        System.out.println();
-        System.out.println(queue.size());
-        System.out.println(queue.dequeue());
-        System.out.println(queue.front());
-        System.out.println(queue.back());
-        System.out.println();
-        System.out.println(queue.size());
-        System.out.println(queue.dequeue());
-        System.out.println(queue.front());
-        System.out.println(queue.back());
-        System.out.println();
-        
-        queue.enqueue(1);
-        queue.enqueue(2);
-        queue.enqueue(3);
-        queue.enqueue(4);
-        queue.enqueue(5);
-        queue.enqueue(6);
-          System.out.println(queue.size());
-        System.out.println(queue.dequeue());
-        System.out.println(queue.front());
-        System.out.println(queue.back());
-        System.out.println();
-       queue.enqueue(1);
-         System.out.println(queue.size());
-        System.out.println(queue.dequeue());
-        System.out.println(queue.front());
-        System.out.println(queue.back());
-        System.out.println();
+
     }
 
 }

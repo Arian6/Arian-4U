@@ -28,14 +28,22 @@ public class Queue implements QueueInterface {
 
     @Override
     public int front() {
+        if (this.front == -1) {
+            return -1;
+        } else {
+            return this.queue[this.front];
+        }
 
-        return front;
     }
 
     @Override
     public int back() {
+        if (this.back == -1) {
+            return -1;
+        } else {
+            return this.queue[this.back ];
+        }
 
-        return back;
     }
 
     @Override
@@ -46,19 +54,26 @@ public class Queue implements QueueInterface {
             this.back++;
         }
         if (!this.isFull()) {
+             this.back = (back + 1) % this.queue.length;
             this.queue[back] = value;
-            this.back = (this.back + 1) % this.capacity();
+            
+            
         }
         //back ==  front + count - 1 % length
     }
 
     @Override
     public int dequeue() {
+        int holder = 0;
+        
         if (!this.isEmpty()) {
 
-            this.front = (front + 1) % this.capacity();
+            holder = this.queue[front];
+            this.queue[front] = 0;
+            this.front = (this.front + 1) % this.queue.length;
         }
-        return this.queue[front];
+        
+        return holder;
 
         //fronmt == front + 1 % length
     }
@@ -67,9 +82,9 @@ public class Queue implements QueueInterface {
     public int size() {
 
         if (this.back > this.front) {
-            return this.back - this.front + 1;
+            return (this.back - this.front) ;
         } else {
-            return this.capacity() - this.front + this.back + 1;
+            return this.capacity() - this.front + this.back ;
         }
 
 //        if(this.back - this.front < 0) {
@@ -81,35 +96,34 @@ public class Queue implements QueueInterface {
 
     @Override
     public int capacity() {
-        return this.queue.length;
+        return this.queue.length ;
     }
 
     @Override
     public boolean isEmpty() {
-//        if (this.front == 0 && this.back == 0) {
-//            return false;
-//        } else if (this.front == this.back) {
-//            return true;
-//        } else {
-//            return false;
-//        }
+        if (this.front == 0 && this.back == 0) {
+            return false;
+        } else if (this.front == this.back) {
+            return true;
+        } else {
+            return false;
+        }
 
-        return (back == front);
     }
 
     @Override
     public boolean isFull() {
 
-        if ((this.back - this.front) == -1 || (this.back - this.front) == (this.capacity() - 1)) {
-            return true;
-        }
-        return false;
+//        if ((this.back - this.front) == -1 || (this.back - this.front) == (this.capacity() - 1)) {
+//            return true;
+//        }
+//        return false;
 
-//        if (this.size() + 1 == this.capacity()) {
-        //            return true;
-        //        } else {
-        //            return false;
-        //        }
+        if (this.size() + 1== this.capacity()) {
+                    return true;
+                } else {
+                    return false;
+                }
     }
 
     @Override

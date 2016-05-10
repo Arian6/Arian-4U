@@ -13,10 +13,10 @@ package edu.hdsb.gwss.arian.u3.LinkedList;
  */
 public class LinkList implements LinkListInterface{
 
+
     private Node head;
-    private Node tail;
-    
-    
+    private Node tail;  
+
     @Override
     public int size() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -34,7 +34,9 @@ public class LinkList implements LinkListInterface{
 
     @Override
     public void addAtFront(String str) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        
+        
     }
 
     @Override

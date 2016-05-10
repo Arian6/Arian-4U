@@ -13,8 +13,8 @@ package edu.hdsb.gwss.arian.u3.LinkedList;
  */
 public class LinkList implements LinkListInterface{
 
-    private int head;
-    private int tail;
+    private Node head;
+    private Node tail;
     
     
     @Override

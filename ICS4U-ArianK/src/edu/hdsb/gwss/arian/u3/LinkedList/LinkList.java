@@ -86,39 +86,73 @@ public class LinkList implements LinkListInterface {
 
     @Override
     public void remove(String str) {
-        Node temp = new Node(str);
-        
-        
+
         if (this.head.getData().equals(str)) {
             temp = this.head.getNext();
             this.head = null;
             this.head = temp;
-            
+
         } else if (this.tail.getData().equals(str)) {
             temp = this.head.getNext();
             this.head = null;
             this.head = temp;
-            
-            
-            
+
         }
-        
-         while (empty.getNext() != null) {
-             
-         }
-        
-        
-        
+
+        while (empty.getNext() != null) {
+
+        }
+
     }
 
     @Override
-    public String removeFromEnd() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String removeHead() {
+        Node first = this.head;
+        Node keep;
+
+        if (this.head == this.tail) {
+            this.head = null;
+            this.tail = null;
+            return first.getData();
+        } else {
+
+            keep = this.head;
+            this.head = first.getNext();
+            keep.setNext(null);
+
+            return this.head.getData();
+        }
+    }
+
+    public String removeTail() {
+
+        Node last = this.head;
+        Node keep;
+
+        if (this.head == this.tail) {
+            last = null;
+            return last.getData();
+        } else {
+            while (last.getNext() != this.tail) {
+                last = last.getNext();
+            }
+            keep = last.getNext();
+            last.setNext(null);
+            this.tail = last;
+
+            return keep.getData();
+        }
     }
 
     @Override
-    public String removeFromFront() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String head() {
+
+        return this.head.getData();
+    }
+
+    @Override
+    public String tail() {
+        return this.tail.getData();
     }
 
 }

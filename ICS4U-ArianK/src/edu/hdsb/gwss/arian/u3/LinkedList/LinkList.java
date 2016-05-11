@@ -22,7 +22,7 @@ public class LinkList implements LinkListInterface {
     public int size() {
 
         Node a = this.head;
-        int counter = 0;
+        int counter = 1;
 
         while (a.getNext() != null) {
 
@@ -35,11 +35,13 @@ public class LinkList implements LinkListInterface {
 
     @Override
     public void makeEmpty() {
+        Node empty = this.head;
 
-        while (c.getNext() != null) {
+        while (empty.getNext() != null) {
 
-            c = c.getNext();
-            counter++;
+            empty = null;
+            empty = empty.getNext();
+
         }
 
     }
@@ -47,7 +49,11 @@ public class LinkList implements LinkListInterface {
     @Override
     public boolean isEmpty() {
 
-        return this.head == null;
+        if (this.head == null) {
+            return true;
+        } else {
+            return false;
+        }
 
     }
 
@@ -80,7 +86,29 @@ public class LinkList implements LinkListInterface {
 
     @Override
     public void remove(String str) {
-
+        Node temp = new Node(str);
+        
+        
+        if (this.head.getData().equals(str)) {
+            temp = this.head.getNext();
+            this.head = null;
+            this.head = temp;
+            
+        } else if (this.tail.getData().equals(str)) {
+            temp = this.head.getNext();
+            this.head = null;
+            this.head = temp;
+            
+            
+            
+        }
+        
+         while (empty.getNext() != null) {
+             
+         }
+        
+        
+        
     }
 
     @Override

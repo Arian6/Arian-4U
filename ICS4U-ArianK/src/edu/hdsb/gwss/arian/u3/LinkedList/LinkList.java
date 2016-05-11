@@ -61,12 +61,12 @@ public class LinkList implements LinkListInterface {
     public void addAtFront(String str) {
         Node front = new Node(str);
 
-        front.setNext(this.head);
-        this.head = front;
-
         if (this.isEmpty()) {
             this.tail = front;
         }
+
+        front.setNext(this.head);
+        this.head = front;
 
     }
 
@@ -75,31 +75,30 @@ public class LinkList implements LinkListInterface {
 
         Node back = new Node(str);
 
-        back.setNext(this.tail);
-        this.tail = back;
-
         if (this.isEmpty()) {
             this.head = back;
         }
+        back.setNext(this.tail);
+        this.tail = back;
 
     }
 
     @Override
     public void remove(String str) {
 
+        Node remove = this.head;
+        Node temp;
         if (this.head.getData().equals(str)) {
-            temp = this.head.getNext();
-            this.head = null;
-            this.head = temp;
-
+            this.removeHead();
         } else if (this.tail.getData().equals(str)) {
-            temp = this.head.getNext();
-            this.head = null;
-            this.head = temp;
-
-        }
-
-        while (empty.getNext() != null) {
+            this.removeTail();
+        } else {
+            while (!remove.getNext().getData().equals(str)) {
+                remove = remove.getNext();
+            }
+            temp = remove.getNext();
+            remove.setNext(remove.getNext().getNext());
+            temp = null;
 
         }
 
@@ -117,10 +116,11 @@ public class LinkList implements LinkListInterface {
         } else {
 
             keep = this.head;
-            this.head = first.getNext();
+            this.head = this.head.getNext();
             keep.setNext(null);
 
-            return this.head.getData();
+            return first.getData();
+
         }
     }
 
@@ -130,7 +130,8 @@ public class LinkList implements LinkListInterface {
         Node keep;
 
         if (this.head == this.tail) {
-            last = null;
+            this.head = null;
+            this.tail = null;
             return last.getData();
         } else {
             while (last.getNext() != this.tail) {
@@ -148,6 +149,7 @@ public class LinkList implements LinkListInterface {
     public String head() {
 
         return this.head.getData();
+
     }
 
     @Override

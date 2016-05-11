@@ -17,16 +17,15 @@ public class LinkListClient {
     public static void main(String[] args) {
         // TODO code application logic here
         LinkList a = new LinkList();
-        LinkList b = new LinkList();
-        LinkList c = new LinkList();
-        
-        a.addAtFront("7");
-        b.addAtFront("6");
-        c.addAtFront("5");
-        
-        System.out.println(b.head);
-        
-        
+
+        a.addAtFront("a");
+        a.addAtFront("b");
+        a.addAtFront("c");
+
+        System.out.println(a.tail());
+        a.removeTail();
+        System.out.println(a.tail());
+
     }
-    
+
 }

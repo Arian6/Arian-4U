@@ -5,48 +5,82 @@
  */
 package edu.hdsb.gwss.arian.u3.LinkedList;
 
-
-
 /**
  *
  * @author 1krasniqiari
  */
-public class LinkList implements LinkListInterface{
+public class LinkList implements LinkListInterface {
 
+    protected Node head;
+    protected Node tail;
 
-    private Node head;
-    private Node tail;  
+    public LinkList() {
+        this.head = null;
+    }
 
     @Override
     public int size() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        Node a = this.head;
+        int counter = 0;
+
+        while (a.getNext() != null) {
+
+            a = a.getNext();
+            counter++;
+        }
+
+        return counter;
     }
 
     @Override
     public void makeEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        while (c.getNext() != null) {
+
+            c = c.getNext();
+            counter++;
+        }
+
     }
 
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        return this.head == null;
+
     }
 
     @Override
     public void addAtFront(String str) {
-        
-        
-        
+        Node front = new Node(str);
+
+        front.setNext(this.head);
+        this.head = front;
+
+        if (this.isEmpty()) {
+            this.tail = front;
+        }
+
     }
 
     @Override
     public void addAtEnd(String str) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        Node back = new Node(str);
+
+        back.setNext(this.tail);
+        this.tail = back;
+
+        if (this.isEmpty()) {
+            this.head = back;
+        }
+
     }
 
     @Override
     public void remove(String str) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     @Override
@@ -58,5 +92,5 @@ public class LinkList implements LinkListInterface{
     public String removeFromFront() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

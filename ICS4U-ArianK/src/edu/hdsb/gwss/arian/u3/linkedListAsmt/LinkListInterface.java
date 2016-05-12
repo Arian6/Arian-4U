@@ -1,4 +1,4 @@
-package edu.hdsb.gwss.arian.u3.LinkedList;
+package edu.hdsb.gwss.arian.u3.linkedListAsmt;
 
 /**
  * Lesson: 6.03 - Linked List

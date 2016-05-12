@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.hdsb.gwss.arian.u3.LinkedList;
+package edu.hdsb.gwss.arian.u3.linkedListAsmt;
 
 /**
  *
@@ -39,20 +39,9 @@ public class LinkList implements LinkListInterface {
 
     @Override
     public void makeEmpty() {
-        Node empty = this.head;
-        Node temp;
-
-        if (!this.isEmpty()) {
-
-            while (empty.getNext() != null) {
-
-                temp = empty;
-
-                empty = null;
-                empty = temp.getNext();
-
-            }
-        }
+        
+        this.head = null;
+        this.tail = null;
 
     }
 
@@ -87,9 +76,14 @@ public class LinkList implements LinkListInterface {
 
         if (this.isEmpty()) {
             this.head = back;
+            this.tail = back;
+
+        } else {
+
+            this.tail.setNext(back);
+            this.tail = back;
+
         }
-        back.setNext(this.tail);
-        this.tail = back;
 
     }
 
@@ -142,7 +136,7 @@ public class LinkList implements LinkListInterface {
 
         Node last = this.head;
         Node keep;
-        
+
         if (!this.isEmpty()) {
             if (this.head == this.tail) {
                 this.head = null;
@@ -169,10 +163,9 @@ public class LinkList implements LinkListInterface {
     @Override
     public String head() {
 
-        if(!this.isEmpty()) {
-        return this.head.getData();
-        }else 
-        {
+        if (!this.isEmpty()) {
+            return this.head.getData();
+        } else {
             return null;
         }
 
@@ -180,12 +173,28 @@ public class LinkList implements LinkListInterface {
 
     @Override
     public String tail() {
-           if(!this.isEmpty()) {
-        return this.tail.getData();
-        }else 
-        {
+        if (!this.isEmpty()) {
+            return this.tail.getData();
+        } else {
             return null;
         }
+    }
+
+    @Override
+    public String toString() {
+        Node string = this.head;
+        String printLine = "";
+        int counter = 0;
+
+        while (string != null) {
+
+            printLine = printLine + "Node #" + counter + " = " + string.getData() + ",  ";
+            counter++;
+            string = string.getNext();
+
+        }
+
+        return printLine;
     }
 
 }

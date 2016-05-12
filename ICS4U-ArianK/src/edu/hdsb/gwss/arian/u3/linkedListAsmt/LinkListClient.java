@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.hdsb.gwss.arian.u3.LinkedList;
+package edu.hdsb.gwss.arian.u3.linkedListAsmt;
 
 /**
  *
@@ -18,14 +18,32 @@ public class LinkListClient {
         // TODO code application logic here
         LinkList a = new LinkList();
 
-        System.out.println(a.head());
-        System.out.println(a.tail());
-        a.addAtFront("a");
-        a.addAtFront("b");
-        a.addAtFront("c");
+        assert (a.head() == null);
+        assert (a.tail() == null);
+        assert (a.size() == 0);
+        //MAKE ASSERTIONS
+        a.addAtEnd("a");
+        a.addAtEnd("b");
+        a.addAtEnd("c");
 
-        System.out.println(a.head());
-        System.out.println(a.tail());
+        assert (a.head().equals("a"));
+        assert (a.tail().equals("c"));
+        assert (a.size() == 3);
+
+        a.addAtFront("1");
+        a.addAtFront("2");
+        a.addAtFront("3");
+
+        assert (a.head().equals("3"));
+        assert (a.tail().equals("c"));
+        assert (a.size() == 6);
+        System.out.println(a.toString());
+        a.makeEmpty();
+        assert (a.size() == 0);
+        System.out.println(a.toString());
+//        System.out.println(a.size());
+//        System.out.println(a.head());
+//        System.out.println(a.tail());
 
 //        System.out.println(a.size());
 //        a.removeTail();

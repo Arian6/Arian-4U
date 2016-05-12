@@ -1,4 +1,4 @@
-package edu.hdsb.gwss.arian.u3.Queue;
+package edu.hdsb.gwss.arian.u3.queueAsmt;
 
 /**
  * Lesson: 6.02 - Queue

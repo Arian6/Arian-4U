@@ -3,7 +3,7 @@
  * Date: May 2 2016
  * Author: Arian Krasniqi
  */
-package edu.hdsb.gwss.arian.u3.CulminatingTask;
+package edu.hdsb.gwss.arian.u3.culminating;
 
 
 public class Master extends Lock {

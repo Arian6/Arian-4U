@@ -1,4 +1,4 @@
-package edu.hdsb.gwss.arian.u3.Stack;
+package edu.hdsb.gwss.arian.u3.stackAsmt;
 
 /**
  * Lesson: 6.01 - Stacks

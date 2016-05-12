@@ -26,7 +26,6 @@ public class Queue implements QueueInterface {
         this.queue = new int[capacity];
     }
 
-    @Override
     public int front() {
         if (this.front == -1) {
             return -1;
@@ -36,7 +35,6 @@ public class Queue implements QueueInterface {
 
     }
 
-    @Override
     public int back() {
         if (this.back == -1) {
             return -1;
@@ -50,6 +48,7 @@ public class Queue implements QueueInterface {
     public void enqueue(int value) {
 
         if (!this.isFull()) {
+
             if (this.isEmpty()) {
                 this.front++;
                 this.back++;
@@ -67,15 +66,14 @@ public class Queue implements QueueInterface {
     public int dequeue() {
         int holder = 0;
 
-        
         if (!this.isEmpty()) {
-            if(this.size() == 1) {
-            holder = this.queue[front];
-            this.makeEmpty();
-        } else {
-            holder = this.queue[front];
-            this.queue[front] = 0;
-            this.front = (this.front + 1) % this.capacity();
+            if (this.size() == 1) {
+                holder = this.queue[front];
+                this.makeEmpty();
+            } else {
+                holder = this.queue[front];
+                this.queue[front] = 0;
+                this.front = (this.front + 1) % this.capacity();
             }
         }
 

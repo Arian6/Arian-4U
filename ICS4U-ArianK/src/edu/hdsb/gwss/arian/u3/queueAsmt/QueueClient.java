@@ -17,48 +17,77 @@ public class QueueClient {
     public static void main(String[] args) {
         // TODO code application logic here
 
-        //queue.enqueue("E");
-//        System.out.println(1 % 5);
         Queue queue = new Queue(5);
-//System.out.println(queue.front());
+
+        //EMPTY TESTS
+        assert (queue.isEmpty());
+        assert (!queue.isFull());
+        assert (queue.front() == -1);
+        assert (queue.back() == -1);
+        assert (queue.capacity() == 5);
+
+        //ADD 1
         queue.enqueue(1);
+
+        assert (!queue.isEmpty());
+        assert (queue.size() == 1);
+        assert (!queue.isFull());
+        assert (queue.front() == 1);
+        assert (queue.back() == 1);
+        assert (queue.capacity() == 5);
+
+        //Fill Queue
         queue.enqueue(2);
         queue.enqueue(3);
         queue.enqueue(4);
         queue.enqueue(5);
+
+        assert (queue.size() == 5);
+        assert (!queue.isEmpty());
+        assert (queue.isFull());
+        assert (queue.front() == 1);
+        assert (queue.back() == 5);
+        assert (queue.capacity() == 5);
+
+        //Fill 1 more
         queue.enqueue(6);
 
-        System.out.println(queue.size());
-        System.out.println(queue.front());
-        System.out.println(queue.back());
-        System.out.println();
+        assert (queue.size() == 5);
+        assert (!queue.isEmpty());
+        assert (queue.isFull());
+        assert (queue.front() == 1);
+        assert (queue.back() == 5);
+        assert (queue.capacity() == 5);
 
-        System.out.println(queue.dequeue());
-        System.out.println(queue.size());
-        System.out.println(queue.front());
-        System.out.println(queue.back());
-        System.out.println();
+        //Dequeue
+        queue.dequeue();
 
-        System.out.println(queue.dequeue());
-        System.out.println(queue.size());
-        System.out.println(queue.front());
-        System.out.println(queue.back());
-        System.out.println();
-        System.out.println(queue.dequeue());
-        System.out.println(queue.size());
-        System.out.println(queue.front());
-        System.out.println(queue.back());
-        System.out.println();
-        System.out.println(queue.dequeue());
-        System.out.println(queue.size());
-        System.out.println(queue.front());
-        System.out.println(queue.back());
-        System.out.println();
-        System.out.println(queue.dequeue());
-        System.out.println(queue.size());
-        System.out.println(queue.front());
-        System.out.println(queue.back());
-        System.out.println();
+        assert (queue.size() == 4);
+        assert (!queue.isEmpty());
+        assert (!queue.isFull());
+        assert (queue.front() == 2);
+        assert (queue.back() == 5);
+        assert (queue.capacity() == 5);
+
+        //Make Empty
+        queue.makeEmpty();
+        assert (queue.size() == 0);
+        assert (queue.isEmpty());
+        assert (!queue.isFull());
+        assert (queue.front() == -1);
+        assert (queue.back() == -1);
+        assert (queue.capacity() == 5);
+
+        //dequeuq when empty
+        queue.dequeue();
+
+        assert (queue.size() == 0);
+        assert (queue.isEmpty());
+        assert (!queue.isFull());
+        assert (queue.front() == -1);
+        assert (queue.back() == -1);
+        assert (queue.capacity() == 5);
+
     }
 
 }

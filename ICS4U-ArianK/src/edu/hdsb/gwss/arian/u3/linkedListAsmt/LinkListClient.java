@@ -18,14 +18,16 @@ public class LinkListClient {
         // TODO code application logic here
         LinkList a = new LinkList();
 
+        assert (a.isEmpty());
         assert (a.head() == null);
         assert (a.tail() == null);
-        assert (a.size() == 0);
+
         //MAKE ASSERTIONS
         a.addAtEnd("a");
         a.addAtEnd("b");
         a.addAtEnd("c");
 
+        assert (!a.isEmpty());
         assert (a.head().equals("a"));
         assert (a.tail().equals("c"));
         assert (a.size() == 3);
@@ -39,7 +41,8 @@ public class LinkListClient {
         assert (a.size() == 6);
         System.out.println(a.toString());
         a.makeEmpty();
-        assert (a.size() == 0);
+        assert (a.isEmpty());
+        assert (a.toString().equals(""));
         System.out.println(a.toString());
 //        System.out.println(a.size());
 //        System.out.println(a.head());

@@ -18,64 +18,87 @@ public class LinkListClient {
         // TODO code application logic here
         LinkList a = new LinkList();
 
+        //EMPTY TEST
         assert (a.isEmpty());
         assert (a.head() == null);
         assert (a.tail() == null);
 
-        //MAKE ASSERTIONS
-        a.addAtEnd("a");
-        a.addAtEnd("b");
-        a.addAtEnd("c");
-
+        //ADD SINGLE
+        a.addAtFront("a");
         assert (!a.isEmpty());
         assert (a.head().equals("a"));
+        assert (a.tail().equals("a"));
+        assert (a.size() == 1);
+
+        //ADD AT FRONT
+        a.addAtFront("b");
+        assert (!a.isEmpty());
+        assert (a.head().equals("b"));
+        assert (a.tail().equals("a"));
+        assert (a.size() == 2);
+
+        //ADD AT END
+        a.addAtEnd("c");
+        assert (!a.isEmpty());
+        assert (a.head().equals("b"));
         assert (a.tail().equals("c"));
         assert (a.size() == 3);
 
-        a.addAtFront("1");
-        a.addAtFront("2");
-        a.addAtFront("3");
-
-        assert (a.head().equals("3"));
-        assert (a.tail().equals("c"));
-        assert (a.size() == 6);
+        //To String
         System.out.println(a.toString());
+
+        //Make Empty
         a.makeEmpty();
         assert (a.isEmpty());
-        assert (a.toString().equals(""));
         System.out.println(a.toString());
-//        System.out.println(a.size());
-//        System.out.println(a.head());
-//        System.out.println(a.tail());
 
-//        System.out.println(a.size());
-//        a.removeTail();
-//        System.out.println(a.size());
-//         a.removeTail();
-//        System.out.println(a.size());
-//         a.removeTail();
-//        System.out.println(a.size());
-//         a.removeTail();
-//        System.out.println(a.tail());
-//        a.removeTail();
-//        System.out.println(a.tail());
-//         a.removeTail();
-//        System.out.println(a.tail());
-//         a.removeTail();
-//       System.out.println(a.tail());
-//        a.removeTail();
-//       System.out.println(a.tail());
-//        a.addAtFront("a");
-//        a.addAtFront("b");
-//        a.addAtFront("c");
-//        System.out.println(a.size());
-//        a.removeHead();
-//        System.out.println(a.size());
-//       // a.makeEmpty();
-//        System.out.println(a.tail());
-//        System.out.println(a.tail());
-//
-//        System.out.println(a.tail());
+        //Add Multiple
+        a.addAtEnd("a");
+        a.addAtEnd("b");
+        a.addAtEnd("c");
+        a.addAtEnd("d");
+        a.addAtEnd("e");
+
+        assert (!a.isEmpty());
+        assert (a.head().equals("a"));
+        assert (a.tail().equals("e"));
+        assert (a.size() == 5);
+        System.out.println(a.toString());
+
+        //Remove Head
+        assert (a.head().equals("a"));
+        assert (a.size() == 5);
+
+        a.removeHead();
+
+        assert (!a.isEmpty());
+        assert (a.head().equals("b"));
+        assert (a.tail().equals("e"));
+        assert (a.size() == 4);
+        System.out.println(a.toString());
+
+        //Remove Tail
+        assert (a.tail().equals("e"));
+        assert (a.size() == 4);
+
+        a.removeTail();
+
+        assert (!a.isEmpty());
+        assert (a.head().equals("b"));
+        assert (a.tail().equals("d"));
+        assert (a.size() == 3);
+        System.out.println(a.toString());
+
+        //Remove 
+        assert (a.size() == 3);
+
+        a.remove("c");
+
+        assert (!a.isEmpty());
+        assert (a.head().equals("b"));
+        assert (a.tail().equals("d"));
+        assert (a.size() == 2);
+        System.out.println(a.toString());
     }
 
 }

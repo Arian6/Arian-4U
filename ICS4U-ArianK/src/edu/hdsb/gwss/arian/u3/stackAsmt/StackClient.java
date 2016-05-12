@@ -21,43 +21,42 @@ public class StackClient {
         //TEST CASE 1 
         System.out.println("Base test");
         System.out.println();
-        System.out.println(a.top());
-        System.out.println(a.size());
-        System.out.println(a.capacity());
-        System.out.println(a.isEmpty());
-        System.out.println(a.isFull());
-        System.out.println(a.pop());
+        assert (a.top() == -1);
+        assert (a.size() == 0);
+        assert (a.capacity() == 5);
+        assert (a.isEmpty());
+        assert (!a.isFull());
+        assert (a.pop() == -1);
         System.out.println("----------------------------");
         System.out.println();
 
         //Test - push
         System.out.println("Push Test");
         System.out.println();
-        System.out.println(a.top());
-        System.out.println(a.size());
-        System.out.println(a.capacity());
-        System.out.println(a.isEmpty());
-        System.out.println(a.isFull());
+        assert (a.top() == -1);
+        assert (a.capacity() == 5);
+        assert (a.isEmpty());
+        assert (!a.isFull());
+
         a.push(1);
         System.out.println("----------------Push(1)---------------");
-        System.out.println(a.top());
-        System.out.println(a.size());
-        System.out.println(a.capacity());
-        System.out.println(a.isEmpty());
-        System.out.println(a.isFull());
+        assert (a.top() == 1);
+        assert (a.size() == 1);
+        assert (a.capacity() == 5);
+        assert (!a.isEmpty());
+        assert (!a.isFull());
         System.out.println("----------------------------");
         System.out.println();
-        
+
         //Test - pop off
         System.out.println("pop top");
         System.out.println();
         a.pop();
         System.out.println("----------------Pop---------------");
-        System.out.println(a.top());
-        System.out.println(a.size());
-        System.out.println(a.capacity());
-        System.out.println(a.isEmpty());
-        System.out.println(a.isFull());
+        assert (a.top() == -1);
+        assert (a.capacity() == 5);
+        assert (a.isEmpty());
+        assert (!a.isFull());
         System.out.println("----------------------------");
         System.out.println();
 
@@ -69,52 +68,52 @@ public class StackClient {
         a.push(3);
         a.push(4);
         a.push(5);
-        System.out.println(a.top());
-        System.out.println(a.size());
-        System.out.println(a.capacity());
-        System.out.println(a.isEmpty());
-        System.out.println(a.isFull());
+        assert (a.top() == 5);
+        assert (a.size() == 5);
+        assert (a.capacity() == 5);
+        assert (!a.isEmpty());
+        assert (a.isFull());
         System.out.println("----------------------------");
         System.out.println();
-        
+
         //Test - fill stack after full
         System.out.println("fill stack after full");
         System.out.println();
         a.push(6);
         System.out.println("----------------Push(6)---------------");
-        System.out.println(a.top());
-        System.out.println(a.size());
-        System.out.println(a.capacity());
-        System.out.println(a.isEmpty());
-        System.out.println(a.isFull());
+        assert (a.top() == 5);
+        assert (a.size() == 5);
+        assert (a.capacity() == 5);
+        assert (!a.isEmpty());
+        assert (a.isFull());
         System.out.println("----------------------------");
         System.out.println();
-        
+
         //Test - remove all
         System.out.println("remove all");
         System.out.println();
         a.makeEmpty();
-        System.out.println(a.top());
-        System.out.println(a.size());
-        System.out.println(a.capacity());
-        System.out.println(a.isEmpty());
-        System.out.println(a.isFull());
+        assert (a.top() == -1);
+        assert (a.size() == 0);
+        assert (a.capacity() == 5);
+        assert (a.isEmpty());
+        assert (!a.isFull());
         System.out.println("----------------------------");
         System.out.println();
-        
+
         //Test - pop off at empty
         System.out.println("pop top while empty");
         System.out.println();
         a.pop();
         System.out.println("----------------Pop---------------");
-        System.out.println(a.top());
-        System.out.println(a.size());
-        System.out.println(a.capacity());
-        System.out.println(a.isEmpty());
-        System.out.println(a.isFull());
+        assert (a.top() == -1);
+        assert (a.size() == 0);
+        assert (a.capacity() == 5);
+        assert (a.isEmpty());
+        assert (!a.isFull());
         System.out.println("----------------------------");
         System.out.println();
-        
+
     }
 
 }

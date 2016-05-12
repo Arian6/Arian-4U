@@ -12,7 +12,7 @@ package edu.hdsb.gwss.arian.u3.LinkedList;
 public class LinkList implements LinkListInterface {
 
     protected Node head;
-    protected Node tail;
+    private Node tail;
 
     public LinkList() {
         this.head = null;
@@ -24,24 +24,34 @@ public class LinkList implements LinkListInterface {
         Node a = this.head;
         int counter = 1;
 
-        while (a.getNext() != null) {
+        if (this.isEmpty()) {
+            return 0;
+        } else {
+            while (a.getNext() != null) {
 
-            a = a.getNext();
-            counter++;
+                a = a.getNext();
+                counter++;
+            }
+
+            return counter;
         }
-
-        return counter;
     }
 
     @Override
     public void makeEmpty() {
         Node empty = this.head;
+        Node temp;
 
-        while (empty.getNext() != null) {
+        if (!this.isEmpty()) {
 
-            empty = null;
-            empty = empty.getNext();
+            while (empty.getNext() != null) {
 
+                temp = empty;
+
+                empty = null;
+                empty = temp.getNext();
+
+            }
         }
 
     }
@@ -109,18 +119,22 @@ public class LinkList implements LinkListInterface {
         Node first = this.head;
         Node keep;
 
-        if (this.head == this.tail) {
-            this.head = null;
-            this.tail = null;
+        if (!this.isEmpty()) {
+            if (this.head == this.tail) {
+                this.head = null;
+                this.tail = null;
+
+            } else {
+
+                keep = this.head;
+                this.head = this.head.getNext();
+                keep.setNext(null);
+
+            }
             return first.getData();
+
         } else {
-
-            keep = this.head;
-            this.head = this.head.getNext();
-            keep.setNext(null);
-
-            return first.getData();
-
+            return null;
         }
     }
 
@@ -128,33 +142,50 @@ public class LinkList implements LinkListInterface {
 
         Node last = this.head;
         Node keep;
+        
+        if (!this.isEmpty()) {
+            if (this.head == this.tail) {
+                this.head = null;
+                this.tail = null;
+                return last.getData();
+            } else {
+                while (last.getNext() != this.tail) {
+                    last = last.getNext();
+                }
+                keep = last.getNext();
+                last.setNext(null);
+                this.tail = last;
 
-        if (this.head == this.tail) {
+                return keep.getData();
+            }
+
+        } else {
             this.head = null;
             this.tail = null;
-            return last.getData();
-        } else {
-            while (last.getNext() != this.tail) {
-                last = last.getNext();
-            }
-            keep = last.getNext();
-            last.setNext(null);
-            this.tail = last;
-
-            return keep.getData();
+            return null;
         }
     }
 
     @Override
     public String head() {
 
+        if(!this.isEmpty()) {
         return this.head.getData();
+        }else 
+        {
+            return null;
+        }
 
     }
 
     @Override
     public String tail() {
+           if(!this.isEmpty()) {
         return this.tail.getData();
+        }else 
+        {
+            return null;
+        }
     }
 
 }

@@ -18,14 +18,43 @@ public class LinkListClient {
         // TODO code application logic here
         LinkList a = new LinkList();
 
+        System.out.println(a.head());
+        System.out.println(a.tail());
         a.addAtFront("a");
         a.addAtFront("b");
         a.addAtFront("c");
 
-        System.out.println(a.tail());
-        a.removeTail();
+        System.out.println(a.head());
         System.out.println(a.tail());
 
+//        System.out.println(a.size());
+//        a.removeTail();
+//        System.out.println(a.size());
+//         a.removeTail();
+//        System.out.println(a.size());
+//         a.removeTail();
+//        System.out.println(a.size());
+//         a.removeTail();
+//        System.out.println(a.tail());
+//        a.removeTail();
+//        System.out.println(a.tail());
+//         a.removeTail();
+//        System.out.println(a.tail());
+//         a.removeTail();
+//       System.out.println(a.tail());
+//        a.removeTail();
+//       System.out.println(a.tail());
+//        a.addAtFront("a");
+//        a.addAtFront("b");
+//        a.addAtFront("c");
+//        System.out.println(a.size());
+//        a.removeHead();
+//        System.out.println(a.size());
+//       // a.makeEmpty();
+//        System.out.println(a.tail());
+//        System.out.println(a.tail());
+//
+//        System.out.println(a.tail());
     }
 
 }

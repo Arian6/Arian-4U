@@ -39,7 +39,7 @@ public class LinkList implements LinkListInterface {
 
     @Override
     public void makeEmpty() {
-        
+
         this.head = null;
         this.tail = null;
 
@@ -92,18 +92,21 @@ public class LinkList implements LinkListInterface {
 
         Node remove = this.head;
         Node temp;
-        if (this.head.getData().equals(str)) {
-            this.removeHead();
-        } else if (this.tail.getData().equals(str)) {
-            this.removeTail();
-        } else {
-            while (!remove.getNext().getData().equals(str)) {
-                remove = remove.getNext();
-            }
-            temp = remove.getNext();
-            remove.setNext(remove.getNext().getNext());
-            temp = null;
 
+        if (!this.isEmpty()) {
+            if (this.head.getData().equals(str)) {
+                this.removeHead();
+            } else if (this.tail.getData().equals(str)) {
+                this.removeTail();
+            } else {
+                while (!remove.getNext().getData().equals(str)) {
+                    remove = remove.getNext();
+                }
+                temp = remove.getNext();
+                remove.setNext(remove.getNext().getNext());
+                temp = null;
+
+            }
         }
 
     }

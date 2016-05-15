@@ -14,38 +14,53 @@ public class HashTable implements HashTableInterface {
     private Student[] hashTable;
 
     public HashTable() {
-        
+
     }
 
     public HashTable(int capacity) {
-        Student[] hashTable = new Student[capacity];
+        hashTable = new Student[capacity];
 
     }
 
     @Override
     public int size() {
+        int size = 0;
 
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (int i = 0; i < this.hashTable.length - 1; i++) {
+            if (this.hashTable[i] != null) {
+                size = size + 1;
+            }
+        }
+
+        return size;
     }
 
     @Override
     public int capacity() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.hashTable.length;
     }
 
     @Override
     public double loadFactor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        return (this.size() / (double) this.capacity()) * 100;
     }
 
     @Override
     public void makeEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (int i = 0; i < this.hashTable.length - 1; i++) {
+            this.hashTable[i] = null;
+        }
+
     }
 
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (this.size() == 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
@@ -55,7 +70,7 @@ public class HashTable implements HashTableInterface {
 
     @Override
     public Student get(int key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.hashTable[key];
     }
 
     @Override
@@ -65,7 +80,8 @@ public class HashTable implements HashTableInterface {
 
     @Override
     public void put(int key, Student value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        this.hashTable[key] = value;
     }
 
     @Override
@@ -81,9 +97,8 @@ public class HashTable implements HashTableInterface {
     @Override
     public int hash(int key) {
         
-        
-        
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+       
     }
 
 }

@@ -16,26 +16,22 @@ public class StudentClient {
      */
     public static void main(String[] args) {
 
-        char ch;
-        String st = "arian";
-        int ht = 0;
+        Student a = new Student(1, "hg", "hg");
+        Student b = new Student(1, "hg", "hg");
+        Student c = new Student(1, "hg", "hg");
+        Student d = new Student(1, "hg", "hg");
 
-        ch = st.charAt(1);
-        System.out.println(ch);
-        ht = ht + ch;
-        System.out.println(ht);
+        HashTable l = new HashTable(5);
 
-//        st = "asd";
-//        int ht = 0;
-//        for (int j = 0; j < 3; j++) {
-//            ch = st.charAt(j);
-//            System.out.println(ch);
-//            ht = ht + ch;
-//            System.out.println(ht);
-//            System.out.println();
-//        }
-//        System.out.println();
-//
-//        System.out.println(105786 % 7);
+        l.put(0, a);
+        l.put(1, b);
+        l.put(2, c);
+        l.put(3, d);
+
+        System.out.println(l.size());
+        System.out.println(l.capacity());
+
+        System.out.println(l.loadFactor());
+
     }
 }

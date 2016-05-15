@@ -21,11 +21,15 @@ public class Student {
     }
 
     public long getStudentID() {
-        return studentID;
+        return this.studentID;
     }
 
     public void setStudentID(long studentID) {
-        this.studentID = studentID;
+
+        if (studentID > 0 && studentID < 99999999) {
+            this.studentID = studentID;
+        }
+
     }
 
     public String getName() {
@@ -33,7 +37,10 @@ public class Student {
     }
 
     public void setName(String name) {
-        this.name = name;
+        if (name.length() > 2 && name.length() < 15) {
+            this.name = name;
+        }
+
     }
 
     public String getLastName() {
@@ -41,7 +48,11 @@ public class Student {
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+
+        if (lastName.length() > 2 && lastName.length() < 15) {
+            this.lastName = lastName;
+        }
+
     }
 
     @Override

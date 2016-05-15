@@ -11,8 +11,20 @@ package edu.hdsb.gwss.arian.u3.closedHashTable;
  */
 public class HashTable implements HashTableInterface {
 
+    private Student[] hashTable;
+
+    public HashTable() {
+        
+    }
+
+    public HashTable(int capacity) {
+        Student[] hashTable = new Student[capacity];
+
+    }
+
     @Override
     public int size() {
+
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -68,7 +80,10 @@ public class HashTable implements HashTableInterface {
 
     @Override
     public int hash(int key) {
+        
+        
+        
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

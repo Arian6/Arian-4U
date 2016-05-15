@@ -11,7 +11,7 @@ package edu.hdsb.gwss.arian.u3.linkedListAsmt;
  */
 public class LinkList implements LinkListInterface {
 
-    protected Node head;
+    private Node head;
     private Node tail;
 
     public LinkList() {

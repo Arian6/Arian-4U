@@ -16,6 +16,23 @@ public class StackClient {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        //Default tests
+        System.out.println("Default test");
+        System.out.println();
+         Stack aDefault = new Stack();
+        assert (aDefault.top() == -1);
+        assert (aDefault.size() == 0);
+        assert (aDefault.capacity() == 25);
+        assert (aDefault.isEmpty());
+        assert (!aDefault.isFull());
+        assert (aDefault.pop() == -1);
+          System.out.println("----------------------------");
+        System.out.println();
+
+          
+        
+        
         Stack a = new Stack(5);
 
         //TEST CASE 1 

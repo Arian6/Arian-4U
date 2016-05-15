@@ -16,6 +16,13 @@ public class QueueClient {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Queue queueDefault = new Queue();
+        //Default tests
+        assert (queueDefault.isEmpty());
+        assert (!queueDefault.isFull());
+        assert (queueDefault.front() == -1);
+        assert (queueDefault.back() == -1);
+        assert (queueDefault.capacity() == 25);
 
         Queue queue = new Queue(5);
 

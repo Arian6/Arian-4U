@@ -17,7 +17,7 @@ public class Student {
 
     // TO DO
     public long getKey() {
-        return -1;
+        return this.studentID;
     }
 
     public long getStudentID() {

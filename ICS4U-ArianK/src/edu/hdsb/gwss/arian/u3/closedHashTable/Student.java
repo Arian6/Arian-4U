@@ -5,18 +5,19 @@ package edu.hdsb.gwss.arian.u3.closedHashTable;
  */
 public class Student {
 
-    private long studentID;
+    
+    private int studentID;
     private String name;
     private String lastName;
 
-    public Student(long studentID, String name, String lastName) {
+    public Student( int studentID, String name, String lastName ) {
         this.studentID = studentID;
         this.name = name;
         this.lastName = lastName;
     }
 
     // TO DO
-    public long getKey() {
+    public int getKey() {
         return this.studentID;
     }
 
@@ -24,7 +25,7 @@ public class Student {
         return this.studentID;
     }
 
-    public void setStudentID(long studentID) {
+    public void setStudentID(int studentID) {
 
         if (studentID > 0 && studentID < 99999999) {
             this.studentID = studentID;

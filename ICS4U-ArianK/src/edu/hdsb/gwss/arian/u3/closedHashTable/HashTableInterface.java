@@ -5,7 +5,7 @@ package edu.hdsb.gwss.arian.u3.closedHashTable;
  */
 public interface HashTableInterface {
 
-    public int size();
+     public int size();
     
     public int capacity();
     
@@ -23,10 +23,11 @@ public interface HashTableInterface {
     
     public void put( int key, Student value);
     
-    public boolean contains( int key );
+    public boolean contains( Student value );
     
     public boolean containsKey( int key );
     
     public int hash( int key );
+
 
 }

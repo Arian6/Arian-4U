@@ -9,16 +9,43 @@ package edu.hdsb.gwss.arian.u3.closedHashTable;
  *
  * @author 1krasniqiari
  */
-public class HashTable implements HashTableInterface {
+public final class HashTable implements HashTableInterface {
+
+    private final static int DEFAULT_CAPACITY = 11;
 
     private Student[] hashTable;
 
     public HashTable() {
-
+        hashTable = new Student[DEFAULT_CAPACITY];
     }
 
     public HashTable(int capacity) {
-        hashTable = new Student[capacity];
+        if (this.isPrime(capacity)) {
+            hashTable = new Student[capacity];
+        } else {
+            hashTable = new Student[this.nextPrime(capacity)];
+        }
+
+    }
+
+    public boolean isPrime(int n) {
+        if (n % 2 == 0) {
+            return false;
+        }
+        for (int i = 3; i * i <= n; i += 2) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public int nextPrime(int n) {
+        if (!this.isPrime(n)) {
+            return nextPrime(n + 1);
+        } else {
+            return n;
+        }
 
     }
 
@@ -65,7 +92,14 @@ public class HashTable implements HashTableInterface {
 
     @Override
     public void resize() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Student[] oldTable = new Student[this.capacity()];
+
+        
+        
+        
+        
+            oldTable = new Student[this.nextPrime(this.size() * 4)];
+        System.out.println(oldTable.length);
     }
 
     @Override
@@ -80,8 +114,11 @@ public class HashTable implements HashTableInterface {
 
     @Override
     public void put(int key, Student value) {
-
-        this.hashTable[key] = value;
+        
+        if(this.loadFactor() >= 75) {
+            this.resize();
+        }
+        this.hashTable[this.hash(key)] = value;
     }
 
     @Override
@@ -96,9 +133,9 @@ public class HashTable implements HashTableInterface {
 
     @Override
     public int hash(int key) {
-        
 
-       
+        return key % this.capacity();
+
     }
 
 }

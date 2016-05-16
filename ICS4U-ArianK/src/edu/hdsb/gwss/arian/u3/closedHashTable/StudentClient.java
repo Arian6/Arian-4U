@@ -22,16 +22,21 @@ public class StudentClient {
         Student d = new Student(1, "hg", "hg");
 
         HashTable l = new HashTable(5);
+        
+        l.hash(a.getKey());
 
+        a.
+        System.out.println(l.capacity());
         l.put(0, a);
         l.put(1, b);
         l.put(2, c);
         l.put(3, d);
+        l.put(4, d);
 
-        System.out.println(l.size());
-        System.out.println(l.capacity());
-
-        System.out.println(l.loadFactor());
+//        System.out.println(l.size());
+//        System.out.println(l.capacity());
+//
+//        System.out.println(l.loadFactor());
 
     }
 }

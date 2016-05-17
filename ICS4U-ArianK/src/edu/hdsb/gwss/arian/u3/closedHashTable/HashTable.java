@@ -13,7 +13,7 @@ public final class HashTable implements HashTableInterface {
 
     private final static int DEFAULT_CAPACITY = 11;
 
-    private Object[] hashTable;
+    private Student[] hashTable;
 
     public HashTable() {
         hashTable = new Student[DEFAULT_CAPACITY];
@@ -100,7 +100,9 @@ public final class HashTable implements HashTableInterface {
 
     @Override
     public Student get(int key) {
-        return this.hashTable[key];
+        //check if right student
+        //get hash 
+        return this.hashTable[this.hash(key)];
     }
 
     @Override
@@ -111,15 +113,33 @@ public final class HashTable implements HashTableInterface {
     @Override
     public void put(int key, Student value) {
 
+        int hashIndex = this.hash(key);
+
         if (this.loadFactor() >= 75) {
             this.resize();
         }
-        this.hashTable[this.hash(key)] = value;
+
+        if (this.hashTable[hashIndex] == null) {
+            this.hashTable[hashIndex] = value;
+        } else {
+
+            while (this.hashTable[hashIndex] != null) {
+
+                hashIndex++;
+
+                if (hashIndex >= this.capacity()) {
+                    hashIndex = hashIndex % this.capacity();
+                }
+
+            }
+            this.hashTable[hashIndex] = value;
+        }
+
     }
 
     @Override
     public boolean contains(Student value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     @Override

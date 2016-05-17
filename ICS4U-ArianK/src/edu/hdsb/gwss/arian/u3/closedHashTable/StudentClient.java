@@ -24,13 +24,12 @@ public class StudentClient {
         HashTable l = new HashTable(5);
 
         l.put(0, a);
-        l.put(1, b);
-        l.put(2, c);
-        l.put(3, d);
-        l.put(4, d);
+        l.put(0, b);
+        l.put(0, c);
+        l.put(0, d);
 
-//        System.out.println(l.size());
-//        System.out.println(l.capacity());
+        System.out.println(l.size());
+        System.out.println(l.capacity());
 //
 //        System.out.println(l.loadFactor());
     }

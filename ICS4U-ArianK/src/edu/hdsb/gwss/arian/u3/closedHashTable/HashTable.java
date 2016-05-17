@@ -13,6 +13,7 @@ public final class HashTable implements HashTableInterface {
 
     private final static int DEFAULT_CAPACITY = 11;
 
+    
     private Student[] hashTable;
 
     public HashTable() {

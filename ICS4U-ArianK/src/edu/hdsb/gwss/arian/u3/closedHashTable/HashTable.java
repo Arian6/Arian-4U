@@ -13,7 +13,6 @@ public final class HashTable implements HashTableInterface {
 
     private final static int DEFAULT_CAPACITY = 11;
 
-    
     private Student[] hashTable;
 
     public HashTable() {
@@ -101,6 +100,15 @@ public final class HashTable implements HashTableInterface {
 
     @Override
     public Student get(int key) {
+        int index = this.hash(key);
+
+        if (this.hashTable[index].getKey() == key) {
+            return this.hashTable[index];
+
+        } else {
+            
+        }
+
         //check if right student
         //get hash 
         return this.hashTable[this.hash(key)];
@@ -150,7 +158,6 @@ public final class HashTable implements HashTableInterface {
 
     @Override
     public int hash(int key) {
-
         return key % this.capacity();
 
     }

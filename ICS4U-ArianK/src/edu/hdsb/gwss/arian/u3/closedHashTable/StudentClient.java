@@ -20,14 +20,20 @@ public class StudentClient {
         Student b = new Student(1, "hg", "hg");
         Student c = new Student(1, "hg", "hg");
         Student d = new Student(1, "hg", "hg");
+        Student e = new Student(1, "hg", "hg");
 
         HashTable l = new HashTable(5);
 
-        l.put(0, a);
-        l.put(0, b);
-        l.put(0, c);
-        l.put(0, d);
+        System.out.println(l.capacity());
+        System.out.println(l.size());
 
+        l.put(4, a);
+        l.put(4, b);
+        l.put(4, c);
+        l.put(4, d);
+        l.put(4, e);
+
+//
         System.out.println(l.size());
         System.out.println(l.capacity());
 //

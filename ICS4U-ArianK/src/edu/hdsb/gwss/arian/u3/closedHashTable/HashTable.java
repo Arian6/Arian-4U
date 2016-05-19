@@ -41,6 +41,7 @@ public final class HashTable implements HashTableInterface {
     }
 
     public int nextPrime(int n) {
+
         if (!this.isPrime(n)) {
             return nextPrime(n + 1);
         } else {
@@ -53,7 +54,7 @@ public final class HashTable implements HashTableInterface {
     public int size() {
         int size = 0;
 
-        for (int i = 0; i < this.hashTable.length - 1; i++) {
+        for (int i = 0; i <= this.hashTable.length - 1; i++) {
             if (this.hashTable[i] != null) {
                 size = size + 1;
             }
@@ -92,10 +93,32 @@ public final class HashTable implements HashTableInterface {
 
     @Override
     public void resize() {
+
         Student[] oldTable = new Student[this.capacity()];
 
-        oldTable = new Student[this.nextPrime(this.size() * 4)];
-        System.out.println(oldTable.length);
+        for (int i = 0; i <= this.hashTable.length - 1; i++) {
+            oldTable[i] = this.hashTable[i];
+        }
+        
+      
+
+        this.hashTable = new Student[this.nextPrime(this.size() * 4)];
+        
+          this.makeEmpty();
+          
+
+        for (int i = 0; i <= oldTable.length - 1; i++) {
+
+            if (oldTable[i] != null) {
+
+                this.put(oldTable[i].getKey(), oldTable[i]);
+
+            }
+
+        }
+        
+          
+
     }
 
     @Override
@@ -106,7 +129,7 @@ public final class HashTable implements HashTableInterface {
             return this.hashTable[index];
 
         } else {
-            
+
         }
 
         //check if right student
@@ -124,10 +147,6 @@ public final class HashTable implements HashTableInterface {
 
         int hashIndex = this.hash(key);
 
-        if (this.loadFactor() >= 75) {
-            this.resize();
-        }
-
         if (this.hashTable[hashIndex] == null) {
             this.hashTable[hashIndex] = value;
         } else {
@@ -136,19 +155,24 @@ public final class HashTable implements HashTableInterface {
 
                 hashIndex++;
 
-                if (hashIndex >= this.capacity()) {
+                if (hashIndex == this.capacity()) {
                     hashIndex = hashIndex % this.capacity();
                 }
 
             }
             this.hashTable[hashIndex] = value;
         }
-
+        
+        if (this.loadFactor() >= 75) {
+            this.resize();
+        }
+        
     }
 
     @Override
     public boolean contains(Student value) {
 
+        return true;
     }
 
     @Override

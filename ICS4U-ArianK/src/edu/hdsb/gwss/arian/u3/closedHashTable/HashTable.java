@@ -99,25 +99,12 @@ public final class HashTable implements HashTableInterface {
         for (int i = 0; i <= this.hashTable.length - 1; i++) {
             oldTable[i] = this.hashTable[i];
         }
-        
-      
 
         this.hashTable = new Student[this.nextPrime(this.size() * 4)];
-        
-          this.makeEmpty();
-          
 
-        for (int i = 0; i <= oldTable.length - 1; i++) {
+        this.makeEmpty();
 
-            if (oldTable[i] != null) {
-
-                this.put(oldTable[i].getKey(), oldTable[i]);
-
-            }
-
-        }
-        
-          
+        reHash(oldTable);
 
     }
 
@@ -130,11 +117,17 @@ public final class HashTable implements HashTableInterface {
 
         } else {
 
+            while (this.hashTable[index].getKey() != key) {
+                index++;
+
+                if (index == this.capacity()) {
+                    index = index % this.capacity();
+                }
+            }
+
+            return this.hashTable[index];
         }
 
-        //check if right student
-        //get hash 
-        return this.hashTable[this.hash(key)];
     }
 
     @Override
@@ -162,11 +155,11 @@ public final class HashTable implements HashTableInterface {
             }
             this.hashTable[hashIndex] = value;
         }
-        
+
         if (this.loadFactor() >= 75) {
             this.resize();
         }
-        
+
     }
 
     @Override
@@ -180,7 +173,19 @@ public final class HashTable implements HashTableInterface {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+    public void reHash(Student[] oldTable) {
+        for (int i = 0; i <= oldTable.length - 1; i++) {
+
+            if (oldTable[i] != null) {
+
+                this.put(oldTable[i].getKey(), oldTable[i]);
+
+            }
+
+        }
+
+    }
+
     public int hash(int key) {
         return key % this.capacity();
 

@@ -162,30 +162,26 @@ public final class HashTable implements HashTableInterface {
 
         int hashIndex = this.hash(key);
 
-        if (this.isEmpty()) {
+        if (this.hashTable[hashIndex] == null) {
             this.hashTable[hashIndex] = value;
         } else {
-            if (!this.contains(value)) {
-                if (this.hashTable[hashIndex] == null) {
-                    this.hashTable[hashIndex] = value;
-                } else {
+            if (!this.containsKey(key)) {
+                while (this.hashTable[hashIndex] != null) {
 
-                    while (this.hashTable[hashIndex] != null) {
+                    hashIndex = hashIndex + 1;
 
-                        hashIndex++;
-
-                        if (hashIndex == this.capacity()) {
-                            hashIndex = hashIndex % this.capacity();
-                        }
-
+                    if (hashIndex == this.capacity()) {
+                        hashIndex = hashIndex % this.capacity();
                     }
-                    this.hashTable[hashIndex] = value;
+
                 }
 
-                if (this.loadFactor() >= 75) {
-                    this.resize();
-                }
+                this.hashTable[hashIndex] = value;
             }
+        }
+
+        if (this.loadFactor() >= 75) {
+            this.resize();
         }
 
     }
@@ -200,7 +196,7 @@ public final class HashTable implements HashTableInterface {
             return true;
 
         } else {
-            while (this.hashTable[index] != null && this.hash(this.hashTable[index].getKey()) == savedKeyIndex) {
+            while (this.hashTable[index] != null) {
 
                 if (index == this.capacity()) {
                     index = index % this.capacity();
@@ -214,6 +210,7 @@ public final class HashTable implements HashTableInterface {
                 }
 
             }
+
             return false;
         }
 
@@ -229,7 +226,7 @@ public final class HashTable implements HashTableInterface {
             return true;
 
         } else {
-            while (this.hashTable[index] != null && this.hash(this.hashTable[index].getKey()) == savedKeyIndex) {
+            while (this.hashTable[index] != null) {
 
                 if (index == this.capacity()) {
                     index = index % this.capacity();

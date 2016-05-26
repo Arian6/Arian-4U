@@ -31,20 +31,27 @@ public class StudentClient {
         l.put(a.getKey(), a);
         l.put(b.getKey(), b);
         l.put(c.getKey(), c);
-        l.put(a.getKey(), a);
+        l.put(d.getKey(), d);
         l.put(e.getKey(), e);
 
-    
        // System.out.println(l.get(d.getKey()));
-      
+        assert (l.contains(a));
+        assert (l.containsKey(a.getKey()));
+        assert (l.containsKey(b.getKey()));
+        assert (l.containsKey(1));
+        assert (l.containsKey(d.getKey()));
         
-        assert(l.contains(a));
-        assert(l.containsKey(5));
+        assert (l.contains(a));
+        assert (l.contains(b));
+        //assert (l.contains(c));
+        assert (l.contains(d));
+        assert (l.contains(e));
+
 //
         System.out.println(l.size());
         System.out.println(l.capacity());
-        
-        //l.remove(a.getKey());
+
+        l.remove(a.getKey());
         System.out.println(l.size());
         System.out.println(l.capacity());
 //

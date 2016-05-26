@@ -132,7 +132,29 @@ public final class HashTable implements HashTableInterface {
 
     @Override
     public Student remove(int key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        int index = this.hash(key);
+
+        while (this.hashTable[index].getKey() != key) {
+            index++;
+
+            if (index == this.capacity()) {
+                index = index % this.capacity();
+            }
+        }
+
+        int savedKeyIndex = index;
+        this.hashTable[index] = null;
+
+        while (this.hashTable[index + 1] != null && this.hash(this.hashTable[index + 1].getKey()) == savedKeyIndex) {
+            this.hashTable[index] = this.hashTable[index + 1];
+            index = index + 1;
+            if (index == this.capacity()) {
+                index = index % this.capacity();
+            }
+        }
+        return this.hashTable[savedKeyIndex];
+
     }
 
     @Override
@@ -140,24 +162,30 @@ public final class HashTable implements HashTableInterface {
 
         int hashIndex = this.hash(key);
 
-        if (this.hashTable[hashIndex] == null) {
+        if (this.isEmpty()) {
             this.hashTable[hashIndex] = value;
         } else {
+            if (!this.contains(value)) {
+                if (this.hashTable[hashIndex] == null) {
+                    this.hashTable[hashIndex] = value;
+                } else {
 
-            while (this.hashTable[hashIndex] != null) {
+                    while (this.hashTable[hashIndex] != null) {
 
-                hashIndex++;
+                        hashIndex++;
 
-                if (hashIndex == this.capacity()) {
-                    hashIndex = hashIndex % this.capacity();
+                        if (hashIndex == this.capacity()) {
+                            hashIndex = hashIndex % this.capacity();
+                        }
+
+                    }
+                    this.hashTable[hashIndex] = value;
                 }
 
+                if (this.loadFactor() >= 75) {
+                    this.resize();
+                }
             }
-            this.hashTable[hashIndex] = value;
-        }
-
-        if (this.loadFactor() >= 75) {
-            this.resize();
         }
 
     }
@@ -165,12 +193,57 @@ public final class HashTable implements HashTableInterface {
     @Override
     public boolean contains(Student value) {
 
-        return true;
+        int index = this.hash(value.getKey());
+        int savedKeyIndex = index;
+
+        if (this.hashTable[index] == value) {
+            return true;
+
+        } else {
+            while (this.hashTable[index] != null && this.hash(this.hashTable[index].getKey()) == savedKeyIndex) {
+
+                if (index == this.capacity()) {
+                    index = index % this.capacity();
+                }
+
+                if (this.hashTable[index] == value) {
+                    return true;
+
+                } else {
+                    index = index + 1;
+                }
+
+            }
+            return false;
+        }
+
     }
 
     @Override
     public boolean containsKey(int key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        int index = this.hash(key);
+        int savedKeyIndex = index;
+
+        if (this.hashTable[index].getKey() == key) {
+            return true;
+
+        } else {
+            while (this.hashTable[index] != null && this.hash(this.hashTable[index].getKey()) == savedKeyIndex) {
+
+                if (index == this.capacity()) {
+                    index = index % this.capacity();
+                }
+                if (this.hashTable[index].getKey() == key) {
+                    return true;
+
+                } else {
+                    index = index + 1;
+                }
+
+            }
+            return false;
+        }
     }
 
     public void reHash(Student[] oldTable) {

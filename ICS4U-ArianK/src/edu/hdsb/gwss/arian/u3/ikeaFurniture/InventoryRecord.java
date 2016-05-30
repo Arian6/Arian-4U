@@ -18,9 +18,8 @@ public class InventoryRecord {
 
     private static final String[] MATERIAL = {"unknown", "plastic", "metal", "rubber", "wood"};
 
-    private static final String[] DIFFICULTY = {"super easy", "easy", "moderate", "hard", "vary hard"};
+    private static final String[] DIFFICULTY = {"super easy", "easy", "moderate", "hard", "very hard"};
 
-    
     private String name;
     private String typeOfFurniture;
     private int material;
@@ -116,20 +115,19 @@ public class InventoryRecord {
     public char getDifficulty() {
         return difficulty;
     }
-    
+
     public String getDifficultyDescription() {
-        return DIFFICULTY[ this.difficulty - 'A'];
+        return DIFFICULTY[this.difficulty - 'A'];
     }
 
     public void setDifficulty(char difficulty) {
-        String s = new String( difficulty + "" );
+        String s = new String(difficulty + "");
         s = s.toUpperCase();
         difficulty = s.charAt(0);
-        
-        if( difficulty >= 'A' && difficulty <= 'E') {
+
+        if (difficulty >= 'A' && difficulty <= 'E') {
             this.difficulty = difficulty;
-        }
-        else {
+        } else {
             this.difficulty = '0';
         }
     }
@@ -139,7 +137,17 @@ public class InventoryRecord {
     }
 
     public void setInStock(boolean inStock) {
-        this.inStock = inStock;
+        if (this.inStock == false) {
+            this.inStock = false;
+        } else {
+            this.inStock = inStock;
+        }
+
+    }
+
+    @Override
+    public String toString() {
+        return "Inventory Item:" + "name=" + name + ", typeOfFurniture=" + typeOfFurniture + ", material=" + MATERIAL[material] + ", parts=" + parts + ", price=" + price + ", difficulty=" + this.getDifficultyDescription() + ", inStock=" + inStock + '}';
     }
 
 }

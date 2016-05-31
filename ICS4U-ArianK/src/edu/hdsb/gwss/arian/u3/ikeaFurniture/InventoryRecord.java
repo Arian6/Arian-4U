@@ -11,10 +11,12 @@ package edu.hdsb.gwss.arian.u3.ikeaFurniture;
  */
 public class InventoryRecord {
 
-    protected final int RECORD_SIZE = 78;
-    protected final int LENGTH_NAME = 15;
-    protected final int LENGTH_TYPE = 15;
-    protected final int NOT_SET = -1;
+    protected final static int RECORD_SIZE = 78;
+    protected final static int LENGTH_NAME = 15;
+    protected final static int LENGTH_TYPE = 15;
+    protected final static int NOT_SET = -1;
+    
+    
 
     private static final String[] MATERIAL = {"unknown", "plastic", "metal", "rubber", "wood"};
 
@@ -23,11 +25,11 @@ public class InventoryRecord {
     private String name;
     private String typeOfFurniture;
     private int material;
-    private int parts;
+    private int furnitureId = -1;
     private double price;
     private char difficulty;
     private boolean inStock;
-
+    
     public InventoryRecord() {
     }
 
@@ -35,6 +37,7 @@ public class InventoryRecord {
         this.name = name;
         this.typeOfFurniture = typeOfFurniture;
         this.price = price;
+        this.furnitureId = -1;
     }
 
     public String getName() {
@@ -75,8 +78,18 @@ public class InventoryRecord {
 
     }
 
-    public int getMaterial() {
-        return material;
+    public int getFurnitureId() {
+        return furnitureId;
+    }
+
+    public void setFurnitureId(int furnitureId) {
+        this.furnitureId = furnitureId;
+    }
+
+    
+    
+    public String getMaterial() {
+        return MATERIAL[material];
     }
 
     public void setMaterial(int material) {
@@ -87,18 +100,6 @@ public class InventoryRecord {
         }
     }
 
-    public int getParts() {
-        return parts;
-    }
-
-    public void setParts(int parts) {
-        if (parts < 0 || parts > 16) {
-            this.parts = -1;
-        } else {
-            this.parts = parts;
-        }
-
-    }
 
     public double getPrice() {
         return price;
@@ -147,7 +148,11 @@ public class InventoryRecord {
 
     @Override
     public String toString() {
-        return "Inventory Item:" + "name=" + name + ", typeOfFurniture=" + typeOfFurniture + ", material=" + MATERIAL[material] + ", parts=" + parts + ", price=" + price + ", difficulty=" + this.getDifficultyDescription() + ", inStock=" + inStock + '}';
+        return "Inventory Item:" + "name=" + name + ", typeOfFurniture=" + typeOfFurniture + ", material=" + MATERIAL[material] +  price + ", difficulty=" + this.getDifficultyDescription() + ", inStock=" + inStock + ", Furniture Id =" + this.furnitureId + '}';
+        
+        
     }
+    
+    
 
 }

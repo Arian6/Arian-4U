@@ -15,8 +15,6 @@ public class InventoryRecord {
     protected final static int LENGTH_NAME = 15;
     protected final static int LENGTH_TYPE = 15;
     protected final static int NOT_SET = -1;
-    
-    
 
     private static final String[] MATERIAL = {"unknown", "plastic", "metal", "rubber", "wood"};
 
@@ -29,16 +27,19 @@ public class InventoryRecord {
     private double price;
     private char difficulty;
     private boolean inStock;
-    
+
     public InventoryRecord() {
     }
 
     public InventoryRecord(String name, String typeOfFurniture, double price) {
-        this.name = name;
-        this.typeOfFurniture = typeOfFurniture;
-        this.price = price;
+        this.setName(name);
+        this.setTypeOfFurniture(typeOfFurniture);
+        this.setPrice(price);
         this.furnitureId = -1;
     }
+    
+    
+    
 
     public String getName() {
         return name;
@@ -86,8 +87,6 @@ public class InventoryRecord {
         this.furnitureId = furnitureId;
     }
 
-    
-    
     public String getMaterial() {
         return MATERIAL[material];
     }
@@ -99,7 +98,6 @@ public class InventoryRecord {
             this.material = material;
         }
     }
-
 
     public double getPrice() {
         return price;
@@ -148,11 +146,8 @@ public class InventoryRecord {
 
     @Override
     public String toString() {
-        return "Inventory Item:" + "name=" + name + ", typeOfFurniture=" + typeOfFurniture + ", material=" + MATERIAL[material] +  price + ", difficulty=" + this.getDifficultyDescription() + ", inStock=" + inStock + ", Furniture Id =" + this.furnitureId + '}';
-        
-        
+        return "Inventory Item:" + "name=" + name + ", typeOfFurniture=" + typeOfFurniture + ", material=" + MATERIAL[material] + price + ", difficulty=" + this.getDifficultyDescription() + ", inStock=" + inStock + ", Furniture Id =" + this.furnitureId + '}';
+
     }
-    
-    
 
 }

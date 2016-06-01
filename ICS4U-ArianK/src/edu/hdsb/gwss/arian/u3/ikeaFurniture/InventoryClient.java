@@ -24,7 +24,14 @@ public class InventoryClient {
         System.out.println("Creating 4 Class Records");
         InventoryRecord a = new InventoryRecord("Mr. Sanderson", "Chemistry", 31);
 
-        RandomAccessFile recordFile = new RandomAccessFile("class_info.dat", "rw");
+        
+        InventoryStore b = new InventoryStore();
+        
+        b.open();
+        b.write(a);
+        
+        b.read();
+        
     }
 
 }

@@ -23,14 +23,18 @@ public class InventoryClient {
 
         System.out.println("Creating 4 Class Records");
         InventoryRecord a = new InventoryRecord("Mr. Sanderson", "Chemistry", 31);
+        
+        InventoryRecord b = new InventoryRecord("asdf", "asdf", 12, 34, 'D', true);
+        
+        System.out.println(b.getDifficultyDescription());
 
         
-        InventoryStore b = new InventoryStore();
-        
-        b.open();
-        b.write(a);
-        
-        b.read();
+//        InventoryStore c = new InventoryStore();
+//        
+//        c.open();
+//        c.write(a);
+//        
+//        c.read();
         
     }
 

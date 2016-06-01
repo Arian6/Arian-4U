@@ -29,6 +29,8 @@ public class InventoryRecord {
     private boolean inStock;
 
     public InventoryRecord() {
+        this.inStock = false;
+        this.furnitureId = -1;
     }
 
     public InventoryRecord(String name, String typeOfFurniture, double price) {
@@ -36,10 +38,19 @@ public class InventoryRecord {
         this.setTypeOfFurniture(typeOfFurniture);
         this.setPrice(price);
         this.furnitureId = -1;
+        this.inStock = false;
     }
-    
-    
-    
+
+    public InventoryRecord(String name, String typeOfFurniture, int material, double price, char difficulty, boolean inStock) {
+        this.setName(name);
+        this.setFurnitureId(furnitureId);
+        this.setTypeOfFurniture(typeOfFurniture);
+        this.setMaterial(material);
+        this.setPrice(price);
+        this.setDifficulty(difficulty);
+        this.setInStock(inStock);
+
+    }
 
     public String getName() {
         return name;

@@ -8,6 +8,8 @@ package edu.hdsb.gwss.arian.u3.ikeaFurniture;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -35,7 +37,6 @@ public class InventoryStore {
             ikeaF.seek((f.getFurnitureId() - 1) * InventoryRecord.RECORD_SIZE);
         }
 
- 
         ikeaF.writeBytes(f.getName());
         ikeaF.writeBytes(f.getTypeOfFurniture());
         ikeaF.writeBytes(f.getMaterial());
@@ -47,11 +48,15 @@ public class InventoryStore {
 
     }
 
-    public void update() {
+    public InventoryRecord update(InventoryRecord f) throws IOException {
 
-        
-        
-        
+        return write(f);
+
+    }
+
+    public InventoryRecord add(InventoryRecord f) throws IOException {
+        return write(f);
+
     }
 
     public void read() {

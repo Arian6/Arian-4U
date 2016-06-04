@@ -11,7 +11,7 @@ package edu.hdsb.gwss.arian.u3.ikeaFurniture;
  */
 public class InventoryRecord {
 
-    protected final static int RECORD_SIZE = 78;
+    protected final static int RECORD_SIZE = 55;
     protected final static int LENGTH_NAME = 15;
     protected final static int LENGTH_TYPE = 15;
     protected final static int NOT_SET = -1;
@@ -20,9 +20,11 @@ public class InventoryRecord {
 
     private static final String[] DIFFICULTY = {"super easy", "easy", "moderate", "hard", "very hard"};
 
+    
+
     private String name;
     private String typeOfFurniture;
-    private int material;
+    protected int material;
     private int furnitureId = -1;
     private double price;
     private char difficulty;
@@ -36,7 +38,9 @@ public class InventoryRecord {
     public InventoryRecord(String name, String typeOfFurniture, double price) {
         this.setName(name);
         this.setTypeOfFurniture(typeOfFurniture);
+        this.setMaterial(0);
         this.setPrice(price);
+        this.setDifficulty('A');
         this.furnitureId = -1;
         this.inStock = false;
     }
@@ -53,14 +57,15 @@ public class InventoryRecord {
     }
 
     public String getName() {
-        return name;
+
+        return this.name;
     }
 
-    public void setName(String name) {
+    protected void setName(String name) {
         StringBuilder temp = new StringBuilder();
 
-        if (this.name != null) {
-            temp.append(this.name.trim());
+        if (name != null) {
+            temp.append(name.trim());
         } else {
             temp.append("TBD");
         }
@@ -70,16 +75,18 @@ public class InventoryRecord {
         this.name = temp.toString();
 
     }
+    
+
 
     public String getTypeOfFurniture() {
-        return typeOfFurniture;
+        return this.typeOfFurniture;
     }
 
     public void setTypeOfFurniture(String typeOfFurniture) {
         StringBuilder temp = new StringBuilder();
 
-        if (this.typeOfFurniture != null) {
-            temp.append(this.typeOfFurniture.trim());
+        if (typeOfFurniture != null) {
+            temp.append(typeOfFurniture.trim());
         } else {
             temp.append("TBD");
         }
@@ -91,15 +98,19 @@ public class InventoryRecord {
     }
 
     public int getFurnitureId() {
-        return furnitureId;
+        return this.furnitureId;
     }
 
     public void setFurnitureId(int furnitureId) {
         this.furnitureId = furnitureId;
     }
 
-    public String getMaterial() {
-        return MATERIAL[material];
+    public String getMaterialDescription() {
+        return this.MATERIAL[material];
+    }
+
+    public int getMaterial() {
+        return this.material;
     }
 
     public void setMaterial(int material) {
@@ -111,7 +122,7 @@ public class InventoryRecord {
     }
 
     public double getPrice() {
-        return price;
+        return this.price;
     }
 
     public void setPrice(double price) {
@@ -123,11 +134,11 @@ public class InventoryRecord {
     }
 
     public char getDifficulty() {
-        return difficulty;
+        return this.difficulty;
     }
 
     public String getDifficultyDescription() {
-        return DIFFICULTY[this.difficulty - 'A'];
+        return this.DIFFICULTY[this.difficulty - 'A'];
     }
 
     public void setDifficulty(char difficulty) {
@@ -143,7 +154,7 @@ public class InventoryRecord {
     }
 
     public boolean isInStock() {
-        return inStock;
+        return this.inStock;
     }
 
     public void setInStock(boolean inStock) {

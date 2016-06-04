@@ -5,14 +5,10 @@
  */
 package edu.hdsb.gwss.arian.u3.ikeaFurniture;
 
-import java.io.RandomAccessFile;
-
 /**
  *
  * @author 1krasniqiari
  */
-
-
 public class InventoryClient {
 
     /**
@@ -21,21 +17,21 @@ public class InventoryClient {
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
 
-        System.out.println("Creating 4 Class Records");
-        InventoryRecord a = new InventoryRecord("Mr. Sanderson", "Chemistry", 31);
-        
-        InventoryRecord b = new InventoryRecord("asdf", "asdf", 12, 34, 'D', true);
-        
-        System.out.println(b.getDifficultyDescription());
+        InventoryRecord b = new InventoryRecord("kkk", "arikkkan", 0, 0, 'a', true);
 
-        
+        InventoryStore c = new InventoryStore();
+
+        c.open();
+        c.write(b);
+        //c.close();
+
+         c.read();
 //        InventoryStore c = new InventoryStore();
 //        
 //        c.open();
 //        c.write(a);
 //        
 //        c.read();
-        
     }
 
 }

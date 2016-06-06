@@ -43,13 +43,13 @@ public class InventoryStore {
         //ikeaF.writeChar('|');
         ikeaF.writeChars(f.getTypeOfFurniture());
         //ikeaF.writeChar('|');
-        ikeaF.writeBytes(Integer.toString(f.getMaterial()));
+        ikeaF.writeInt(f.getMaterial());
         //ikeaF.writeChar('|');
-        ikeaF.writeBytes(Double.toString(f.getPrice()));
+        ikeaF.writeDouble(f.getPrice());
         //ikeaF.writeChar('|');
-        ikeaF.writeBytes(Integer.toString(f.getDifficulty()));
+        ikeaF.writeInt(f.getDifficulty());
         // ikeaF.writeChar('|');
-        ikeaF.writeBytes(Boolean.toString(f.isInStock()));
+        ikeaF.writeBoolean(f.isInStock());
         //  ikeaF.writeChar('|');
 
         return f;
@@ -67,19 +67,22 @@ public class InventoryStore {
 
     }
 
-    public void get(int record) throws IOException {
+    public InventoryRecord get(int record) throws IOException {
 
-        this.read(record);
+        return read(record);
 
     }
 
-    private void read(int record) throws IOException {
-
+    private InventoryRecord read(int record) throws IOException {
+        InventoryRecord a = new InventoryRecord();
         long position = InventoryRecord.RECORD_SIZE * (record - 1);
         ikeaF.seek(position);
 
-        InventoryRecord a = new InventoryRecord();
-
+//        while (ikeaF.readBoolean() == true) {
+//            record++;
+//            position = InventoryRecord.RECORD_SIZE * (record - 1);
+//            ikeaF.seek(position);
+//        }
         char name[] = new char[InventoryRecord.LENGTH_NAME];
         for (int i = 0; i < InventoryRecord.LENGTH_NAME; i++) {
             name[i] = ikeaF.readChar();
@@ -94,13 +97,14 @@ public class InventoryStore {
         }
         a.setTypeOfFurniture(new String(type));
 
-        System.out.println(ikeaF.readInt());
         a.setMaterial(ikeaF.readInt());
         a.setPrice(ikeaF.readDouble());
         a.setDifficulty(ikeaF.readChar());
         a.setInStock(ikeaF.readBoolean());
 
         System.out.println(a.toString());
+
+        return a;
     }
 
     public void remove() {

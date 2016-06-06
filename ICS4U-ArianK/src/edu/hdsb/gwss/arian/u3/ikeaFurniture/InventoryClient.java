@@ -17,7 +17,7 @@ public class InventoryClient {
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
 
-        InventoryRecord b = new InventoryRecord("oak", "table", 3, 150, 'A', true);
+        InventoryRecord b = new InventoryRecord("oak", "table", 1, 150, 'B', false);
 
         InventoryStore c = new InventoryStore();
 

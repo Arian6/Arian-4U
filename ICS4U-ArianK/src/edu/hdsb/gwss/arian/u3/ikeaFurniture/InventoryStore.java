@@ -22,7 +22,7 @@ public class InventoryStore {
     }
 
     private void open() throws FileNotFoundException {
-        this.ikeaF = new RandomAccessFile("ikea_info.txt", "rw");
+        this.ikeaF = new RandomAccessFile("ikea_info.dat", "rw");
     }
 
     private void close() throws IOException {
@@ -67,52 +67,40 @@ public class InventoryStore {
 
     }
 
-    public void read() throws IOException {
+    public void get(int record) throws IOException {
 
-//        Scanner input = new Scanner(System.in);
-//
-//        long numRecords = (ikeaF.length() / InventoryRecord.RECORD_SIZE);
-//        System.out.println("\nThere are " + numRecords + " records currently in the file.");
-//
-//        System.out.println("Which record do you want [1 - " + numRecords + "] or 0 to exit?");
-//        long recordNumber = input.nextLong();
-//
-//        long position = InventoryRecord.RECORD_SIZE * (recordNumber - 1);
-        ikeaF.seek(0);
+        this.read(record);
 
-        //String nameF = "";
+    }
+
+    private void read(int record) throws IOException {
+
+        long position = InventoryRecord.RECORD_SIZE * (record - 1);
+        ikeaF.seek(position);
+
+        InventoryRecord a = new InventoryRecord();
+
         char name[] = new char[InventoryRecord.LENGTH_NAME];
         for (int i = 0; i < InventoryRecord.LENGTH_NAME; i++) {
             name[i] = ikeaF.readChar();
         }
+        a.setName(new String(name));
 
-        for (int i = 0; i < name.length - 1; i++) {
-            System.out.print(name[i]);
-        }
+        char type[] = new char[InventoryRecord.LENGTH_TYPE];
 
-        char type[] = new char[InventoryRecord.LENGTH_NAME];
-        for (int i = 0; i < InventoryRecord.LENGTH_NAME; i++) {
+        for (int i = 0; i < InventoryRecord.LENGTH_TYPE; i++) {
 
             type[i] = ikeaF.readChar();
-
         }
+        a.setTypeOfFurniture(new String(type));
 
-        for (int i = 0; i < type.length - 1; i++) {
+        System.out.println(ikeaF.readInt());
+        a.setMaterial(ikeaF.readInt());
+        a.setPrice(ikeaF.readDouble());
+        a.setDifficulty(ikeaF.readChar());
+        a.setInStock(ikeaF.readBoolean());
 
-            System.out.print(type[i]);
-        }
-
-        System.out.print(ikeaF.readChar());
-        System.out.print(ikeaF.readDouble());
-        //nameF = nameF + ikeaF.readChar();
-        //System.out.println(nameF);
-//
-//        String typeF = "";
-//        while (ikeaF.readChar() != '|') {
-//            typeF = typeF + ikeaF.readChar();
-//        }
-//
-//        System.out.println("Name: " + nameF + ", " + "Furniture Type: " + typeF + ", " + "Material: " + ikeaF.readInt() + ", " + "Price: " + ikeaF.readDouble() + ", " + "Difficulty: " + ikeaF.readChar() + "InStock?: " + ikeaF.readBoolean());
+        System.out.println(a.toString());
     }
 
     public void remove() {

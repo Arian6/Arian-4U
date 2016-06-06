@@ -64,7 +64,7 @@ public class Queue implements QueueInterface {
 
     @Override
     public int dequeue() {
-        int holder = 0;
+        int holder = -1;
 
         if (!this.isEmpty()) {
             if (this.size() == 1) {

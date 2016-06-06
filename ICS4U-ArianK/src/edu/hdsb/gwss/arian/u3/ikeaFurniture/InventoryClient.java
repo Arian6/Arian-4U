@@ -24,7 +24,7 @@ public class InventoryClient {
         c.add(b);
 
         //c.close();
-        c.read();
+        c.get(1);
 //        InventoryStore c = new InventoryStore();
 //        
 //        c.open();

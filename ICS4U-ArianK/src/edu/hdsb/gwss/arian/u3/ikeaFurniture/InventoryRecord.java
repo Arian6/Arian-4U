@@ -22,7 +22,7 @@ public class InventoryRecord {
 
     private String name;
     private String typeOfFurniture;
-    protected int material;
+    private int material;
     private int furnitureId = -1;
     private double price;
     private char difficulty;
@@ -160,7 +160,8 @@ public class InventoryRecord {
 
     @Override
     public String toString() {
-        return "Inventory Item:" + "name=" + name + ", typeOfFurniture=" + typeOfFurniture + ", material=" + MATERIAL[material] + price + ", difficulty=" + this.getDifficultyDescription() + ", inStock=" + inStock + ", Furniture Id =" + this.furnitureId + '}';
+        return "Inventory Item:" + "name= " + name + ", typeOfFurniture= " + typeOfFurniture + ", material= " + MATERIAL[material] + ", Price: " + price + ", difficulty= " + difficulty + ", inStock= " + inStock
+                + '}';
 
     }
 

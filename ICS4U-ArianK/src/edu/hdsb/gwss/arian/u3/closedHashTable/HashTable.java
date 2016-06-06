@@ -165,7 +165,7 @@ public final class HashTable implements HashTableInterface {
         if (this.hashTable[hashIndex] == null) {
             this.hashTable[hashIndex] = value;
         } else {
-            if (!this.containsKey(key)) {
+           // if (!this.containsKey(key)) {
                 while (this.hashTable[hashIndex] != null) {
 
                     hashIndex = hashIndex + 1;
@@ -177,7 +177,7 @@ public final class HashTable implements HashTableInterface {
                 }
 
                 this.hashTable[hashIndex] = value;
-            }
+          //  }
         }
 
         if (this.loadFactor() >= 75) {

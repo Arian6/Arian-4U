@@ -20,8 +20,6 @@ public class InventoryRecord {
 
     private static final String[] DIFFICULTY = {"super easy", "easy", "moderate", "hard", "very hard"};
 
-    
-
     private String name;
     private String typeOfFurniture;
     protected int material;
@@ -46,8 +44,8 @@ public class InventoryRecord {
     }
 
     public InventoryRecord(String name, String typeOfFurniture, int material, double price, char difficulty, boolean inStock) {
-        this.setName(name);
         this.setFurnitureId(furnitureId);
+        this.setName(name);
         this.setTypeOfFurniture(typeOfFurniture);
         this.setMaterial(material);
         this.setPrice(price);
@@ -75,25 +73,22 @@ public class InventoryRecord {
         this.name = temp.toString();
 
     }
-    
-
 
     public String getTypeOfFurniture() {
         return this.typeOfFurniture;
     }
 
     public void setTypeOfFurniture(String typeOfFurniture) {
-        StringBuilder temp = new StringBuilder();
+        StringBuilder temp2 = new StringBuilder();
 
         if (typeOfFurniture != null) {
-            temp.append(typeOfFurniture.trim());
+            temp2.append(typeOfFurniture.trim());
         } else {
-            temp.append("TBD");
+            temp2.append("TBD");
         }
 
-        temp.setLength(LENGTH_TYPE);
-        this.typeOfFurniture = temp.toString();
-        this.typeOfFurniture = typeOfFurniture;
+        temp2.setLength(LENGTH_TYPE);
+        this.typeOfFurniture = temp2.toString();
 
     }
 
@@ -158,11 +153,8 @@ public class InventoryRecord {
     }
 
     public void setInStock(boolean inStock) {
-        if (this.inStock == false) {
-            this.inStock = false;
-        } else {
-            this.inStock = inStock;
-        }
+
+        this.inStock = inStock;
 
     }
 

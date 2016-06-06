@@ -17,15 +17,19 @@ public class InventoryStore {
     private RandomAccessFile ikeaF;
 
     //open, close write, read, add, update, remove
-    public void open() throws FileNotFoundException {
-        this.ikeaF = new RandomAccessFile("ikea_info.dat", "rw");
+    public InventoryStore() throws FileNotFoundException {
+        this.open();
     }
 
-    public void close() throws IOException {
+    private void open() throws FileNotFoundException {
+        this.ikeaF = new RandomAccessFile("ikea_info.txt", "rw");
+    }
+
+    private void close() throws IOException {
         ikeaF.close();
     }
 
-    public InventoryRecord write(InventoryRecord f) throws IOException {
+    private InventoryRecord write(InventoryRecord f) throws IOException {
 
         if (f.getFurnitureId() == -1) {
             ikeaF.seek(ikeaF.length());
@@ -34,12 +38,19 @@ public class InventoryStore {
             ikeaF.seek((f.getFurnitureId() - 1) * InventoryRecord.RECORD_SIZE);
         }
 
+        //include in size
         ikeaF.writeChars(f.getName());
+        //ikeaF.writeChar('|');
         ikeaF.writeChars(f.getTypeOfFurniture());
-        ikeaF.writeInt(f.getMaterial());
-        ikeaF.writeDouble(f.getPrice());
-        ikeaF.writeChars(Integer.toString(f.getDifficulty()));
-        ikeaF.writeChars(Boolean.toString(f.isInStock()));
+        //ikeaF.writeChar('|');
+        ikeaF.writeBytes(Integer.toString(f.getMaterial()));
+        //ikeaF.writeChar('|');
+        ikeaF.writeBytes(Double.toString(f.getPrice()));
+        //ikeaF.writeChar('|');
+        ikeaF.writeBytes(Integer.toString(f.getDifficulty()));
+        // ikeaF.writeChar('|');
+        ikeaF.writeBytes(Boolean.toString(f.isInStock()));
+        //  ikeaF.writeChar('|');
 
         return f;
 
@@ -58,30 +69,53 @@ public class InventoryStore {
 
     public void read() throws IOException {
 
-        Scanner input = new Scanner(System.in);
+//        Scanner input = new Scanner(System.in);
+//
+//        long numRecords = (ikeaF.length() / InventoryRecord.RECORD_SIZE);
+//        System.out.println("\nThere are " + numRecords + " records currently in the file.");
+//
+//        System.out.println("Which record do you want [1 - " + numRecords + "] or 0 to exit?");
+//        long recordNumber = input.nextLong();
+//
+//        long position = InventoryRecord.RECORD_SIZE * (recordNumber - 1);
+        ikeaF.seek(0);
 
-        long numRecords = ikeaF.length() / InventoryRecord.RECORD_SIZE;
-        System.out.println("\nThere are " + numRecords + " records currently in the file.");
-
-        System.out.println("Which record do you want [1 - " + numRecords + "] or 0 to exit?");
-        long recordNumber = input.nextLong();
-
-        long position = InventoryRecord.RECORD_SIZE * (recordNumber - 1);
-
-        ikeaF.seek(position);
-
-        String nameF = "";
+        //String nameF = "";
+        char name[] = new char[InventoryRecord.LENGTH_NAME];
         for (int i = 0; i < InventoryRecord.LENGTH_NAME; i++) {
-            nameF = nameF + ikeaF.readChar();
+            name[i] = ikeaF.readChar();
         }
 
-        String typeF = "";
-        for (int i = 0; i < InventoryRecord.LENGTH_TYPE; i++) {
-            typeF = typeF + ikeaF.readChar();
+        for (int i = 0; i < name.length - 1; i++) {
+            System.out.print(name[i]);
         }
 
-      //  System.out.println(InventoryRecord.);
-        //System.out.println("Name: " + nameF + ", " + "Furniture Type: " + typeF + ", " + "Material: " + ikeaF.+ ", " + "Price: " + ikeaF.readDouble() + ", " + "Difficulty: " + ikeaF.readChar() + "InStock?: " + ikeaF.readBoolean());
+        char type[] = new char[InventoryRecord.LENGTH_NAME];
+        for (int i = 0; i < InventoryRecord.LENGTH_NAME; i++) {
+
+            type[i] = ikeaF.readChar();
+
+        }
+
+        for (int i = 0; i < type.length - 1; i++) {
+
+            System.out.print(type[i]);
+        }
+
+        System.out.print(ikeaF.readChar());
+        System.out.print(ikeaF.readDouble());
+        //nameF = nameF + ikeaF.readChar();
+        //System.out.println(nameF);
+//
+//        String typeF = "";
+//        while (ikeaF.readChar() != '|') {
+//            typeF = typeF + ikeaF.readChar();
+//        }
+//
+//        System.out.println("Name: " + nameF + ", " + "Furniture Type: " + typeF + ", " + "Material: " + ikeaF.readInt() + ", " + "Price: " + ikeaF.readDouble() + ", " + "Difficulty: " + ikeaF.readChar() + "InStock?: " + ikeaF.readBoolean());
+    }
+
+    public void remove() {
 
     }
 

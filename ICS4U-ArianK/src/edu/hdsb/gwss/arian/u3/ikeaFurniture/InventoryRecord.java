@@ -11,7 +11,7 @@ package edu.hdsb.gwss.arian.u3.ikeaFurniture;
  */
 public class InventoryRecord {
 
-    protected final static int RECORD_SIZE = 55;
+    protected final static int RECORD_SIZE = 77;
     protected final static int LENGTH_NAME = 15;
     protected final static int LENGTH_TYPE = 15;
     protected final static int NOT_SET = -1;
@@ -133,7 +133,12 @@ public class InventoryRecord {
     }
 
     public String getDifficultyDescription() {
-        return this.DIFFICULTY[this.difficulty - 'A'];
+        if (difficulty >= 'A' && difficulty <= 'E') {
+            return this.DIFFICULTY[this.difficulty - 'A'];
+        } else {
+            return "Unkown";
+        }
+
     }
 
     public void setDifficulty(char difficulty) {
@@ -160,7 +165,7 @@ public class InventoryRecord {
 
     @Override
     public String toString() {
-        return "Inventory Item:" + "name= " + name + ", typeOfFurniture= " + typeOfFurniture + ", material= " + MATERIAL[material] + ", Price: " + price + ", difficulty= " + difficulty + ", inStock= " + inStock
+        return "Inventory Item:" + "name= " + name + ", typeOfFurniture= " + typeOfFurniture + ", material= " + MATERIAL[material] + ", Price: $" + price + ", difficulty= " + this.getDifficultyDescription() + ", inStock= " + inStock
                 + '}';
 
     }

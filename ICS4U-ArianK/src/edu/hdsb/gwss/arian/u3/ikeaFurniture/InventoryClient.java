@@ -17,14 +17,18 @@ public class InventoryClient {
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
 
-        InventoryRecord b = new InventoryRecord("oak", "table", 1, 150, 'B', false);
+        InventoryRecord b = new InventoryRecord("oak", "table", 1, 150, 'B', true);
+        InventoryRecord a = new InventoryRecord("sdf", "sdfsdf", 4, 5, 'd', true);
 
+        //System.out.println(a.toString());
         InventoryStore c = new InventoryStore();
 
         c.add(b);
-
-        //c.close();
-        c.get(1);
+        c.add(a);
+//
+//        //c.close();
+        c.get(4);
+        c.get(5);
 //        InventoryStore c = new InventoryStore();
 //        
 //        c.open();

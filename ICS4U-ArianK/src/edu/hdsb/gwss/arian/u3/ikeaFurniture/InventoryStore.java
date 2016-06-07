@@ -99,6 +99,7 @@ public class InventoryStore {
 
         a.setMaterial(ikeaF.readInt());
         a.setPrice(ikeaF.readDouble());
+        ikeaF.readChar();
         a.setDifficulty(ikeaF.readChar());
         a.setInStock(ikeaF.readBoolean());
 

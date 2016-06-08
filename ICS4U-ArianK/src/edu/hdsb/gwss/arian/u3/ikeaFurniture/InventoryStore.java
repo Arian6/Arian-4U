@@ -107,25 +107,7 @@ public class InventoryStore {
 
         }
 
-        char name[] = new char[InventoryRecord.LENGTH_NAME];
-        for (int i = 0; i < InventoryRecord.LENGTH_NAME; i++) {
-            name[i] = ikeaF.readChar();
-        }
-        a.setName(new String(name));
-
-        char type[] = new char[InventoryRecord.LENGTH_TYPE];
-
-        for (int i = 0; i < InventoryRecord.LENGTH_TYPE; i++) {
-
-            type[i] = ikeaF.readChar();
-        }
-
-        a.setTypeOfFurniture(new String(type));
-        a.setMaterial(ikeaF.readInt());
-        a.setPrice(ikeaF.readDouble());
-        ikeaF.readChar();
-        a.setDifficulty(ikeaF.readChar());
-        a.setInStock(ikeaF.readBoolean());
+        this.reset(a);
 
         System.out.println(a.toString());
 
@@ -140,25 +122,7 @@ public class InventoryStore {
         a.setRemoved(true);
         a.setFurnitureId(f);
 
-        char name[] = new char[InventoryRecord.LENGTH_NAME];
-        for (int i = 0; i < InventoryRecord.LENGTH_NAME; i++) {
-            name[i] = ikeaF.readChar();
-        }
-        a.setName(new String(name));
-
-        char type[] = new char[InventoryRecord.LENGTH_TYPE];
-
-        for (int i = 0; i < InventoryRecord.LENGTH_TYPE; i++) {
-
-            type[i] = ikeaF.readChar();
-        }
-
-        a.setTypeOfFurniture(new String(type));
-        a.setMaterial(ikeaF.readInt());
-        a.setPrice(ikeaF.readDouble());
-        ikeaF.readChar();
-        a.setDifficulty(ikeaF.readChar());
-        a.setInStock(ikeaF.readBoolean());
+        this.reset(a);
         this.update(a);
 
     }

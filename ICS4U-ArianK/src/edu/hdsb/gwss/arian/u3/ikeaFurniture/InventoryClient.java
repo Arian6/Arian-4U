@@ -29,6 +29,11 @@ public class InventoryClient {
 //        //c.close();
         c.get(1);
         c.get(2);
+
+        b.setName("oak3");
+
+        c.update(b);
+        c.get(1);
 //        InventoryStore c = new InventoryStore();
 //        
 //        c.open();

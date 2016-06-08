@@ -38,6 +38,7 @@ public class InventoryStore {
             ikeaF.seek((f.getFurnitureId() - 1) * InventoryRecord.RECORD_SIZE);
         }
 
+        System.out.println(f.getFurnitureId());
     
         ikeaF.writeChars(f.getName());
         ikeaF.writeChars(f.getTypeOfFurniture());

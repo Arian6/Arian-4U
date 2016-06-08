@@ -70,13 +70,12 @@ public class StudentClient {
             s = ht.get(value);
             assert (s.getKey() == value);
             System.out.println("Load Factor: " + ht.loadFactor());
-            System.out.println(size);
-            System.out.println(ht.size());
+
         }
 
         // BEFORE RESIZE: 17/23 == Load Factor > 0.74
         assert (ht.size() == 17);
-        assert (ht.loadFactor() < .75);
+        assert (ht.loadFactor() < 75);
         assert (ht.capacity() == 23);
 //
         // BEFORE RESIZE: 18/23 --> New Size: 18 / 0.25
@@ -85,7 +84,7 @@ public class StudentClient {
         valuesAdded[nextSpot] = 666;
         nextSpot++;
         assert (ht.capacity() == 73);
-        assert (ht.loadFactor() < 0.25);
+        assert (ht.loadFactor() < 25);
 
         // MAKE SURE RESIZE WORKED; ALL VALUES ADDED CORRECTLY
         nextSpot = 0;

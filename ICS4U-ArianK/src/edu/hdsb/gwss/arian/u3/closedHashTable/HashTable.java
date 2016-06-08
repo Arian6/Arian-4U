@@ -59,7 +59,7 @@ public final class HashTable implements HashTableInterface {
                 size = size + 1;
             }
         }
-
+       
         return size;
     }
 
@@ -76,7 +76,7 @@ public final class HashTable implements HashTableInterface {
 
     @Override
     public void makeEmpty() {
-        for (int i = 0; i < this.hashTable.length - 1; i++) {
+        for (int i = 0; i < this.hashTable.length; i++) {
             this.hashTable[i] = null;
         }
 
@@ -165,19 +165,19 @@ public final class HashTable implements HashTableInterface {
         if (this.hashTable[hashIndex] == null) {
             this.hashTable[hashIndex] = value;
         } else {
-           // if (!this.containsKey(key)) {
-                while (this.hashTable[hashIndex] != null) {
+            // if (!this.containsKey(key)) {
+            while (this.hashTable[hashIndex] != null) {
 
-                    hashIndex = hashIndex + 1;
+                hashIndex = hashIndex + 1;
 
-                    if (hashIndex == this.capacity()) {
-                        hashIndex = hashIndex % this.capacity();
-                    }
-
+                if (hashIndex == this.capacity()) {
+                    hashIndex = hashIndex % this.capacity();
                 }
 
-                this.hashTable[hashIndex] = value;
-          //  }
+            }
+
+            this.hashTable[hashIndex] = value;
+            //  }
         }
 
         if (this.loadFactor() >= 75) {
@@ -185,7 +185,6 @@ public final class HashTable implements HashTableInterface {
         }
 
     }
-    
 
     @Override
     public boolean contains(Student value) {
@@ -221,27 +220,16 @@ public final class HashTable implements HashTableInterface {
     public boolean containsKey(int key) {
 
         int index = this.hash(key);
-        int savedKeyIndex = index;
 
-        if (this.hashTable[index].getKey() == key) {
-            return true;
-
-        } else {
-            while (this.hashTable[index] != null) {
-
-                if (index == this.capacity()) {
-                    index = index % this.capacity();
-                }
-                if (this.hashTable[index].getKey() == key) {
-                    return true;
-
-                } else {
-                    index = index + 1;
-                }
-
+        while (this.hashTable[index] != null) {
+            if (this.hashTable[index].getKey() == key) {
+                return true;
+            } else {
+                index = index + 1;
+                index = index % this.capacity();
             }
-            return false;
         }
+        return false;
     }
 
     public void reHash(Student[] oldTable) {

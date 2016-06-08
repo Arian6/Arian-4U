@@ -59,7 +59,7 @@ public final class HashTable implements HashTableInterface {
                 size = size + 1;
             }
         }
-       
+
         return size;
     }
 

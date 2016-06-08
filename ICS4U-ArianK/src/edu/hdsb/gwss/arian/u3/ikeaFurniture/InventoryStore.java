@@ -38,8 +38,7 @@ public class InventoryStore {
             ikeaF.seek((f.getFurnitureId() - 1) * InventoryRecord.RECORD_SIZE);
         }
 
-        System.out.println(f.getFurnitureId());
-    
+        ikeaF.writeBoolean(f.isRemoved());
         ikeaF.writeChars(f.getName());
         ikeaF.writeChars(f.getTypeOfFurniture());
         ikeaF.writeInt(f.getMaterial());
@@ -69,16 +68,24 @@ public class InventoryStore {
     }
 
     private InventoryRecord read(int record) throws IOException {
+
         InventoryRecord a = new InventoryRecord();
         long position = InventoryRecord.RECORD_SIZE * (record - 1);
         ikeaF.seek(position);
 
-//        while (ikeaF.readBoolean() == true) {
-//            record++;
-//            position = InventoryRecord.RECORD_SIZE * (record - 1);
-//            ikeaF.seek(position);
-//        }
-        
+        System.out.println(ikeaF.readBoolean());
+
+        ikeaF.seek(position);
+        if (ikeaF.readBoolean() == true) {
+
+            while (ikeaF.readBoolean() == true) {
+                record++;
+                position = InventoryRecord.RECORD_SIZE * (record - 1);
+                ikeaF.seek(position);
+            }
+
+        }
+
         char name[] = new char[InventoryRecord.LENGTH_NAME];
         for (int i = 0; i < InventoryRecord.LENGTH_NAME; i++) {
             name[i] = ikeaF.readChar();
@@ -91,9 +98,8 @@ public class InventoryStore {
 
             type[i] = ikeaF.readChar();
         }
-        
-        a.setTypeOfFurniture(new String(type));
 
+        a.setTypeOfFurniture(new String(type));
         a.setMaterial(ikeaF.readInt());
         a.setPrice(ikeaF.readDouble());
         ikeaF.readChar();
@@ -105,12 +111,12 @@ public class InventoryStore {
         return a;
     }
 
-    public void remove(int i) throws IOException {
+    public void remove(int f) throws IOException {
         InventoryRecord a = new InventoryRecord();
-        long position = InventoryRecord.RECORD_SIZE * (i - 1);
+        long position = InventoryRecord.RECORD_SIZE * (f - 1);
         ikeaF.seek(position);
 
-        a.setRemoved(false);
+        ikeaF.writeBoolean(true);
 
     }
 

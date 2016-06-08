@@ -11,7 +11,7 @@ package edu.hdsb.gwss.arian.u3.ikeaFurniture;
  */
 public class InventoryRecord {
 
-    protected final static int RECORD_SIZE = 77;
+    protected final static int RECORD_SIZE = 78;
     protected final static int LENGTH_NAME = 15;
     protected final static int LENGTH_TYPE = 15;
     protected final static int NOT_SET = -1;

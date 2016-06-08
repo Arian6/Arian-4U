@@ -27,10 +27,17 @@ public class InventoryRecord {
     private double price;
     private char difficulty;
     private boolean inStock;
+    private boolean removed;
 
     public InventoryRecord() {
+        this.name = "";
+        this.typeOfFurniture = "";
+        this.material = 0;
+        this.price = 0;
+        this.difficulty = 'A';
         this.inStock = false;
         this.furnitureId = -1;
+        this.removed = false;
     }
 
     public InventoryRecord(String name, String typeOfFurniture, double price) {
@@ -41,6 +48,8 @@ public class InventoryRecord {
         this.setDifficulty('A');
         this.furnitureId = -1;
         this.inStock = false;
+        this.removed = false;
+
     }
 
     public InventoryRecord(String name, String typeOfFurniture, int material, double price, char difficulty, boolean inStock) {
@@ -51,7 +60,16 @@ public class InventoryRecord {
         this.setPrice(price);
         this.setDifficulty(difficulty);
         this.setInStock(inStock);
+        this.removed = false;
 
+    }
+
+    public boolean isRemoved() {
+        return removed;
+    }
+
+    public void setRemoved(boolean removed) {
+        this.removed = removed;
     }
 
     public String getName() {

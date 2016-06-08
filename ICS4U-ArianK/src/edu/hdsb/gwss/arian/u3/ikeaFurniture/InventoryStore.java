@@ -38,19 +38,13 @@ public class InventoryStore {
             ikeaF.seek((f.getFurnitureId() - 1) * InventoryRecord.RECORD_SIZE);
         }
 
-        //include in size
+    
         ikeaF.writeChars(f.getName());
-        //ikeaF.writeChar('|');
         ikeaF.writeChars(f.getTypeOfFurniture());
-        //ikeaF.writeChar('|');
         ikeaF.writeInt(f.getMaterial());
-        //ikeaF.writeChar('|');
         ikeaF.writeDouble(f.getPrice());
-        //ikeaF.writeChar('|');
         ikeaF.writeInt(f.getDifficulty());
-        // ikeaF.writeChar('|');
         ikeaF.writeBoolean(f.isInStock());
-        //  ikeaF.writeChar('|');
 
         return f;
 
@@ -83,6 +77,7 @@ public class InventoryStore {
 //            position = InventoryRecord.RECORD_SIZE * (record - 1);
 //            ikeaF.seek(position);
 //        }
+        
         char name[] = new char[InventoryRecord.LENGTH_NAME];
         for (int i = 0; i < InventoryRecord.LENGTH_NAME; i++) {
             name[i] = ikeaF.readChar();
@@ -95,6 +90,7 @@ public class InventoryStore {
 
             type[i] = ikeaF.readChar();
         }
+        
         a.setTypeOfFurniture(new String(type));
 
         a.setMaterial(ikeaF.readInt());
@@ -108,7 +104,12 @@ public class InventoryStore {
         return a;
     }
 
-    public void remove() {
+    public void remove(int i) throws IOException {
+        InventoryRecord a = new InventoryRecord();
+        long position = InventoryRecord.RECORD_SIZE * (i - 1);
+        ikeaF.seek(position);
+
+        a.setRemoved(false);
 
     }
 

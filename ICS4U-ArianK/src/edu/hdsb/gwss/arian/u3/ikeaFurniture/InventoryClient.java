@@ -29,7 +29,7 @@ public class InventoryClient {
         // c.add(b);
         // System.out.println(b.getFurnitureId());
 //        //c.close();
-        
+
         c.get(1);
         c.get(2);
 

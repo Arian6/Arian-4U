@@ -67,13 +67,34 @@ public class InventoryStore {
 
     }
 
+    private void reset(InventoryRecord a) throws IOException {
+
+        char name[] = new char[InventoryRecord.LENGTH_NAME];
+        for (int i = 0; i < InventoryRecord.LENGTH_NAME; i++) {
+            name[i] = ikeaF.readChar();
+        }
+        a.setName(new String(name));
+
+        char type[] = new char[InventoryRecord.LENGTH_TYPE];
+
+        for (int i = 0; i < InventoryRecord.LENGTH_TYPE; i++) {
+
+            type[i] = ikeaF.readChar();
+        }
+
+        a.setTypeOfFurniture(new String(type));
+        a.setMaterial(ikeaF.readInt());
+        a.setPrice(ikeaF.readDouble());
+        ikeaF.readChar();
+        a.setDifficulty(ikeaF.readChar());
+        a.setInStock(ikeaF.readBoolean());
+    }
+
     private InventoryRecord read(int record) throws IOException {
 
         InventoryRecord a = new InventoryRecord();
         long position = InventoryRecord.RECORD_SIZE * (record - 1);
         ikeaF.seek(position);
-
-        System.out.println(ikeaF.readBoolean());
 
         ikeaF.seek(position);
         if (ikeaF.readBoolean() == true) {
@@ -116,7 +137,29 @@ public class InventoryStore {
         long position = InventoryRecord.RECORD_SIZE * (f - 1);
         ikeaF.seek(position);
 
-        ikeaF.writeBoolean(true);
+        a.setRemoved(true);
+        a.setFurnitureId(f);
+
+        char name[] = new char[InventoryRecord.LENGTH_NAME];
+        for (int i = 0; i < InventoryRecord.LENGTH_NAME; i++) {
+            name[i] = ikeaF.readChar();
+        }
+        a.setName(new String(name));
+
+        char type[] = new char[InventoryRecord.LENGTH_TYPE];
+
+        for (int i = 0; i < InventoryRecord.LENGTH_TYPE; i++) {
+
+            type[i] = ikeaF.readChar();
+        }
+
+        a.setTypeOfFurniture(new String(type));
+        a.setMaterial(ikeaF.readInt());
+        a.setPrice(ikeaF.readDouble());
+        ikeaF.readChar();
+        a.setDifficulty(ikeaF.readChar());
+        a.setInStock(ikeaF.readBoolean());
+        this.update(a);
 
     }
 
